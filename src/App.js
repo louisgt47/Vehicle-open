@@ -7,6 +7,7 @@ import RentCar from './pages/rent_car/RentCar'
 import Agent from './pages/agent/Agent'
 import QA from './pages/qa/QA'
 import AboutMe from './pages/about_me/AboutMe'
+import Shop from './pages/shop/Shop'
 
 class App extends React.Component {
   render() {
@@ -21,6 +22,7 @@ class App extends React.Component {
             <Route path="/agent" component={Agent} />
             <Route path="/qa" component={QA} />
             <Route path="/about_me" component={AboutMe} />
+            <Route path="/shop" component={Shop} />
           </Switch>
         </>
       </Router>

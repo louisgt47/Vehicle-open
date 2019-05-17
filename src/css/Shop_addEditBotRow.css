@@ -1,0 +1,28 @@
+.BotRow input,
+select {
+  background: white;
+  border-radius: 10px;
+  width: 200px;
+  height: 30px;
+}
+.BotRow * {
+  margin: 5px;
+}
+
+.carOld select {
+  width: 50px;
+}
+.BotRow .bar2 {
+  margin: 0 50px 0 50px;
+}
+.BotRow .bar3 {
+  position: relative;
+}
+.ShopButton {
+  background: #434948;
+  color: white;
+  border-radius: 10px;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}

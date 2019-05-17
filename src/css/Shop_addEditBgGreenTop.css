@@ -1,0 +1,8 @@
+.BgGreenTop {
+  background-image: url(../images/bg-green-top.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  min-height: 200px;
+  width: 100%;
+  position: absolute;
+}

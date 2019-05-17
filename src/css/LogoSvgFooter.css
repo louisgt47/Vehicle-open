@@ -1,0 +1,22 @@
+.st0 {
+  fill: NONE;
+  stroke: #fff;
+  stroke-width: 6;
+  stroke-miterlimit: 10;
+}
+.st1 {
+  fill: #fff;
+  stroke: #fff;
+  stroke-miterlimit: 10;
+}
+.st2 {
+  fill: none;
+  stroke: #fff;
+  stroke-width: 3;
+  stroke-miterlimit: 10;
+}
+.logoboxfooter {
+  top: calc(50%-25px);
+  min-width: 150px;
+  vertical-align: middle;
+}

@@ -1,0 +1,8 @@
+.wrap {
+  background-image: url(../images/bg-01.jpg);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  z-index: -2;
+  /* height: 200vh; */
+}

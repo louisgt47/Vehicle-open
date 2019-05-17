@@ -1,0 +1,11 @@
+.BgGreenBot {
+  background-image: url(../images/bg-green-bot.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 200px;
+  width: 100%;
+  bottom: 0;
+  right: 0;
+  /* position: absolute; */
+  z-index: -1;
+}

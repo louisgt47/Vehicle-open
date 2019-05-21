@@ -1,0 +1,55 @@
+/* .d-flex */
+.d-flex {
+  display: flex;
+}
+.justify-content-start {
+  justify-content: start;
+}
+.justify-content-end {
+  justify-content: end;
+}
+.justify-content-center {
+  justify-content: center;
+}
+.justify-content-between {
+  justify-content: space-between;
+}
+.justify-content-around {
+  justify-content: space-around;
+}
+.align-items-start {
+  align-items: start;
+}
+.align-items-end {
+  align-items: end;
+}
+.align-items-center {
+  align-items: center;
+}
+
+/* 文字對齊用 */
+
+.t-center{
+  text-align: center
+}
+.t-right{
+  text-align: right;
+}
+
+/* 框線 */
+.border_all{
+  border: 2px solid #434948;
+}
+.border_top{
+  border-top: 2px solid #434948;
+}
+.border_bottom{
+  border-bottom: 2px solid #434948;
+}
+.border_left{
+  border-left: 2px solid #434948;
+}
+.border_right{
+  border-right: 2px solid #434948;
+}
+

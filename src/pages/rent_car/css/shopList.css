@@ -1,5 +1,5 @@
 .productList-wrap {
-  background-image: url(../images/bg-01.jpg);
+  background-image: url(http://localhost:3000/images/bg-01.jpg);
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: cover;

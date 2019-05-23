@@ -6,7 +6,32 @@ import '../css/normalize.css'
 import '../css/basic.css'
 
 class ProductListMain_product extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      // hotList_car: [],
+    }
+  }
+
+  componentDidMount() {
+    console.log(this.props.product)
+    // this.hotList_car()
+  }
+
+  // hotList_car = _ => {
+  //   fetch('http://localhost:4000/hotList_car')
+  //     .then(response => response.json())
+  //     .then(response => this.setState({ hotList_car: response.data }))
+  //     // .then(console.log(this.state.hotList_car))
+  //     .catch(err => console.error(err))
+  // }
+  Product_pBrand = ({ pBrand }) => <h2 key={0}>{pBrand}</h2>
+
   render() {
+    // const { hotList_car } = this.state.hotList_car
+    // var myObj = this.state.hotList_car[0]
+    // var myProperty = pBrand
+
     return (
       <div className="productList-main_product">
         <div className="productList-container">
@@ -40,7 +65,7 @@ class ProductListMain_product extends React.Component {
               </div>
               {/* 商品訊息 */}
               <div>
-                <h2>Toyoto CHR Gray</h2>
+                {this.props.product.map(this.Product_pBrand)[0]}
                 <div className="border_right pr-2" style={{ height: '300px' }}>
                   <div style={{ height: '30px' }} />
                   <p className="t-right mb-2 ">耗油量</p>

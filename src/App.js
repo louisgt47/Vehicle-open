@@ -9,6 +9,7 @@ import QA from './pages/qa/QA'
 import AboutMe from './pages/about_me/AboutMe'
 import Shop from './pages/shop/Shop'
 import ProductList from './pages/rent_car/ProductList'
+import ProductMain from './pages/rent_car/ProductMain'
 
 class App extends React.Component {
   render() {
@@ -20,6 +21,7 @@ class App extends React.Component {
             <Route path="/log_in" component={Login} />
             <Route path="/sign_up" component={SignUp} />
             <Route path="/productList" component={ProductList} />
+            <Route path="/productMain/:pNo" component={ProductMain} />
             <Route path="/agent" component={Agent} />
             <Route path="/qa" component={QA} />
             <Route path="/about_me" component={AboutMe} />

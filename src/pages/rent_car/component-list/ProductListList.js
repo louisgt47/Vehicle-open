@@ -36,7 +36,11 @@ class ProductListList extends React.Component {
           >
             {this.props.product.map(item => (
               <div className="card my-5 mx-2" style={{ width: '520px' }}>
-                <Link key={item.pNo} to={'/student/' + item.pNo}>
+                <Link
+                  key={item.pNo}
+                  to={'/productMain/' + item.pNo}
+                  product={this.props.product}
+                >
                   <div className="card_img relative">
                     <img
                       src="http://localhost:3000/images/Mercedes-Benz-logo-2009-1920x1080.png"

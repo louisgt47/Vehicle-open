@@ -8,7 +8,7 @@ const SELECT_ALL_PRODUCTS_QUERY = 'SELECT * FROM commodity'
 
 const connection = mysql.createConnection({
   host: 'localhost',
-  user: 'linus',
+  user: 'root',
   password: 'asd97169',
   database: 'car_rental',
 })
@@ -40,9 +40,24 @@ app.get('/products/add', (req, res) => {
     }
   })
 })
-
+// 商品清單
 app.get('/product', (req, res) => {
   connection.query(SELECT_ALL_PRODUCTS_QUERY, (err, results) => {
+    if (err) {
+      return res.send(err)
+    } else {
+      return res.json({
+        data: results,
+      })
+    }
+  })
+})
+// 商品頁面(單一商品)
+app.get('/productMain', (req, res) => {
+  const { pNo } = req.query
+  console.log(pNo)
+  const SELECT_ONE_PRODUCTS_QUERY = `SELECT * FROM commodity WHERE pNo = ${pNo}`
+  connection.query(SELECT_ONE_PRODUCTS_QUERY, (err, results) => {
     if (err) {
       return res.send(err)
     } else {

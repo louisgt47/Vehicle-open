@@ -25,10 +25,20 @@ class ProductMain extends React.Component {
       .catch(err => console.error(err))
   }
   renderProduct = ({ pNo, pBrand }) => <div key={pNo}>{pBrand}</div>
+  renderLinkOder = ({ pNo }) => (
+    <Link key={pNo} to={'/order/' + pNo}>
+      <h3>order</h3>
+    </Link>
+  )
 
   render() {
     const { productMain } = this.state
-    return <>{productMain.map(this.renderProduct)}</>
+    return (
+      <>
+        {productMain.map(this.renderProduct)}
+        {productMain.map(this.renderLinkOder)}
+      </>
+    )
   }
 }
 

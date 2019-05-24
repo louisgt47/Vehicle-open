@@ -12,36 +12,29 @@ import '../css/normalize.css'
 import '../css/basic.css'
 
 class ProductListList extends React.Component {
-  constructor() {
-    super()
-    this.state = {
-      thisPage: '',
+  //中間單頁創建函式
+  creatPage = (totalPage, page) => {
+    let i
+    for (i = 1; i <= totalPage; i++) {
+      if (i == page)
+        return (
+          <li className="page-item active">
+            <a className="page-link" href="#">
+              {i}
+            </a>
+          </li>
+        )
+      else
+        return (
+          <li className="page-item ">
+            <a className="page-link" href="#">
+              {i}
+            </a>
+          </li>
+        )
     }
   }
-  //跳頁函式
-  myFunctionB(page) {
-    // window.location.href = `?page=${page - 1}`
-    // console.log(window.location.href)
-    this.setState({ thisPage: page - 1 })
-  }
-
-  myFunction(page) {
-    // window.location.href = `?page=${page}`
-    // console.log(window.location.href)
-    this.setState({ thisPage: page })
-  }
-
-  myFunctionC(page) {
-    // window.location.href = `?page=${page + 1}`
-    // console.log(window.location.href)
-    this.setState({ thisPage: page + 1 })
-  }
   render() {
-    //取得網址
-    // console.log(window.location.search)
-    // var getUrlString = window.location.search
-    // console.log('getUrlString:' + getUrlString)
-
     console.log(this.props.product)
     //每頁總數
     const perPage = 9
@@ -50,27 +43,26 @@ class ProductListList extends React.Component {
     //總頁數
     const totalPage = Math.ceil(totalProducts / perPage)
     //現在頁數
-    // var strUrl = location
-    // const page = parseInt(location.search)
-    const page = this.state.thisPage ? this.state.thisPage : 1
-    //限制9筆資料
-    console.log('perPage: ' + perPage)
-    console.log('totalProducts: ' + totalProducts)
-    console.log('totalPage' + totalPage)
-    console.log('page: ' + page)
+    const page = 1
 
-    var perPageRender = this.props.product.filter(function(value, index) {
-      return index >= (page - 1) * perPage && index < page * perPage
-    })
-    console.log(perPageRender)
-
-    //中間單頁創建函式
-    let PageArray = []
-
-    for (let i = 0; i < totalPage; i++) {
-      PageArray[i] = i + 1
+    //跳頁函式
+    function myFunctionB() {
+      window.location.href =
+        '?page=<?= $page-1 ?>' + '&key=<?= $key ?>&searchKey=<?= $searchKey?>'
+      console.log(window.location.href)
     }
-    console.log(PageArray)
+
+    function myFunction() {
+      window.location.href =
+        '?page=<?= $i ?>' + '&key=<?= $key ?>&searchKey=<?= $searchKey?>'
+      console.log(window.location.href)
+    }
+
+    function myFunctionC() {
+      window.location.href =
+        '?page=<?= $page+1 ?>' + '&key=<?= $key ?>&searchKey=<?= $searchKey?>'
+      console.log(window.location.href)
+    }
 
     return (
       <div className="productList-list">
@@ -90,11 +82,11 @@ class ProductListList extends React.Component {
             </a>
           </div>
           <div
-            className="list_item d-flex flex-wrap justify-content-center"
+            className="list_item d-flex flex-wrap"
             style={{ marginTop: '100px' }}
           >
-            {perPageRender.map(item => (
-              <div className="card my-5 mx-2 col-3" style={{ width: '520px' }}>
+            {this.props.product.map(item => (
+              <div className="card my-5 mx-2" style={{ width: '520px' }}>
                 <Link
                   key={item.pNo}
                   to={'/productMain/' + item.pNo}
@@ -130,46 +122,15 @@ class ProductListList extends React.Component {
           {/* 頁數跳轉 */}
           <ul class="pagination pagination-sm justify-content-center">
             {/* 上一頁 */}
-            <li className="page-item">
-              <Link
-                to={'/productList/' + (page - 1)}
-                onClick={page <= 1 ? '' : () => this.myFunctionB(page)}
-              >
-                <a className="page-link" id="p2">
-                  &lt;
-                </a>
-              </Link>
+            <li className="page-item ifDisable ifMyFunctionB">
+              <a className="page-link" id="p2" href="#">
+                &lt;
+              </a>
             </li>
             {/* 中間單頁 */}
-            {PageArray.map(item =>
-              item === page ? (
-                <li
-                  className="page-item active"
-                  onClick={() => this.myFunction(item)}
-                >
-                  <Link
-                    to={'/productList/' + item}
-                    onClick={() => this.myFunction(item)}
-                  >
-                    <a className="page-link">{item}</a>
-                  </Link>
-                </li>
-              ) : (
-                <li className="page-item ">
-                  <Link
-                    to={'/productList/' + item}
-                    onClick={() => this.myFunction(item)}
-                  >
-                    <a className="page-link">{item}</a>
-                  </Link>
-                </li>
-              )
-            )}
+            {this.creatPage(totalPage, page)}
             {/* 下一頁 */}
-            <li
-              className="page-item"
-              onClick={page <= 1 ? '' : () => this.myFunctionB(page)}
-            >
+            <li className="page-item ifDisable ifMyFunctionC">
               <a className="page-link" id="p2" href="#">
                 &gt;
               </a>

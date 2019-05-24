@@ -21,6 +21,7 @@ class App extends React.Component {
             <Route path="/log_in" component={Login} />
             <Route path="/sign_up" component={SignUp} />
             <Route path="/productList" component={ProductList} />
+            <Route path="/productList/:page" component={ProductList} />
             <Route path="/productMain/:pNo" component={ProductMain} />
             <Route path="/agent" component={Agent} />
             <Route path="/qa" component={QA} />

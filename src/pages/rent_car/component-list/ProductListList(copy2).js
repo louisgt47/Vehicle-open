@@ -20,21 +20,30 @@ class ProductListList extends React.Component {
   }
   //跳頁函式
   myFunctionB(page) {
-    // window.location.href = `?page=${page - 1}`
-    // console.log(window.location.href)
-    this.setState({ thisPage: page - 1 })
+    this.setState(
+      { thisPage: page - 1 },
+      () => (window.location.href = `?page=${page - 1}`)
+    )
+    console.log(window.location.href)
   }
 
   myFunction(page) {
     // window.location.href = `?page=${page}`
     // console.log(window.location.href)
-    this.setState({ thisPage: page })
+    console.log(page)
+    this.setState(
+      { thisPage: page },
+      () => (window.location.href = `?page=${page}`)
+    )
   }
 
   myFunctionC(page) {
     // window.location.href = `?page=${page + 1}`
     // console.log(window.location.href)
-    this.setState({ thisPage: page + 1 })
+    this.setState(
+      { thisPage: page + 1 },
+      () => (window.location.href = `?page=${page + 1}`)
+    )
   }
   render() {
     //取得網址
@@ -57,7 +66,7 @@ class ProductListList extends React.Component {
     console.log('perPage: ' + perPage)
     console.log('totalProducts: ' + totalProducts)
     console.log('totalPage' + totalPage)
-    console.log('page: ' + page)
+    console.log(page)
 
     var perPageRender = this.props.product.filter(function(value, index) {
       return index >= (page - 1) * perPage && index < page * perPage
@@ -130,15 +139,13 @@ class ProductListList extends React.Component {
           {/* 頁數跳轉 */}
           <ul class="pagination pagination-sm justify-content-center">
             {/* 上一頁 */}
-            <li className="page-item">
-              <Link
-                to={'/productList/' + (page - 1)}
-                onClick={page <= 1 ? '' : () => this.myFunctionB(page)}
-              >
-                <a className="page-link" id="p2">
-                  &lt;
-                </a>
-              </Link>
+            <li
+              className="page-item"
+              onClick={page <= 1 ? '' : () => this.myFunctionB(page)}
+            >
+              <a className="page-link" id="p2" href="#">
+                &lt;
+              </a>
             </li>
             {/* 中間單頁 */}
             {PageArray.map(item =>
@@ -147,21 +154,18 @@ class ProductListList extends React.Component {
                   className="page-item active"
                   onClick={() => this.myFunction(item)}
                 >
-                  <Link
-                    to={'/productList/' + item}
-                    onClick={() => this.myFunction(item)}
-                  >
-                    <a className="page-link">{item}</a>
-                  </Link>
+                  <a className="page-link" href="#">
+                    {item}
+                  </a>
                 </li>
               ) : (
-                <li className="page-item ">
-                  <Link
-                    to={'/productList/' + item}
-                    onClick={() => this.myFunction(item)}
-                  >
-                    <a className="page-link">{item}</a>
-                  </Link>
+                <li
+                  className="page-item "
+                  onClick={() => this.myFunction(item)}
+                >
+                  <a className="page-link" href="#">
+                    {item}
+                  </a>
                 </li>
               )
             )}

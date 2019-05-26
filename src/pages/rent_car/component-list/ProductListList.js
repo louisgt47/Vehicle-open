@@ -37,6 +37,12 @@ class ProductListList extends React.Component {
     this.setState({ thisPage: page + 1 })
   }
   render() {
+    //css
+    const heart = {
+      color: '#6eb7b0',
+      fontSize: '24px',
+    }
+    const padding0 = { padding: '0' }
     //取得網址
     // console.log(window.location.search)
     // var getUrlString = window.location.search
@@ -112,14 +118,19 @@ class ProductListList extends React.Component {
                       alt="..."
                     />
                   </div>
-                  <div className="card-body py-2 d-flex justify-content-between">
+                  <div
+                    style={padding0}
+                    className="card-body py-2 d-flex justify-content-between"
+                  >
                     <div className="card-text">
                       <h5>{item.pBrand}</h5>
                       {item.pSit}人座/{item.pType}
                     </div>
                     <a href className="mx-2 d-flex">
                       <div className="t-center  px-2 d-flex align-items-center">
-                        <p className="m-0 ">依價錢</p>
+                        <p className="m-0 ">
+                          <i className="far fa-heart" style={heart} />
+                        </p>
                       </div>
                     </a>
                   </div>
@@ -166,13 +177,15 @@ class ProductListList extends React.Component {
               )
             )}
             {/* 下一頁 */}
-            <li
-              className="page-item"
-              onClick={page <= 1 ? '' : () => this.myFunctionB(page)}
-            >
-              <a className="page-link" id="p2" href="#">
-                &gt;
-              </a>
+            <li className="page-item">
+              <Link
+                to={'/productList/' + (page + 1)}
+                onClick={page >= totalPage ? '' : () => this.myFunctionC(page)}
+              >
+                <a className="page-link" id="p2">
+                  &gt;
+                </a>
+              </Link>
             </li>
           </ul>
         </div>

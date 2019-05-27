@@ -9,7 +9,7 @@ const SELECT_ALL_PRODUCTS_QUERY = 'SELECT * FROM commodity'
 const connection = mysql.createConnection({
   host: 'localhost',
   user: 'linus',
-  password: 'asd97169',
+  password: '',
   database: 'car_rental',
 })
 
@@ -26,13 +26,13 @@ app.use(cors())
 app.get('/', (req, res) => {
   res.send('go to /products to see products')
 })
-
-// app.get('/products/add', (req, res) => {
+//加入收藏
+// app.get('/insertItem', (req, res) => {
 //   // console.log('req:' + req.query) //req.query==={name:xxx, price:xxx}
-//   const { name, price } = req.query
-//   console.log(name, price)
-//   const INSERT_PRODUCTS_QUERY = `INSERT INTO products (name, price) VALUES('${name}',${price})`
-//   connection.query(INSERT_PRODUCTS_QUERY, (err, results) => {
+//   const { pNo } = req.query
+//   console.log(pNo)
+//   const INSERT_MEMBERITEM_QUERY = `INSERT INTO memberTtem pNo VALUES '${pNo}'`
+//   connection.query(INSERT_MEMBERITEM_QUERY, (err, results) => {
 //     if (err) {
 //       return res.send(err)
 //     } else {
@@ -68,23 +68,38 @@ app.get('/productMain', (req, res) => {
   })
 })
 //搜尋清單
-app.get('/productList/searchList', (req, res) => {
-  const { inputkey, searchkey1, searchkey2, searchkey3, searchkey4 } = req.query
-  let key1 = !(searchkey1 = 0) ? searchkey1 : ''
-  let key2 = !(searchkey2 = 0) ? searchkey2 : ''
-  let key3 = !(searchkey3 = 0) ? searchkey3 : ''
-  let key4 = !(searchkey4 = 0) ? searchkey4 : ''
-  let ifAND0 = key1 && key2 && key3 && key4 ? 'AND' : ''
-  let ifAND1 = key2 && key3 && key4 ? 'AND' : ''
-  let ifAND2 = key3 && key4 ? 'AND' : ''
-  let ifAND3 = key4 ? 'AND' : ''
-  //   SELECT SUM(Sales) FROM Store_Information
-  // WHERE Store_Name IN
-  // (SELECT Store_Name FROM Geography
-  // WHERE Region_Name = 'West');
-  //SELECT * FROM Store_Information WHERE (* LIKE 'inputkey') AND (篩選條件1 LIKE '%selectkey1%') ifAND1 (篩選條件2 LIKE '%selectkey2%') ifAND2 (篩選條件3 LIKE '%selectkey3%');
-  const SELECT_ONE_PRODUCTS_QUERY = `SELECT * FROM commodity WHERE (* LIKE 'inputkey') ${ifAND0} `
-})
+//   SELECT SUM(Sales) FROM Store_Information
+// WHERE Store_Name IN
+// (SELECT Store_Name FROM Geography
+// WHERE Region_Name = 'West');
+//SELECT * FROM Store_Information WHERE (* LIKE 'inputkey') AND (篩選條件1 LIKE '%selectkey1%') ifAND1 (篩選條件2 LIKE '%selectkey2%') ifAND2 (篩選條件3 LIKE '%selectkey3%');
+// app.get('/productList/searchList', (req, res) => {
+//   const { inputkey, searchkey1, searchkey2, searchkey3, searchkey4 } = req.query
+//   let placeKey = !(searchkey1 = 0) ? searchkey1 : ''
+//   let key1 = !(searchkey2 = 0) ? searchkey2 : ''
+//   let key2 = !(searchkey3 = 0) ? searchkey3 : ''
+//   let key3 = !(searchkey4 = 0) ? searchkey4 : ''
+//   let ifAND0 = key1 && key2 && key3 ? 'AND' : ''
+//   let ifAND1 = key2 && key3 ? 'AND' : ''
+//   let ifAND2 = key3 ? 'AND' : ''
+
+//   const childQuery = placeKey
+//     ? `AND WHERE shop_name IN (SELECT shop_name FROM shop_member WHERE shop_place LIKE %${placeKey}%)`
+//     : ''
+//   const SELECT_SEARCH_PRODUCTS_QUERY = `SELECT * FROM commodity WHERE (* LIKE %${inputkey}%) ${ifAND0} (pBrand LIKE %${key1}%) ${ifAND1} (pRent LIKE %${key2}%) ${ifAND2} (pAge LIKE %${key3}%)`
+//   connection.query(
+//     SELECT_SEARCH_PRODUCTS_QUERY + childQuery,
+//     (err, results) => {
+//       if (err) {
+//         return res.send(err)
+//       } else {
+//         return res.json({
+//           data: results,
+//         })
+//       }
+//     }
+//   )
+// })
 // app.get('./products', (req, res) => {})
 
 app.listen(4000, () => {

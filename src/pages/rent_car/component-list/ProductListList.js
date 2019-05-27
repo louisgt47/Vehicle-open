@@ -36,6 +36,14 @@ class ProductListList extends React.Component {
     // console.log(window.location.href)
     this.setState({ thisPage: page + 1 })
   }
+  //加入清單
+  insertItem = pNo => {
+    fetch(`http://localhost:4000/insertItem?pNo=${pNo}`)
+      .then(response => response.json())
+      .then(response => this.setState({ hotList_car: response.data }))
+      // .then(console.log(this.state.hotList_car))
+      .catch(err => console.error(err))
+  }
   render() {
     //css
     const heart = {
@@ -127,7 +135,10 @@ class ProductListList extends React.Component {
                       {item.pSit}人座/{item.pType}
                     </div>
                     <a href className="mx-2 d-flex">
-                      <div className="t-center  px-2 d-flex align-items-center">
+                      <div
+                        className="t-center  px-2 d-flex align-items-center"
+                        onClick={() => this.insertItem(item.pNo)}
+                      >
                         <p className="m-0 ">
                           <i className="far fa-heart" style={heart} />
                         </p>

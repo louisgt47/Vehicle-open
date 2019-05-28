@@ -50,6 +50,10 @@ class ProductListList extends React.Component {
       color: '#6eb7b0',
       fontSize: '24px',
     }
+    const heartposition = {
+      right: '0',
+      bottom: '15px',
+    }
     const padding0 = { padding: '0' }
     //取得網址
     // console.log(window.location.search)
@@ -108,7 +112,10 @@ class ProductListList extends React.Component {
             style={{ marginTop: '100px' }}
           >
             {perPageRender.map(item => (
-              <div className="card my-5 mx-2 col-3" style={{ width: '520px' }}>
+              <div
+                className="card my-5 mx-2 col-3 position_r"
+                style={{ width: '520px' }}
+              >
                 <Link
                   key={item.pNo}
                   to={'/productMain/' + item.pNo}
@@ -128,24 +135,23 @@ class ProductListList extends React.Component {
                   </div>
                   <div
                     style={padding0}
-                    className="card-body py-2 d-flex justify-content-between"
+                    className="card-body py-2 d-flex justify-content-start"
                   >
                     <div className="card-text">
                       <h5>{item.pBrand}</h5>
                       {item.pSit}人座/{item.pType}
                     </div>
-                    <a href className="mx-2 d-flex">
-                      <div
-                        className="t-center  px-2 d-flex align-items-center"
-                        onClick={() => this.insertItem(item.pNo)}
-                      >
-                        <p className="m-0 ">
-                          <i className="far fa-heart" style={heart} />
-                        </p>
-                      </div>
-                    </a>
                   </div>
                 </Link>
+                <div
+                  className="t-center  px-2 d-flex align-items-center position_a"
+                  style={heartposition}
+                  onClick={() => this.insertItem(item.pNo)}
+                >
+                  <p className="m-0 ">
+                    <i className="far fa-heart" style={heart} />
+                  </p>
+                </div>
               </div>
             ))}
           </div>

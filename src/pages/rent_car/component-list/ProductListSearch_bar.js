@@ -130,9 +130,9 @@ class ProductListSearch_bar extends React.Component {
                 <option style={center} value={0}>
                   價位
                 </option>
-                <option style={center}>'1,000以下'</option>
-                <option style={center}>'1000～2000'</option>
-                <option style={center}>4</option>
+                <option style={center}>1000</option>
+                <option style={center}>1000～2000</option>
+                <option style={center}>2000</option>
                 <option style={center}>5</option>
               </select>
             </div>

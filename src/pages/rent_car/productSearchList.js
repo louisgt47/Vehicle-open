@@ -1,4 +1,11 @@
 import React from 'react'
+import {
+  BrowserRouter as Router,
+  Route,
+  Link,
+  Switch,
+  NavLink,
+} from 'react-router-dom'
 
 class productSearchList extends React.Component {
   constructor() {
@@ -20,15 +27,20 @@ class productSearchList extends React.Component {
   }
   searchList = _ => {
     var searchData = this.props.location.state
-    var {
-      inputkey,
-      searchkey1,
-      searchkey2,
-      searchkey3,
-      searchkey4,
-    } = searchData
+    console.log(searchData)
+    // var {
+    //   inputkey,
+    //   searchkey1,
+    //   searchkey2,
+    //   searchkey3,
+    //   searchkey4,
+    // } = searchData
     fetch(
-      `http://localhost:4000/productList/searchList?inputkey=${inputkey}&searchkey1=${searchkey1}&searchkey2=${searchkey2}&searchkey3=${searchkey3}&searchkey4=${searchkey4}`
+      `http://localhost:4000/searchList?inputkey=${
+        searchData.inputkey
+      }&searchkey1=${searchData.searchkey1}&searchkey2=${
+        searchData.searchkey2
+      }&searchkey3=${searchData.searchkey3}&searchkey4=${searchData.searchkey4}`
     )
       .then(response => response.json())
       .then(response => this.setState({ searchList: response.data }))
@@ -36,7 +48,61 @@ class productSearchList extends React.Component {
       .catch(err => console.error(err))
   }
   render() {
-    return <></>
+    const heart = {
+      color: '#6eb7b0',
+      fontSize: '24px',
+    }
+    const padding0 = { padding: '0' }
+    return (
+      <>
+        <div
+          className="list_item d-flex flex-wrap justify-content-center"
+          style={{ marginTop: '100px' }}
+        >
+          {this.state.searchList.map(item => (
+            <div className="card my-5 mx-2 col-3" style={{ width: '520px' }}>
+              <Link
+                key={item.pNo}
+                to={'/productMain/' + item.pNo}
+                product={this.props.product}
+              >
+                <div className="card_img relative">
+                  <img
+                    src="http://localhost:3000/images/Mercedes-Benz-logo-2009-1920x1080.png"
+                    className="card-img-logo absolute"
+                    alt="..."
+                  />
+                  <img
+                    src="http://localhost:3000/images/6-1.png"
+                    className="card-img-top"
+                    alt="..."
+                  />
+                </div>
+                <div
+                  style={padding0}
+                  className="card-body py-2 d-flex justify-content-between"
+                >
+                  <div className="card-text">
+                    <h5>{item.pBrand}</h5>
+                    {item.pSit}人座/{item.pType}
+                  </div>
+                  <a href className="mx-2 d-flex">
+                    <div
+                      className="t-center  px-2 d-flex align-items-center"
+                      onClick={() => this.insertItem(item.pNo)}
+                    >
+                      <p className="m-0 ">
+                        <i className="far fa-heart" style={heart} />
+                      </p>
+                    </div>
+                  </a>
+                </div>
+              </Link>
+            </div>
+          ))}
+        </div>
+      </>
+    )
   }
 }
 

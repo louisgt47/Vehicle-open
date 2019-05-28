@@ -29,27 +29,34 @@
 
 /* 文字對齊用 */
 
-.t-center{
-  text-align: center
+.t-center {
+  text-align: center;
 }
-.t-right{
+.t-right {
   text-align: right;
 }
 
 /* 框線 */
-.border_all{
+.border_all {
   border: 2px solid #434948;
 }
-.border_top{
+.border_top {
   border-top: 2px solid #434948;
 }
-.border_bottom{
+.border_bottom {
   border-bottom: 2px solid #434948;
 }
-.border_left{
+.border_left {
   border-left: 2px solid #434948;
 }
-.border_right{
+.border_right {
   border-right: 2px solid #434948;
 }
 
+/* position */
+.position_r {
+  position: relative;
+}
+.position_a {
+  position: absolute;
+}

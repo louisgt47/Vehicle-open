@@ -51,6 +51,9 @@ class ProductListSearch_bar extends React.Component {
     this.setState({ searchkey4: event.target.value })
   }
   render() {
+    const barButtonSize = {
+      // width: '50px',
+    }
     const selectSize = {
       width: '215px',
     }
@@ -76,7 +79,7 @@ class ProductListSearch_bar extends React.Component {
     }
     return (
       <div className="productList-search_bar">
-        <div className="productList-container">
+        <div className="productList-container search_bar">
           <div className="d-flex justify-content-center">
             <input
               type="text"
@@ -153,7 +156,7 @@ class ProductListSearch_bar extends React.Component {
               </select>
             </div>
           </div>
-          <div>
+          <div style={barButtonSize}>
             <Link className="d-flex justify-content-center" to={path}>
               搜尋
             </Link>

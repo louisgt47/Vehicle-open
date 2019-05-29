@@ -9,7 +9,7 @@ const SELECT_ALL_PRODUCTS_QUERY = 'SELECT * FROM commodity'
 const connection = mysql.createConnection({
   host: 'localhost',
   user: 'linus',
-  password: 'asd97169',
+  password: '',
   database: 'car_rental',
 })
 

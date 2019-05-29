@@ -39,13 +39,19 @@ class ProductListMain_product extends React.Component {
             className="productList-container relative"
             style={{ height: '1100px' }}
           >
-            <div className="productList-main_logo absolute" />
+            <div className="productList-main_logo absolute">
+              <img
+                src="http://localhost:3000/images/brandlogo/Toyota-Logo.png"
+                alt=""
+                style={{ height: '100%', objectFit: 'contain' }}
+              />
+            </div>
             {/* 主圖+按鈕+價錢 */}
             <div className="productList-main_img absolute">
               <img
-                src="http://localhost:3000/images/car-1376190.jpg"
+                src="http://localhost:3000/images/Toyota-Rav4.png"
                 alt=""
-                style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                style={{ height: '100%', objectFit: 'contain' }}
               />
               <div className="hot-main-price absolute">
                 <h2>$1,000/日</h2>

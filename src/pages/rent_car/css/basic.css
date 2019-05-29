@@ -26,6 +26,9 @@
 .align-items-center {
   align-items: center;
 }
+.column {
+  flex-flow: column;
+}
 
 /* 文字對齊用 */
 

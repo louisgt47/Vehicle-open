@@ -1,0 +1,182 @@
+body {
+  font-family: '微軟正黑體';
+}
+
+.con-set1 {
+  background-image: url(http://localhost:3000/images/Toyota-Rav4.png);
+  width: 100%;
+  height: 800px;
+}
+.con-img {
+  width: 80%;
+  height: 800px;
+  z-index: 1;
+  position: absolute;
+}
+
+.con-set1-1 {
+  display: flex;
+}
+.con-text {
+  padding-top: 15vh;
+  z-index: 2;
+  padding-left: 15vh;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+.context1-1 {
+  color: aliceblue;
+  font-size: 30px;
+  margin-top: 10px;
+}
+.context1-2 {
+  color: aliceblue;
+  font-size: 40px;
+  padding-right: 100px;
+  line-height: 1px;
+}
+.context1-3 {
+  color: aliceblue;
+  font-size: 40px;
+  padding-right: 150px;
+  line-height: 1px;
+}
+.context1-4 {
+  color: aliceblue;
+  font-size: 40px;
+  padding-right: 100px;
+  line-height: 1px;
+}
+.context1-5 {
+  color: aliceblue;
+  font-size: 40px;
+}
+.context1-6 {
+  color: aliceblue;
+  font-size: 30px;
+  padding-right: 30px;
+}
+.context1-7 {
+  color: aliceblue;
+  font-size: 40px;
+  line-height: 1px;
+}
+.context1-8 {
+  color: aliceblue;
+  font-size: 40px;
+}
+.bor1 {
+  background: aliceblue;
+  height: 10px;
+  width: 40px;
+  margin-left: 18.5vh;
+  margin-top: 10px;
+  margin-bottom: 50px;
+}
+.bor2 {
+  background: aliceblue;
+  height: 5px;
+  width: 200px;
+  margin-left: 1.5vh;
+  margin-bottom: 50px;
+  margin-top: 10px;
+}
+.con-text1-2 {
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  padding-left: 70vh;
+}
+.bmb-img {
+  width: 80%;
+  height: 80%;
+}
+.con-text1-3 {
+  display: flex;
+  flex-direction: column;
+  z-index: 2;
+}
+.context2-1 {
+  color: aliceblue;
+  font-size: 40px;
+  writing-mode: vertical-lr;
+  padding-left: 20vh;
+}
+.context2-2 {
+  color: aliceblue;
+  font-size: 40px;
+  writing-mode: vertical-lr;
+  padding-left: 20vh;
+  padding-top: 20px;
+}
+.con-text1-4 {
+  display: flex;
+
+  flex-direction: row-reverse;
+  padding-right: 60vh;
+}
+.carimg4-1 {
+  width: 15%;
+  height: 15%;
+  z-index: 4;
+  margin-left: 10px;
+  position: relative;
+  bottom: 40px;
+}
+.carimg4-2 {
+  width: 10%;
+  height: 10%;
+  z-index: 4;
+}
+.set3 {
+  background-color: rgb(255, 255, 255);
+  width: 384px;
+  height: 800px;
+  z-index: 2;
+  position: absolute;
+  display: flex;
+  right: 0.5px;
+  top: 9px;
+}
+.set3-1 {
+  padding-top: 15vh;
+}
+.set3text1-1 {
+  font-size: 60px;
+  text-align: center;
+  padding-left: 60px;
+}
+.set3text1-2 {
+  font-size: 20px;
+}
+.set3text1-3 {
+  padding-left: 13vh;
+  font-size: 20px;
+}
+.set3text1-4 {
+  padding-left: 13vh;
+  margin-bottom: 1px;
+  font-size: 10px;
+  color: forestgreen;
+}
+.set3text1-5 {
+  padding-left: 13vh;
+  font-size: 10px;
+  color: forestgreen;
+}
+.set3text1-6 {
+  width: 260px;
+  font-size: 16px;
+  margin-left: 60px;
+  height: 200px;
+}
+.btn {
+  z-index: 3;
+  position: absolute;
+  bottom: 10vh;
+  right: 30px;
+}
+.set-text2-1-1 {
+  padding-top: 100px;
+}

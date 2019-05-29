@@ -33,7 +33,7 @@ class Wrap extends React.Component {
         <ProductListMain_product product={this.state.product} />
         <ProductListHot_list product={this.state.product} />
         <ProductListList product={this.state.product} />
-        <ProductListPage_bar product={this.state.product} />
+        {/* <ProductListPage_bar product={this.state.product} /> */}
         <ProductListFooter product={this.state.product} />
       </div>
     )

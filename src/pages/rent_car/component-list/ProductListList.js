@@ -48,11 +48,11 @@ class ProductListList extends React.Component {
     //css
     const heart = {
       color: '#6eb7b0',
-      fontSize: '24px',
+      fontSize: '32px',
     }
     const heartposition = {
-      right: '0',
-      bottom: '15px',
+      right: '24px',
+      bottom: '36px',
     }
     const padding0 = { padding: '0' }
     //取得網址
@@ -92,7 +92,7 @@ class ProductListList extends React.Component {
 
     return (
       <div className="productList-list">
-        <div className="productList-container">
+        <div className="productList-container ">
           <div className="list_search d-flex justify-content-center mb-5">
             <a href className="mx-2">
               <div className="t-center list_search_button px-2 ">依車種</div>
@@ -113,7 +113,7 @@ class ProductListList extends React.Component {
           >
             {perPageRender.map(item => (
               <div
-                className="card my-5 mx-2 col-3 position_r"
+                className="card my-5 mx-4 col-3 position_r p-0"
                 style={{ width: '520px' }}
               >
                 <Link
@@ -128,14 +128,14 @@ class ProductListList extends React.Component {
                       alt="..."
                     />
                     <img
-                      src="http://localhost:3000/images/6-1.png"
+                      src="http://localhost:3000/images/car-1376190.jpg"
                       className="card-img-top"
                       alt="..."
                     />
                   </div>
                   <div
                     style={padding0}
-                    className="card-body py-2 d-flex justify-content-start"
+                    className="card-body p-4 d-flex justify-content-start"
                   >
                     <div className="card-text">
                       <h5>{item.pBrand}</h5>

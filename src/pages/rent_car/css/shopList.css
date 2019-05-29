@@ -33,15 +33,15 @@
 /* search_bar */
 
 .productList-search_bar {
-  height: 800px;
-  background: lightblue;
+  height: 400px;
+  /* background: lightblue; */
 }
 
 /* main_product */
 
 .productList-main_product {
   height: 1100px;
-  background: lightcoral;
+  /* background: lightcoral; */
 }
 .productList-main_logo {
     height: 650px;
@@ -52,7 +52,7 @@
 .productList-main_img {
     height: 750px;
     width: 1560px;
-    background: #fff;
+    /* background: #fff; */
     right: 0;
     bottom: 80px;
 }
@@ -78,7 +78,7 @@
 
 .productList-hot_list {
   /* height: 350px; */
-  background-color: lightgreen;
+  /* background-color: lightgreen; */
 }
 
 .hotList .list{
@@ -102,8 +102,8 @@
 
 .productList-list {
   margin-top: 200px;
-  height: 1135px;
-  background: lightblue;
+  /* height: 1135px; */
+  /* background: lightblue; */
 }
 
 .list_search_button{
@@ -130,7 +130,7 @@
 .productList-page_bar {
   margin-top: 100px;
   height: 30px;
-  background: lightgoldenrodyellow;
+  /* background: lightgoldenrodyellow; */
 }
 
 /* footer */

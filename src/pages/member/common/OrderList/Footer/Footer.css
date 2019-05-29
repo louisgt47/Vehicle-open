@@ -1,0 +1,48 @@
+body {
+  font-family: '微軟正黑體';
+}
+
+.footer {
+  background-color: rgb(48, 48, 48);
+  width: 100%;
+  height: 160px;
+  display: flex;
+  justify-content: center;
+}
+.F-logo {
+  width: 80%;
+  height: 80%;
+}
+.fb-logo {
+  width: 40%;
+  height: 40%;
+}
+.tt-logo {
+  width: 40%;
+  height: 40%;
+}
+.set1 {
+  padding-top: 30px;
+  padding-right: 90px;
+}
+.set1text1-1 {
+  color: aliceblue;
+  padding-top: 30px;
+  padding-right: 90px;
+}
+
+.set1text1-2 {
+  color: aliceblue;
+  padding-top: 30px;
+}
+.set1text1-3 {
+  padding-top: 60px;
+  padding-left: 80px;
+}
+.set1text1-4 {
+  padding-top: 60px;
+  padding-left: px;
+}
+.text1-1 {
+  font-size: 20px;
+}

@@ -12,6 +12,9 @@ import ProductList from './pages/rent_car/ProductList'
 import ProductMain from './pages/rent_car/ProductMain'
 import productSearchList from './pages/rent_car/productSearchList'
 
+//member
+import MemberList from './pages/member/MemberList'
+
 class App extends React.Component {
   render() {
     return (
@@ -21,6 +24,9 @@ class App extends React.Component {
             <Route exact path="/" component={Enter} />
             <Route path="/log_in" component={Login} />
             <Route path="/sign_up" component={SignUp} />
+            //member
+            <Route path="/memberList" component={MemberList} />
+            //rentCar
             <Route path="/productList" component={ProductList} />
             <Route path="/productList/:page" component={ProductList} />
             <Route path="/productMain/:pNo" component={ProductMain} />

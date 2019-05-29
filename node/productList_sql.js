@@ -40,6 +40,38 @@ app.get('/insertItem', (req, res) => {
     }
   })
 })
+
+// 收藏清單
+app.get('/memberCollection', (req, res) => {
+  const { mNo } = req.query
+  console.log(mNo)
+  const SELECT_ONE_PRODUCTS_QUERY = `SELECT * FROM lessee_item WHERE mNo = ${mNo}`
+  connection.query(SELECT_ONE_PRODUCTS_QUERY, (err, results) => {
+    if (err) {
+      return res.send(err)
+    } else {
+      return res.json({
+        data: results,
+      })
+    }
+  })
+})
+
+app.get('/memberCollectionList', (req, res) => {
+  const { pNo } = req.query
+  console.log(req.query)
+  const SELECT_ONE_PRODUCTS_QUERY = `SELECT * FROM commodity WHERE pNo = ${pNo}`
+  connection.query(SELECT_ONE_PRODUCTS_QUERY, (err, results) => {
+    if (err) {
+      return res.send(err)
+    } else {
+      return res.json({
+        data: results,
+      })
+    }
+  })
+})
+
 // 商品清單
 app.get('/product', (req, res) => {
   connection.query(SELECT_ALL_PRODUCTS_QUERY, (err, results) => {

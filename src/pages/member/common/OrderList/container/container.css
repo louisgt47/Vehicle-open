@@ -1,0 +1,104 @@
+body {
+  font-family: '微軟正黑體';
+}
+
+.con-set1 {
+  background-image: url(./images/bg-01.jpg);
+  width: auto;
+  height: 2000px;
+}
+.set-text1 {
+  display: flex;
+  justify-content: space-around;
+  padding-top: 20vh;
+}
+.set-text2 {
+  display: flex;
+
+  padding-left: 34vh;
+}
+.set-text1-1 {
+  font-size: 60px;
+}
+.set-text1-2 {
+  font-size: 20px;
+}
+.set-text3 {
+  padding-right: 1vh;
+  padding-top: 1px;
+}
+.set-input {
+}
+.set-text4 {
+  margin-right: 140px;
+}
+.set-text2-1 {
+  display: flex;
+  justify-content: space-around;
+  margin-left: 31vh;
+  padding-right: 33vh;
+}
+.set-text2-1-1 {
+  display: flex;
+  justify-content: space-between;
+  padding-left: 35.5vh;
+  padding-bottom: 50px;
+}
+
+.con2-text1-5 {
+  padding-right: 1vh;
+}
+.con2-text1-7 {
+  padding-right: 1.5vh;
+}
+.con2-text1-8 {
+  padding-right: 40.5vh;
+}
+
+.con-img {
+  width: 110%;
+  height: 110%;
+}
+.input1 {
+  position: absolute;
+  z-index: 3;
+  top: 30.5vh;
+  right: 40.2vh;
+  border-width: 0;
+  background-color: transparent;
+  outline: none;
+  text-align: center;
+}
+.set2-text2-1 {
+  display: flex;
+  justify-content: space-around;
+  margin-left: 32vh;
+  padding-right: 33vh;
+  padding-top: 9vh;
+}
+.set3-text2-1 {
+  display: flex;
+  justify-content: space-around;
+  margin-left: 32vh;
+  padding-right: 33vh;
+  padding-top: 2vh;
+}
+.set2-text2-1-1 {
+  display: flex;
+  justify-content: space-between;
+  padding-left: 35.5vh;
+  padding-bottom: 50px;
+}
+.set3-text2-1-1 {
+  display: flex;
+  justify-content: space-between;
+  padding-left: 35.5vh;
+}
+.bor1-1 {
+  margin-left: 55vh;
+}
+.bor1-1 {
+  width: 105vh;
+  height: 1px;
+  background: green;
+}

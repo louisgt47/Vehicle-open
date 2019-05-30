@@ -8,7 +8,7 @@ import Agent from './pages/agent/Agent'
 import QA from './pages/qa/QA'
 import AboutMe from './pages/about_me/AboutMe'
 import Shop from './pages/shop/Shop'
-import ProductList from './pages/rent_car/ProductList'
+import ProductList from './pages/rent_car/productList/archirio/ProductList'
 import ProductMain from './pages/rent_car/ProductMain'
 import productSearchList from './pages/rent_car/productSearchList'
 

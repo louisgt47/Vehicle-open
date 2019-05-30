@@ -65,7 +65,7 @@ class ProductMain extends React.Component {
                       height: '15px',
                       width: '40px',
                       background: '#fff',
-                      marginTop: '-10px',
+                      marginTop: '5px',
                     }}
                   />
                   <div className="t36 mt-5">評價</div>
@@ -75,7 +75,7 @@ class ProductMain extends React.Component {
                       height: '10px',
                       width: '300px',
                       background: '#fff',
-                      marginTop: '-5px',
+                      marginTop: '30px',
                     }}
                   />
                   <div className="t36 mt-5">座位數</div>
@@ -85,7 +85,7 @@ class ProductMain extends React.Component {
                       height: '5px',
                       width: '200px',
                       background: '#fff',
-                      marginTop: '-5px',
+                      marginTop: '25px',
                     }}
                   />
                   <div className="t36 mt-5">耗油量</div>
@@ -95,7 +95,7 @@ class ProductMain extends React.Component {
                       height: '8px',
                       width: '150px',
                       background: '#fff',
-                      marginTop: '-5px',
+                      marginTop: '30px',
                     }}
                   />
                 </div>
@@ -113,11 +113,11 @@ class ProductMain extends React.Component {
               <div className="contentArea d-flex">
                 <div className="textArea pt-5">
                   <div className="shopName px-4 ">{item.shopName}</div>
-                  <div className="rent px-4">
+                  <div className="rent px-4 mt-5">
                     {item.pRent}
                     <span>/日</span>
                   </div>
-                  <div className="pModel px-4">Benz-512012</div>
+                  <div className="pModel px-4 mt-5">Benz-512012</div>
                   <div className="twoPlace px-4 mt-3">接受甲租乙還</div>
                   <div className="toHome px-4 mb-4">接受代駕到府服務</div>
                   <div className="carIntro px-4 mb-3">車款介紹</div>

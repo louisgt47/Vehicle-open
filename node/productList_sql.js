@@ -84,6 +84,19 @@ app.get('/product', (req, res) => {
     }
   })
 })
+//熱門
+// app.get('/hotproduct', (req, res) => {
+//   const SELECT_HOT_PRODUCTS_QUERY = 'SELECT * FROM commodity ORDER BY pCollect'
+//   connection.query(SELECT_HOT_PRODUCTS_QUERY, (err, results) => {
+//     if (err) {
+//       return res.send(err)
+//     } else {
+//       return res.json({
+//         data: results,
+//       })
+//     }
+//   })
+// })
 // 商品頁面(單一商品)
 app.get('/productMain', (req, res) => {
   const { pNo } = req.query

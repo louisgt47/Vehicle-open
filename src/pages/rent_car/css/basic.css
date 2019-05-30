@@ -63,3 +63,8 @@
 .position_a {
   position: absolute;
 }
+
+.page-item.active .page-link {
+  background: #6eb7b0 !important;
+  border-color: #6eb7b0 !important;
+}

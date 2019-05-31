@@ -184,7 +184,7 @@ class ProductList extends React.Component {
         totalProducts = this.state.sProduct.length
         break
       case 2:
-        totalProducts = this.state.Bproduct.length
+        totalProducts = this.state.bProduct.length
         break
     }
     console.log('totalProducts: ' + totalProducts)
@@ -479,7 +479,7 @@ class ProductList extends React.Component {
           </div>
           {/* slider-area end */}
           {/* ablout-area start */}
-          <div className="about-area about-area2 ptb-120">
+          <div className="about-area about-area2 ptb-120 listsearchbar">
             <div className="container">
               <div className="row">
                 <ProductListSearch_bar product={this.state.product} />

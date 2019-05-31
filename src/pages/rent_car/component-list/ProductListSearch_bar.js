@@ -149,7 +149,6 @@ class ProductListSearch_bar extends React.Component {
             <input
               type="text"
               id="inputkey"
-              aria-describedby="emailHelp"
               placeholder="關鍵字搜尋"
               style={inputSize}
               onChange={this.inputKeySetState}

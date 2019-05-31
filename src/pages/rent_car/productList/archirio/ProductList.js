@@ -7,6 +7,7 @@ import {
   NavLink,
 } from 'react-router-dom'
 // import Radium from 'radium'
+import $ from 'jquery'
 
 import ProductListSearch_bar from '../../component-list/ProductListSearch_bar'
 
@@ -42,6 +43,10 @@ class ProductList extends React.Component {
     await this.hotProduct()
     // this.mAccount()
     this.mCollect()
+    $('#collect').click(function() {
+      // $(this).removeClass('far')
+      $(this).addClass('fas')
+    })
 
     //jq
   }
@@ -91,27 +96,14 @@ class ProductList extends React.Component {
       .catch(err => console.error(err))
   }
   //收藏動作
-  // collect = pNo => {
-  //   fetch(`http://localhost:4000/insertCollect?pNo=${pNo}&mNo=1`)
-  //     .then(response => response.json())
-  //     // .then(response => console.log(response.data))
-
-  //     .then(response =>
-  //       this.setState({ collectionRender: response.data }, () =>
-  //         console.log(response.data)
-  //       )
-  //     )
-
-  //     // .then(console.log(this.state.hotProduct))
-  //     .catch(err => console.error(err))
-  // }
-  // isCollect = pNo => {
-  //   let Collection = false
-  //   if (this.state.collection.filter(item => item.pNo.includes(pNo)) !== '') {
-  //     return (Collection = true)
-  //   }
-  //   // console.log(Collection)
-  // }
+  insertItem = pNo => {
+    fetch(`http://localhost:4000/insertItem?mNo=1&pNo=${pNo}`)
+      .then(response => response.json())
+      .then(response => this.setState({ hotList_car: response.data }))
+      // .then(console.log(this.state.hotList_car))
+      .catch(err => console.error(err))
+  }
+  //移除收藏
 
   //分類搜索
   all = () => {
@@ -169,13 +161,34 @@ class ProductList extends React.Component {
       top: '-45px',
       zIndex: '9',
     }
+
+    const collection2 = {
+      fontSize: '32px',
+      color: '#fff',
+      right: '25px',
+      bottom: '40px',
+      zIndex: '99',
+    }
     // const pageStyle = {
     //   ':active': { backgrounColor: '#6eb7b0', borderColor: '#6eb7b0' },
     // }
     //每頁總數
     const perPage = 12
     //總筆數
-    const totalProducts = this.state.product.length
+    var totalProducts = 0
+    switch (this.state.searchState) {
+      case 0:
+        totalProducts = this.state.product.length
+        break
+      case 1:
+        totalProducts = this.state.sProduct.length
+        break
+      case 2:
+        totalProducts = this.state.Bproduct.length
+        break
+    }
+    console.log('totalProducts: ' + totalProducts)
+
     //總頁數
     const totalPage = Math.ceil(totalProducts / perPage)
     //現在頁數
@@ -228,11 +241,14 @@ class ProductList extends React.Component {
       console.log(item.pNo)
       // console.log(collects)
 
-      console.log(collects.includes('1'))
+      console.log(collects.includes(item.pNo))
     })
 
     return (
       <>
+        <a id="scrollUp" href="#top">
+          <i className="fa fa-arrow-up" />
+        </a>
         <div>
           <div
             id="carouselExampleIndicators"
@@ -508,9 +524,9 @@ class ProductList extends React.Component {
                           </a>
                           <i
                             className="fas fa-bookmark position_a"
-                            id="collect"
+                            id="discollect"
                             style={collection}
-                            // onClick={() => this.collect(item.pNo)}
+                            // onClick={() => this.insertItem(item.pN)}
                           />
                         </div>
                       </div>
@@ -541,7 +557,7 @@ class ProductList extends React.Component {
                             className="far fa-bookmark position_a"
                             id="collect"
                             style={collection}
-                            // onClick={() => this.collect(item.pNo)}
+                            onClick={() => this.insertItem(item.pNo)}
                           />
                         </div>
                       </div>
@@ -588,31 +604,68 @@ class ProductList extends React.Component {
                 </div>
               </div>
               <div className="row grid">
-                {perPageRender.map(item => (
-                  <div className="col-lg-3 col-sm-6 col-12 project cat2 cat3">
-                    <Link
-                      key={item.pNo}
-                      to={'/productMain/' + item.pNo}
-                      product={this.props.product}
-                    >
-                      <div className="project-wrap">
-                        <img
-                          src="http://localhost:3000/images/car-1376190.jpg"
-                          alt=""
-                        />
-                        <div className="project-content">
-                          <a
-                            href="assets/images/project/project2/1.jpg"
-                            className="popup"
-                          >
-                            <i className="fa fa-search" />
-                          </a>
-                          <h3 style={fWhite}>{item.pBrand}</h3>
+                {perPageRender.map(item =>
+                  collects.includes(item.pNo) ? (
+                    <div className="col-lg-3 col-sm-6 col-12 project cat2 cat3 position_r">
+                      <Link
+                        key={item.pNo}
+                        to={'/productMain/' + item.pNo}
+                        product={this.props.product}
+                      >
+                        <div className="project-wrap">
+                          <img
+                            src="http://localhost:3000/images/car-1376190.jpg"
+                            alt=""
+                          />
+                          <div className="project-content">
+                            <a
+                              href="assets/images/project/project2/1.jpg"
+                              className="popup"
+                            >
+                              <i className="fa fa-search" />
+                            </a>
+                            <h3 style={fWhite}>{item.pBrand}</h3>
+                          </div>
                         </div>
-                      </div>
-                    </Link>
-                  </div>
-                ))}
+                      </Link>
+                      <i
+                        className="fas fa-bookmark position_a"
+                        id="discollect"
+                        style={collection2}
+                      />
+                    </div>
+                  ) : (
+                    <div className="col-lg-3 col-sm-6 col-12 project cat2 cat3 position_r">
+                      <Link
+                        key={item.pNo}
+                        to={'/productMain/' + item.pNo}
+                        product={this.props.product}
+                      >
+                        <div className="project-wrap">
+                          <img
+                            src="http://localhost:3000/images/car-1376190.jpg"
+                            alt=""
+                          />
+                          <div className="project-content">
+                            <a
+                              href="assets/images/project/project2/1.jpg"
+                              className="popup"
+                            >
+                              <i className="fa fa-search" />
+                            </a>
+                            <h3 style={fWhite}>{item.pBrand}</h3>
+                          </div>
+                        </div>
+                      </Link>
+                      <i
+                        className="far fa-bookmark position_a"
+                        id="collect"
+                        style={collection2}
+                        onClick={() => this.insertItem(item.pNo)}
+                      />
+                    </div>
+                  )
+                )}
               </div>
             </div>
             {/* 頁數跳轉 */}

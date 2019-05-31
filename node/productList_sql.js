@@ -9,7 +9,7 @@ const SELECT_ALL_PRODUCTS_QUERY = 'SELECT * FROM commodity'
 const connection = mysql.createConnection({
   host: 'localhost',
   user: 'linus',
-  password: 'asd97169',
+  password: '',
   database: 'car_rental',
 })
 
@@ -29,9 +29,9 @@ app.get('/', (req, res) => {
 //加入收藏
 app.get('/insertItem', (req, res) => {
   // console.log('req:' + req.query) //req.query==={name:xxx, price:xxx}
-  const { pNo } = req.query
+  const { mNo, pNo } = req.query
   console.log(pNo)
-  const INSERT_MEMBERITEM_QUERY = `INSERT INTO lessee_item (mNo,pNo) VALUES (1,${pNo})`
+  const INSERT_MEMBERITEM_QUERY = `INSERT INTO lessee_item (mNo,pNo) VALUES (${mNo},${pNo})`
   connection.query(INSERT_MEMBERITEM_QUERY, (err, results) => {
     if (err) {
       return res.send(err)

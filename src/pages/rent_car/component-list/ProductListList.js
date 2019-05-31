@@ -38,7 +38,7 @@ class ProductListList extends React.Component {
   }
   //加入清單
   insertItem = pNo => {
-    fetch(`http://localhost:4000/insertItem?pNo=${pNo}`)
+    fetch(`http://localhost:4000/insertItem?mNo=1&pNo=${pNo}`)
       .then(response => response.json())
       .then(response => this.setState({ hotList_car: response.data }))
       // .then(console.log(this.state.hotList_car))

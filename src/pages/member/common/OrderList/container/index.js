@@ -1,11 +1,20 @@
 import React, { Component } from 'react'
 import './container.css'
+import {
+  BrowserRouter as Router,
+  Route,
+  Link,
+  Switch,
+  NavLink,
+} from 'react-router-dom'
 export default class index extends Component {
   constructor() {
     super()
     this.state = {
       pNo: [],
       memberCollectionList: [],
+      inputkey: '',
+      searchList: [],
     }
   }
   async componentDidMount() {
@@ -37,7 +46,23 @@ export default class index extends Component {
       console.log(e)
     } finally {
     }
+    // this.searchList()
   }
+  inputKeySetState = event => {
+    this.setState({ inputkey: event.target.value }, this.searchList())
+  }
+  searchList = _ => {
+    var searchData = this.state.inputkey
+    console.log(searchData)
+    fetch(
+      `http://localhost:4000/searchList?inputkey=${searchData}&searchkey1=0&searchkey2=0&searchkey3=0&searchkey4=0`
+    )
+      .then(response => response.json())
+      .then(response => this.setState({ searchList: response.data }))
+      // .then(console.log(this.state.hotList_car))
+      .catch(err => console.error(err))
+  }
+
   collection = async _ => {
     var totalPNo = this.state.pNo.length
     // console.log('this.state.pNo.length:' + totalPNo)
@@ -70,24 +95,36 @@ export default class index extends Component {
       margin: '0 auto',
       /* height: 40px; */
     }
+    // console.log(this.state.searchList)
+    // let listData = this.state.searchList
+    //   ? this.state.searchList
+    //   : this.state.memberCollectionList
+    // console.log(listData)
     return (
       <div className="con-set1">
         <div style={listContainer}>
           <div className="set-text1">
-            <p className="set-text1-1">訂單紀錄</p>
-            <div className="set-input">
-              <img className="con-img" src={require('./images/d.svg')} />
-              <input className="input1" placeholder="資料查詢" />
+            <h2 className="set-text1-1">收藏清單</h2>
+            <br />
+            {/* <h4 className="">List</h4> */}
+            <div className="set-input mt-3">
+              <div className="position-r">
+                <img className="con-img" src={require('./images/d.svg')} />
+                <input
+                  className="input1"
+                  placeholder="資料查詢"
+                  type="text"
+                  id="inputkey"
+                  onChange={this.inputKeySetState}
+                />
+              </div>
             </div>
           </div>
 
-          <div className="set-text2">
-            <p className="set-text1-2">List</p>
-          </div>
-          <table class="table">
+          <table class="table mt-5">
             <thead>
               <tr>
-                <th scope="col">TOYOTA</th>
+                <th scope="col" />
                 <th scope="col">車款</th>
                 <th scope="col">租借狀態</th>
                 <th scope="col">車種</th>
@@ -102,9 +139,14 @@ export default class index extends Component {
               {this.state.memberCollectionList.map(item => (
                 <tr>
                   <th scope="row">
-                    <button type="button" class="btn btn-success">
-                      詳細訂單
-                    </button>
+                    <Link
+                      key={item.pNo}
+                      to={'/productMain/' + item.pNo}
+                      product={this.props.product}
+                    >
+                      <a className="buttonToProduct">車輛頁面</a>
+                      <a className="buttonDelete ">移除</a>
+                    </Link>
                   </th>
                   <td>{item.pBrand}</td>
                   <td>{item.rentState}</td>

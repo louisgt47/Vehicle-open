@@ -9,7 +9,7 @@ const SELECT_ALL_PRODUCTS_QUERY = 'SELECT * FROM commodity'
 const connection = mysql.createConnection({
   host: 'localhost',
   user: 'linus',
-  password: '',
+  password: 'asd97169',
   database: 'car_rental',
 })
 
@@ -71,6 +71,34 @@ app.get('/memberCollectionList', (req, res) => {
     }
   })
 })
+//收藏判定用
+app.get('/mCollectPNo', (req, res) => {
+  const { mNo } = req.query
+  const SELECT_M_COLLECT_QUERY = `SELECT * FROM lessee_item WHERE mNo = ${mNo}`
+  connection.query(SELECT_M_COLLECT_QUERY, (err, results) => {
+    if (err) {
+      return res.send(err)
+    } else {
+      return res.json({
+        data: results,
+      })
+    }
+  })
+})
+//加入收藏(商品頁面)
+app.get('/insertCollect', (req, res) => {
+  // console.log('req:' + req.query) //req.query==={name:xxx, price:xxx}
+  const { pNo } = req.query
+  console.log(pNo)
+  const UPDATE_MEMBERITEM_QUERY = `UPDATE lessee_item SET state = 'fas' WHERE pNo = ${pNo}`
+  connection.query(UPDATE_MEMBERITEM_QUERY, (err, results) => {
+    if (err) {
+      return res.send(err)
+    } else {
+      return res.send('successfully added product')
+    }
+  })
+})
 
 // 商品清單
 app.get('/product', (req, res) => {
@@ -85,18 +113,19 @@ app.get('/product', (req, res) => {
   })
 })
 //熱門
-// app.get('/hotproduct', (req, res) => {
-//   const SELECT_HOT_PRODUCTS_QUERY = 'SELECT * FROM commodity ORDER BY pCollect'
-//   connection.query(SELECT_HOT_PRODUCTS_QUERY, (err, results) => {
-//     if (err) {
-//       return res.send(err)
-//     } else {
-//       return res.json({
-//         data: results,
-//       })
-//     }
-//   })
-// })
+app.get('/hotproduct', (req, res) => {
+  const SELECT_HOT_PRODUCTS_QUERY =
+    'SELECT * FROM commodity ORDER BY pCollect DESC'
+  connection.query(SELECT_HOT_PRODUCTS_QUERY, (err, results) => {
+    if (err) {
+      return res.send(err)
+    } else {
+      return res.json({
+        data: results,
+      })
+    }
+  })
+})
 // 商品頁面(單一商品)
 app.get('/productMain', (req, res) => {
   const { pNo } = req.query

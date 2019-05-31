@@ -6,8 +6,11 @@ import {
   Switch,
   NavLink,
 } from 'react-router-dom'
-import Radium from 'radium'
+// import Radium from 'radium'
 
+import ProductListSearch_bar from '../../component-list/ProductListSearch_bar'
+
+import './assets/css/productList.css'
 import './assets/css/bootstrap.min.css'
 import './assets/css/animate.css'
 import './assets/css/owl.carousel.css'
@@ -31,25 +34,85 @@ class ProductList extends React.Component {
       thisPage: '',
       searchState: 0,
       hotProduct: [],
+      collection: [],
     }
   }
-  componentDidMount() {
-    this.product()
+  async componentDidMount() {
+    await this.product()
+    await this.hotProduct()
+    // this.mAccount()
+    this.mCollect()
+
+    //jq
   }
   product = _ => {
     fetch('http://localhost:4000/product')
       .then(response => response.json())
       .then(response => this.setState({ product: response.data }))
+      // .then(this.hotProduct)
       // .then(console.log(this.state.hotList_car))
       .catch(err => console.error(err))
   }
-  // hotProduct = _ => {
-  //   fetch('http://localhost:4000/hotproduct')
+  hotProduct = _ => {
+    fetch('http://localhost:4000/hotproduct')
+      .then(response => response.json())
+      .then(response => {
+        var hot = response.data.sort(function(a, b) {
+          return a.pCollect < b.pCollect ? 1 : -1
+        })
+        hot.length = 6
+        this.setState(
+          {
+            hotProduct: hot,
+          },
+          () => console.log(this.state.hotProduct)
+        )
+      })
+      // .then(console.log(this.state.hotProduct))
+      .catch(err => console.error(err))
+  }
+  //會員帳號(session)=>拿到mAccount
+  // mAccount = _ =>{
+
+  // }
+  //會員收藏判定mCollectPNo
+  mCollect = _ => {
+    fetch(`http://localhost:4000/mCollectPNo?mNo=1`)
+      .then(response => response.json())
+      // .then(response => console.log(response.data))
+
+      .then(response =>
+        this.setState({ collection: response.data }, () =>
+          console.log(response.data)
+        )
+      )
+
+      // .then(console.log(this.state.hotProduct))
+      .catch(err => console.error(err))
+  }
+  //收藏動作
+  // collect = pNo => {
+  //   fetch(`http://localhost:4000/insertCollect?pNo=${pNo}&mNo=1`)
   //     .then(response => response.json())
-  //     .then(response => this.setState({ hotProduct: response.data.splice(6) }))
-  //     // .then(console.log(this.state.hotList_car))
+  //     // .then(response => console.log(response.data))
+
+  //     .then(response =>
+  //       this.setState({ collectionRender: response.data }, () =>
+  //         console.log(response.data)
+  //       )
+  //     )
+
+  //     // .then(console.log(this.state.hotProduct))
   //     .catch(err => console.error(err))
   // }
+  // isCollect = pNo => {
+  //   let Collection = false
+  //   if (this.state.collection.filter(item => item.pNo.includes(pNo)) !== '') {
+  //     return (Collection = true)
+  //   }
+  //   // console.log(Collection)
+  // }
+
   //分類搜索
   all = () => {
     this.setState({ searchState: 0 })
@@ -62,6 +125,7 @@ class ProductList extends React.Component {
     let data = this.state.product.filter(item => item.pType.includes(key))
     this.setState({ bProduct: data, searchState: 2 })
   }
+
   //跳頁函式
   myFunctionB(page) {
     // window.location.href = `?page=${page - 1}`
@@ -84,6 +148,7 @@ class ProductList extends React.Component {
   render() {
     const light = {
       filter: 'brightness(.3)',
+      transition: '.5s',
     }
     const line = {
       position: 'absolute',
@@ -101,10 +166,12 @@ class ProductList extends React.Component {
       fontSize: '32px',
       color: '#6eb7b0',
       right: '10px',
+      top: '-45px',
+      zIndex: '9',
     }
-    const pageStyle = {
-      ':active': { backgrounColor: '#6eb7b0', borderColor: '#6eb7b0' },
-    }
+    // const pageStyle = {
+    //   ':active': { backgrounColor: '#6eb7b0', borderColor: '#6eb7b0' },
+    // }
     //每頁總數
     const perPage = 12
     //總筆數
@@ -138,7 +205,6 @@ class ProductList extends React.Component {
     var perPageRender = searchList.filter(function(value, index) {
       return index >= (page - 1) * perPage && index < page * perPage
     })
-    console.log(perPageRender)
 
     //中間單頁創建函式
     let PageArray = []
@@ -146,6 +212,25 @@ class ProductList extends React.Component {
     for (let i = 0; i < totalPage; i++) {
       PageArray[i] = i + 1
     }
+
+    let collects = []
+
+    for (let i = 0; i < this.state.collection.length; i++) {
+      collects[i] = this.state.collection[i].pNo
+    }
+    console.log(collects)
+    for (let i = 0; i < collects.length; i++) {
+      collects[i] = Number(collects[i])
+    }
+    console.log(collects)
+
+    this.state.hotProduct.map(item => {
+      console.log(item.pNo)
+      // console.log(collects)
+
+      console.log(collects.includes('1'))
+    })
+
     return (
       <>
         <div>
@@ -169,8 +254,7 @@ class ProductList extends React.Component {
                   <img
                     src="http://localhost:3000/images/car-1376190.jpg"
                     alt=""
-                    className=""
-                    style={light}
+                    className="sliderImg"
                   />
                   <div className="slider-content">
                     <div className="container">
@@ -381,7 +465,9 @@ class ProductList extends React.Component {
           {/* ablout-area start */}
           <div className="about-area about-area2 ptb-120">
             <div className="container">
-              <div className="row" />
+              <div className="row">
+                <ProductListSearch_bar product={this.state.product} />
+              </div>
             </div>
           </div>
           {/* ablout-area end */}
@@ -397,103 +483,71 @@ class ProductList extends React.Component {
                 </div>
               </div>
               <div className="row">
-                <div className="col-sm-6 col-12 col-lg-4">
-                  <div className="service-wrap">
-                    <div className="service-img">
-                      <img
-                        src="http://localhost:3000/images/car-1376190.jpg"
-                        alt=""
-                      />
+                {this.state.hotProduct.map(item =>
+                  collects.includes(item.pNo) ? (
+                    <div className="col-sm-6 col-12 col-lg-4">
+                      <div className="service-wrap">
+                        <div className="service-img">
+                          <img
+                            src="http://localhost:3000/images/car-1376190.jpg"
+                            alt=""
+                          />
+                        </div>
+                        <div className="service-content position_r">
+                          <h4>{item.pBrand}</h4>
+                          <p>{item.pSit}</p>
+                          <p>{item.pRent} /日</p>
+                          <a href="servic-details.html">
+                            <Link
+                              key={item.pNo}
+                              to={'/productMain/' + item.pNo}
+                              product={this.props.product}
+                            >
+                              詳細
+                            </Link>
+                          </a>
+                          <i
+                            className="fas fa-bookmark position_a"
+                            id="collect"
+                            style={collection}
+                            // onClick={() => this.collect(item.pNo)}
+                          />
+                        </div>
+                      </div>
                     </div>
-                    <div className="service-content position_r">
-                      <h4>Residential Design</h4>
-                      <p>
-                        It has survived not only five centui but the leap into
-                        electronic typesetting remain essentially unchanged.
-                      </p>
-                      <a href="servic-details.html">詳細</a>
-                      <i
-                        className="far fa-bookmark position_a"
-                        style={collection}
-                      />
+                  ) : (
+                    <div className="col-sm-6 col-12 col-lg-4">
+                      <div className="service-wrap">
+                        <div className="service-img">
+                          <img
+                            src="http://localhost:3000/images/car-1376190.jpg"
+                            alt=""
+                          />
+                        </div>
+                        <div className="service-content position_r">
+                          <h4>{item.pBrand}</h4>
+                          <p>{item.pSit}</p>
+                          <p>{item.pRent} /日</p>
+                          <a href="servic-details.html">
+                            <Link
+                              key={item.pNo}
+                              to={'/productMain/' + item.pNo}
+                              product={this.props.product}
+                            >
+                              詳細
+                            </Link>
+                          </a>
+                          <i
+                            className="far fa-bookmark position_a"
+                            id="collect"
+                            style={collection}
+                            // onClick={() => this.collect(item.pNo)}
+                          />
+                        </div>
+                      </div>
                     </div>
-                  </div>
-                </div>
-                <div className="col-sm-6 col-12 col-lg-4">
-                  <div className="service-wrap">
-                    <div className="service-img">
-                      <img src="assets/images/service/2.jpg" alt />
-                    </div>
-                    <div className="service-content">
-                      <h4>corporate Design</h4>
-                      <p>
-                        It has survived not only five centui but the leap into
-                        electronic typesetting remain essentially unchanged.
-                      </p>
-                      <a href="servic-details.html">Read More</a>
-                    </div>
-                  </div>
-                </div>
-                <div className="col-sm-6 col-12 col-lg-4">
-                  <div className="service-wrap">
-                    <div className="service-img">
-                      <img src="assets/images/service/3.jpg" alt />
-                    </div>
-                    <div className="service-content">
-                      <h4>Commercial design</h4>
-                      <p>
-                        It has survived not only five centui but the leap into
-                        electronic typesetting remain essentially unchanged.
-                      </p>
-                      <a href="servic-details.html">Read More</a>
-                    </div>
-                  </div>
-                </div>
-                <div className="col-sm-6 col-12 col-lg-4">
-                  <div className="service-wrap">
-                    <div className="service-img">
-                      <img src="assets/images/service/4.jpg" alt />
-                    </div>
-                    <div className="service-content">
-                      <h4>Hospitality Design</h4>
-                      <p>
-                        It has survived not only five centui but the leap into
-                        electronic typesetting remain essentially unchanged.
-                      </p>
-                      <a href="servic-details.html">Read More</a>
-                    </div>
-                  </div>
-                </div>
-                <div className="col-sm-6 col-12 col-lg-4">
-                  <div className="service-wrap">
-                    <div className="service-img">
-                      <img src="assets/images/service/5.jpg" alt />
-                    </div>
-                    <div className="service-content">
-                      <h4>Restaurent Design</h4>
-                      <p>
-                        It has survived not only five centui but the leap into
-                        electronic typesetting remain essentially unchanged.
-                      </p>
-                      <a href="servic-details.html">Read More</a>
-                    </div>
-                  </div>
-                </div>
-                <div className="col-sm-6 col-12 col-lg-4">
-                  <div className="service-wrap">
-                    <div className="service-img">
-                      <img src="assets/images/service/6.jpg" alt />
-                    </div>
-                    <div className="service-content">
-                      <h4>Industrial design</h4>
-                      <p>
-                        It has survived not only five centui but the leap into
-                        electronic typesetting remain essentially unchanged.
-                      </p>
-                      <a href="servic-details.html">Read More</a>
-                    </div>
-                  </div>
-                </div>
+                  )
+                )}
               </div>
             </div>
           </div>
@@ -529,7 +583,6 @@ class ProductList extends React.Component {
                     >
                       休旅車
                     </button>
-                    <button data-filter=".cat3">xxxx</button>
                     {/* <button data-filter=".cat4">Industrial</button> */}
                   </div>
                 </div>
@@ -581,7 +634,6 @@ class ProductList extends React.Component {
                   <li
                     className="page-item active pageActive"
                     onClick={() => this.myFunction(item)}
-                    style={pageStyle}
                   >
                     <Link
                       to={'/productList/' + item}
@@ -622,4 +674,4 @@ class ProductList extends React.Component {
   }
 }
 
-export default Radium(ProductList)
+export default ProductList

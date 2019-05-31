@@ -6,11 +6,13 @@ import {
   Switch,
   NavLink,
 } from 'react-router-dom'
+import $ from 'jquery'
 
 //css
 import '../css/shopList.css'
 import '../css/normalize.css'
 import '../css/basic.css'
+import '../css/search.css'
 
 //需要state紀錄各條件
 
@@ -34,6 +36,69 @@ class ProductListSearch_bar extends React.Component {
       searchkey3: 0,
       searchkey4: 0,
     }
+  }
+  componentDidMount = () => {
+    $('.sel').each(function() {
+      $(this)
+        .children('select')
+        .css('display', 'none')
+
+      var $current = $(this)
+
+      $(this)
+        .find('option')
+        .each(function(i) {
+          if (i == 0) {
+            $current.prepend(
+              $('<div>', {
+                class: $current.attr('class').replace(/sel/g, 'sel__box'),
+              })
+            )
+
+            var placeholder = $(this).text()
+            $current.prepend(
+              $('<span>', {
+                class: $current
+                  .attr('class')
+                  .replace(/sel/g, 'sel__placeholder'),
+                text: placeholder,
+                'data-placeholder': placeholder,
+              })
+            )
+
+            return
+          }
+
+          $current.children('div').append(
+            $('<span>', {
+              class: $current
+                .attr('class')
+                .replace(/sel/g, 'sel__box__options'),
+              text: $(this).text(),
+            })
+          )
+        })
+    })
+
+    // Toggling the `.active` state on the `.sel`.
+    $('.sel').click(function() {
+      $(this).toggleClass('active')
+    })
+
+    // Toggling the `.selected` state on the options.
+    $('.sel__box__options').click(function() {
+      var txt = $(this).text()
+      var index = $(this).index()
+
+      $(this)
+        .siblings('.sel__box__options')
+        .removeClass('selected')
+      $(this).addClass('selected')
+
+      var $currentSel = $(this).closest('.sel')
+      $currentSel.children('.sel__placeholder').text(txt)
+      $currentSel.children('select').prop('selectedIndex', index + 1)
+    })
   }
   inputKeySetState = event => {
     this.setState({ inputkey: event.target.value })
@@ -91,10 +156,12 @@ class ProductListSearch_bar extends React.Component {
             />
           </div>
           <div className="d-flex justify-content-center">
-            <div style={selectSize}>
+            <div style={selectSize} className="sel sel--black-panther">
               <select
-                className="form-control"
-                id="searchkey1"
+                name="select-profession"
+                id="select-profession"
+                // className="form-control"
+                // id="searchkey1"
                 style={center}
                 onChange={this.searchKey1SetState}
               >
@@ -107,10 +174,10 @@ class ProductListSearch_bar extends React.Component {
                 <option style={center}>高雄</option>
               </select>
             </div>
-            <div style={selectSize}>
+            <div style={selectSize} className="sel sel--black-panther">
               <select
-                className="form-control"
-                id="searchkey1"
+                name="select-profession"
+                id="select-profession"
                 style={center}
                 onChange={this.searchKey2SetState}
               >
@@ -123,10 +190,10 @@ class ProductListSearch_bar extends React.Component {
                 <option style={center}>5</option>
               </select>
             </div>
-            <div style={selectSize}>
+            <div style={selectSize} className="sel sel--black-panther">
               <select
-                className="form-control"
-                id="searchkey1"
+                name="select-profession"
+                id="select-profession"
                 style={center}
                 onChange={this.searchKey3SetState}
               >
@@ -139,10 +206,10 @@ class ProductListSearch_bar extends React.Component {
                 <option style={center}>5</option>
               </select>
             </div>
-            <div style={selectSize}>
+            <div style={selectSize} className="sel sel--black-panther">
               <select
-                className="form-control"
-                id="searchkey1"
+                name="select-profession"
+                id="select-profession"
                 style={center}
                 onChange={this.searchKey4SetState}
               >
@@ -158,7 +225,9 @@ class ProductListSearch_bar extends React.Component {
           </div>
           <div style={barButtonSize}>
             <Link className="d-flex justify-content-center" to={path}>
-              搜尋
+              <div className="sButton py-2 px-3">
+                <i className="fas fa-search" />
+              </div>
             </Link>
           </div>
         </div>

@@ -37,6 +37,9 @@ class ProductMain extends React.Component {
 
   render() {
     const { productMain } = this.state
+    const padding0 = {
+      padding: '0',
+    }
     return (
       <>
         {/* {productMain.map(this.renderProduct)}
@@ -48,7 +51,7 @@ class ProductMain extends React.Component {
             <div className="productList-nav" />
             {/* main */}
             <div className="main d-flex">
-              <div className="mainImg position_r">
+              <div className="mainImg position_r col-10" style={padding0}>
                 <img
                   className="importantImg"
                   src="http://localhost:3000/images/car-1376190.jpg"
@@ -110,7 +113,7 @@ class ProductMain extends React.Component {
                 </div>
               </div>
               {/* contentArea */}
-              <div className="contentArea d-flex">
+              <div className="contentArea d-flex col-2">
                 <div className="textArea pt-5">
                   <div className="shopName px-4 ">{item.shopName}</div>
                   <div className="rent px-4 mt-5">

@@ -1,0 +1,7 @@
+img.sliderImg:hover {
+  filter: brightness(1);
+}
+.sliderImg {
+  filter: brightness(0.3);
+  transition: 0.5s;
+}

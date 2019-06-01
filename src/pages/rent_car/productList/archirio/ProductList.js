@@ -38,15 +38,21 @@ class ProductList extends React.Component {
       collection: [],
     }
   }
-  async componentDidMount() {
-    await this.product()
-    await this.hotProduct()
+  componentDidMount = () => {
+    this.product()
+    this.hotProduct()
     // this.mAccount()
     this.mCollect()
-    $('#collect').click(function() {
-      // $(this).removeClass('far')
-      $(this).addClass('fas')
-    })
+    // $('#collect').click(function() {
+    //   $(this).removeClass('far fa-bookmark position_a')
+
+    //   $(this).addClass('fas fa-bookmark position_a')
+    // })
+    // $('#discollect').click(function() {
+    //   $(this).removeClass('fas fa-bookmark position_a')
+
+    //   $(this).addClass('far fa-bookmark position_a')
+    // })
 
     //jq
   }
@@ -96,14 +102,32 @@ class ProductList extends React.Component {
       .catch(err => console.error(err))
   }
   //收藏動作
-  insertItem = pNo => {
-    fetch(`http://localhost:4000/insertItem?mNo=1&pNo=${pNo}`)
-      .then(response => response.json())
-      .then(response => this.setState({ hotList_car: response.data }))
-      // .then(console.log(this.state.hotList_car))
-      .catch(err => console.error(err))
+  memberItem = (pNo, collects) => {
+    console.log(pNo)
+    console.log(collects)
+    if (!collects.includes(pNo)) {
+      $(`#collect${pNo}`).removeClass('far fa-bookmark position_a')
+
+      $(`#collect${pNo}`).addClass('fas fa-bookmark position_a')
+
+      fetch(`http://localhost:4000/insertItem?mNo=1&pNo=${pNo}`)
+        .then(response => response.json())
+        .then(response => this.setState({ hotList_car: response.data }))
+        // .then(console.log(this.state.hotList_car))
+        .catch(err => console.error(err))
+    } else {
+      $(`#discollect${pNo}`).removeClass('fas fa-bookmark position_a')
+
+      $(`#discollect${pNo}`).addClass('far fa-bookmark position_a')
+
+      fetch(`http://localhost:4000/deleteItem?mNo=1&pNo=${pNo}`)
+        .then(response => response.json())
+        .then(response => this.setState({ hotList_car: response.data }))
+        // .then(console.log(this.state.hotList_car))
+        .catch(err => console.error(err))
+    }
+    this.mCollect()
   }
-  //移除收藏
 
   //分類搜索
   all = () => {
@@ -237,12 +261,12 @@ class ProductList extends React.Component {
     }
     console.log(collects)
 
-    this.state.hotProduct.map(item => {
-      console.log(item.pNo)
-      // console.log(collects)
+    // this.state.hotProduct.map(item => {
+    //   console.log(item.pNo)
+    //   // console.log(collects)
 
-      console.log(collects.includes(item.pNo))
-    })
+    //   console.log(collects.includes(item.pNo))
+    // })
 
     return (
       <>
@@ -524,9 +548,9 @@ class ProductList extends React.Component {
                           </a>
                           <i
                             className="fas fa-bookmark position_a"
-                            id="discollect"
+                            id={'discollect' + item.pNo}
                             style={collection}
-                            // onClick={() => this.insertItem(item.pN)}
+                            onClick={() => this.memberItem(item.pNo, collects)}
                           />
                         </div>
                       </div>
@@ -555,9 +579,9 @@ class ProductList extends React.Component {
                           </a>
                           <i
                             className="far fa-bookmark position_a"
-                            id="collect"
+                            id={'collect' + item.pNo}
                             style={collection}
-                            onClick={() => this.insertItem(item.pNo)}
+                            onClick={() => this.memberItem(item.pNo, collects)}
                           />
                         </div>
                       </div>
@@ -632,6 +656,7 @@ class ProductList extends React.Component {
                         className="fas fa-bookmark position_a"
                         id="discollect"
                         style={collection2}
+                        onClick={() => this.memberItem(item.pNo, collects)}
                       />
                     </div>
                   ) : (
@@ -661,7 +686,7 @@ class ProductList extends React.Component {
                         className="far fa-bookmark position_a"
                         id="collect"
                         style={collection2}
-                        onClick={() => this.insertItem(item.pNo)}
+                        onClick={() => this.memberItem(item.pNo, collects)}
                       />
                     </div>
                   )

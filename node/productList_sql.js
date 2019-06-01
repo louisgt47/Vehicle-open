@@ -9,7 +9,7 @@ const SELECT_ALL_PRODUCTS_QUERY = 'SELECT * FROM commodity'
 const connection = mysql.createConnection({
   host: 'localhost',
   user: 'linus',
-  password: '',
+  password: 'asd97169',
   database: 'car_rental',
 })
 
@@ -40,6 +40,20 @@ app.get('/insertItem', (req, res) => {
     }
   })
 })
+//移除收藏
+app.get('/deleteItem', (req, res) => {
+  // console.log('req:' + req.query) //req.query==={name:xxx, price:xxx}
+  const { mNo, pNo } = req.query
+  console.log(pNo)
+  const INSERT_DELETE_MEMBERITEM_QUERY = `DELETE FROM lessee_item WHERE mNo=${mNo} AND pNo=${pNo}`
+  connection.query(INSERT_DELETE_MEMBERITEM_QUERY, (err, results) => {
+    if (err) {
+      return res.send(err)
+    } else {
+      return res.send('successfully added product')
+    }
+  })
+})
 
 // 收藏清單
 app.get('/memberCollection', (req, res) => {
@@ -47,6 +61,35 @@ app.get('/memberCollection', (req, res) => {
   console.log(mNo)
   const SELECT_ONE_PRODUCTS_QUERY = `SELECT * FROM lessee_item WHERE mNo = ${mNo}`
   connection.query(SELECT_ONE_PRODUCTS_QUERY, (err, results) => {
+    if (err) {
+      return res.send(err)
+    } else {
+      return res.json({
+        data: results,
+      })
+    }
+  })
+})
+// 訂單清單(會員)
+app.get('/memberOrdering', (req, res) => {
+  const { mNo } = req.query
+  console.log(mNo)
+  const SELECT_M_ORDER_QUERY1 = `SELECT * FROM order2 WHERE mNo = ${mNo} AND orderFinish=0`
+  connection.query(SELECT_M_ORDER_QUERY1, (err, results) => {
+    if (err) {
+      return res.send(err)
+    } else {
+      return res.json({
+        data: results,
+      })
+    }
+  })
+})
+app.get('/memberOrdered', (req, res) => {
+  const { mNo } = req.query
+  console.log(mNo)
+  const SELECT_M_ORDER_QUERY2 = `SELECT * FROM order2 WHERE mNo = ${mNo} AND orderFinish=1`
+  connection.query(SELECT_M_ORDER_QUERY2, (err, results) => {
     if (err) {
       return res.send(err)
     } else {
@@ -261,7 +304,21 @@ app.get('/searchList', (req, res) => {
   })
 })
 // app.get('./products', (req, res) => {})
+app.get('/searchList2', (req, res) => {
+  let { inputkey, mNo } = req.query
 
+  const SELECT_SEARCH2_QUERY = `SELECT * FROM commodity WHERE ((pType LIKE '%${inputkey}%') OR (pNo LIKE '%${inputkey}%') OR (shopName LIKE '%${inputkey}%') OR (pBrand LIKE '%${inputkey}%') OR (pModel LIKE '%${inputkey}%') OR (pSit LIKE '%${inputkey}%') OR (pCc LIKE '%${inputkey}%')) AND pNo IN (SELECT pNo FROM lessee_item WHERE mNo = '${mNo}')`
+  console.log(SELECT_SEARCH2_QUERY)
+  connection.query(SELECT_SEARCH2_QUERY, (err, results) => {
+    if (err) {
+      return res.send(err)
+    } else {
+      return res.json({
+        data: results,
+      })
+    }
+  })
+})
 app.listen(4000, () => {
   console.log(`Products server listening on port 4000`)
 })

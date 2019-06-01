@@ -213,12 +213,14 @@ class ProductListSearch_bar extends React.Component {
                 onChange={this.searchKey4SetState}
               >
                 <option style={center} value={0}>
-                  車齡
+                  座位數
                 </option>
-                <option style={center}>'一年內'</option>
-                <option style={center}>3</option>
                 <option style={center}>4</option>
                 <option style={center}>5</option>
+                <option style={center}>6</option>
+                <option style={center}>7</option>
+                <option style={center}>8</option>
+                <option style={center}>9</option>
               </select>
             </div>
           </div>

@@ -1,0 +1,142 @@
+body {
+  font-family: '微軟正黑體';
+}
+
+.con-set1 {
+  background-image: url(./images/bg-01.jpg);
+  width: auto;
+  height: 100vh;
+}
+.set-text1 {
+  display: flex;
+  justify-content: space-around;
+  padding-top: 20vh;
+}
+.set-text2 {
+  display: flex;
+
+  padding-left: 34vh;
+}
+.set-text1-1 {
+  font-size: 60px;
+}
+.set-text1-2 {
+  font-size: 20px;
+}
+.set-text3 {
+  padding-right: 1vh;
+  padding-top: 1px;
+}
+.set-input {
+}
+.set-text4 {
+  margin-right: 140px;
+}
+.set-text2-1 {
+  display: flex;
+  justify-content: space-around;
+  margin-left: 31vh;
+  padding-right: 33vh;
+}
+.set-text2-1-1 {
+  display: flex;
+  justify-content: space-between;
+  padding-left: 35.5vh;
+  padding-bottom: 50px;
+}
+
+.con2-text1-5 {
+  padding-right: 1vh;
+}
+.con2-text1-7 {
+  padding-right: 1.5vh;
+}
+.con2-text1-8 {
+  padding-right: 40.5vh;
+}
+
+.con-img {
+  width: 110%;
+  height: 110%;
+}
+.position-r {
+  position: relative;
+}
+.input1 {
+  position: absolute;
+  z-index: 3;
+  top: 25%;
+  right: 15%;
+  border-width: 0;
+  background-color: transparent;
+  outline: none;
+  text-align: center;
+}
+.set2-text2-1 {
+  display: flex;
+  justify-content: space-around;
+  margin-left: 32vh;
+  padding-right: 33vh;
+  padding-top: 9vh;
+}
+.set3-text2-1 {
+  display: flex;
+  justify-content: space-around;
+  margin-left: 32vh;
+  padding-right: 33vh;
+  padding-top: 2vh;
+}
+.set2-text2-1-1 {
+  display: flex;
+  justify-content: space-between;
+  padding-left: 35.5vh;
+  padding-bottom: 50px;
+}
+.set3-text2-1-1 {
+  display: flex;
+  justify-content: space-between;
+  padding-left: 35.5vh;
+}
+.bor1-1 {
+  margin-left: 55vh;
+}
+.bor1-1 {
+  width: 105vh;
+  height: 1px;
+  background: green;
+}
+.buttonToProduct {
+  height: 35px;
+  width: 110px;
+  font-size: 14px;
+  text-transform: uppercase;
+  font-weight: 500;
+  text-align: center;
+  display: inline-block;
+  background: #6eb7b0;
+  border: #6eb7b0 solid 2px;
+  line-height: 35px;
+  color: #fff !important;
+}
+.buttonToProduct:hover {
+  background: #434948;
+  border: #434948 solid 2px;
+}
+.buttonDelete {
+  height: 35px;
+  width: 80px;
+  font-size: 14px;
+  text-transform: uppercase;
+  font-weight: 500;
+  text-align: center;
+  display: inline-block;
+  border: #6eb7b0 solid 2px;
+  line-height: 35px;
+  color: #434948 !important;
+  margin-left: 5px;
+}
+.buttonDelete:hover {
+  background: #ff3737;
+  border: #ff3737 solid 2px;
+  color: #fff !important;
+}

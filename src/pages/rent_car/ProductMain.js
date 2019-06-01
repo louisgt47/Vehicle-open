@@ -4,16 +4,21 @@ import { Link } from 'react-router-dom'
 import './css/productMain.css'
 import './css/shopList.css'
 import './css/basic.css'
+import $ from 'jquery'
 
 class ProductMain extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
       productMain: [],
+      hotProduct: [],
+      collection: [],
     }
   }
   componentDidMount() {
     this.productMain()
+    this.hotProduct()
+    this.mCollect()
   }
   productMain = _ => {
     console.log(this.props.match.params.pNo)
@@ -28,17 +33,103 @@ class ProductMain extends React.Component {
       )
       .catch(err => console.error(err))
   }
+  productMainTo = pNo => {
+    $('#linkTo').scrollTop(0)
+    fetch(`http://localhost:4000/productMain?pNo=${pNo}`)
+      .then(response => response.json())
+      .then(response =>
+        this.setState({ productMain: response.data }, () =>
+          console.log({ response_data: response.data })
+        )
+      )
+      .catch(err => console.error(err))
+  }
+  hotProduct = _ => {
+    fetch('http://localhost:4000/hotproduct')
+      .then(response => response.json())
+      .then(response => {
+        var hot = response.data.sort(function(a, b) {
+          return a.pCollect < b.pCollect ? 1 : -1
+        })
+        hot.length = 4
+        this.setState(
+          {
+            hotProduct: hot,
+          },
+          () => console.log(this.state.hotProduct)
+        )
+      })
+      // .then(console.log(this.state.hotProduct))
+      .catch(err => console.error(err))
+  }
   renderProduct = ({ pNo, pBrand }) => <div key={pNo}>{pBrand}</div>
   renderLinkOder = ({ pNo }) => (
     <Link key={pNo} to={'/order/' + pNo}>
       <h3>order</h3>
     </Link>
   )
+  //會員收藏判定mCollectPNo
+  mCollect = _ => {
+    fetch(`http://localhost:4000/mCollectPNo?mNo=1`)
+      .then(response => response.json())
+      // .then(response => console.log(response.data))
+
+      .then(response =>
+        this.setState({ collection: response.data }, () =>
+          console.log(response.data)
+        )
+      )
+
+      // .then(console.log(this.state.hotProduct))
+      .catch(err => console.error(err))
+  }
+  memberItem = (pNo, collects) => {
+    console.log(pNo)
+    console.log(collects)
+    if (!collects.includes(pNo)) {
+      $(`#collect${pNo}`).removeClass('far fa-bookmark position_a')
+
+      $(`#collect${pNo}`).addClass('fas fa-bookmark position_a')
+
+      fetch(`http://localhost:4000/insertItem?mNo=1&pNo=${pNo}`)
+        .then(response => response.json())
+        .then(response => this.setState({ hotList_car: response.data }))
+        // .then(console.log(this.state.hotList_car))
+        .catch(err => console.error(err))
+    } else {
+      $(`#discollect${pNo}`).removeClass('fas fa-bookmark position_a')
+
+      $(`#discollect${pNo}`).addClass('far fa-bookmark position_a')
+
+      fetch(`http://localhost:4000/deleteItem?mNo=1&pNo=${pNo}`)
+        .then(response => response.json())
+        .then(response => this.setState({ hotList_car: response.data }))
+        // .then(console.log(this.state.hotList_car))
+        .catch(err => console.error(err))
+    }
+    this.mCollect()
+  }
 
   render() {
     const { productMain } = this.state
     const padding0 = {
       padding: '0',
+    }
+    const collection = {
+      fontSize: '32px',
+      color: '#6eb7b0',
+      right: '10px',
+      top: '-45px',
+      zIndex: '9',
+    }
+    let collects = []
+
+    for (let i = 0; i < this.state.collection.length; i++) {
+      collects[i] = this.state.collection[i].pNo
+    }
+    console.log(collects)
+    for (let i = 0; i < collects.length; i++) {
+      collects[i] = Number(collects[i])
     }
     return (
       <>
@@ -140,56 +231,79 @@ class ProductMain extends React.Component {
             </div>
             <div className="s_tittle">
               <div className="d-flex justify-content-start align-items-center s_tittle">
-                <div>其他推薦車款_</div>
+                <h3>其他推薦車款_</h3>
               </div>
             </div>
             {/* recommend */}
-            <div className="recommend">
-              <div className="card-deck">
-                <div className="card mr-4">
-                  <img src="..." className="card-img-top" alt="..." />
-                  <div className="card-body">
-                    <h5 className="card-title">Card title</h5>
-                    <p className="card-text">
-                      This is a wider card with supporting text below as a
-                      natural lead-in to additional content. This content is a
-                      little bit longer.
-                    </p>
-                  </div>
-                </div>
-                <div className="card mx-4">
-                  <img src="..." className="card-img-top" alt="..." />
-                  <div className="card-body">
-                    <h5 className="card-title">Card title</h5>
-                    <p className="card-text">
-                      This card has supporting text below as a natural lead-in
-                      to additional content.
-                    </p>
-                  </div>
-                </div>
-                <div className="card mx-4">
-                  <img src="..." className="card-img-top" alt="..." />
-                  <div className="card-body">
-                    <h5 className="card-title">Card title</h5>
-                    <p className="card-text">
-                      This is a wider card with supporting text below as a
-                      natural lead-in to additional content. This card has even
-                      longer content than the first to show that equal height
-                      action.
-                    </p>
-                  </div>
-                </div>
-                <div className="card ml-4">
-                  <img src="..." className="card-img-top" alt="..." />
-                  <div className="card-body">
-                    <h5 className="card-title">Card title</h5>
-                    <p className="card-text">
-                      This is a wider card with supporting text below as a
-                      natural lead-in to additional content. This content is a
-                      little bit longer.
-                    </p>
-                  </div>
-                </div>
+            <div className="container">
+              <div className="row">
+                {this.state.hotProduct.map(item =>
+                  collects.includes(item.pNo) ? (
+                    <div className="col-sm-6 col-12 col-lg-3">
+                      <div className="service-wrap">
+                        <div className="service-img">
+                          <img
+                            src="http://localhost:3000/images/car-1376190.jpg"
+                            alt=""
+                          />
+                        </div>
+                        <div className="service-content position_r">
+                          <h4>{item.pBrand}</h4>
+                          <p>{item.pSit}</p>
+                          <p>{item.pRent} /日</p>
+                          <a href="servic-details.html">
+                            <Link
+                              key={item.pNo}
+                              to={'/productMain/' + item.pNo}
+                              product={this.props.product}
+                            >
+                              詳細
+                            </Link>
+                          </a>
+                          <i
+                            className="fas fa-bookmark position_a"
+                            id="discollect"
+                            style={collection}
+                            onClick={() => this.memberItem(item.pNo, collects)}
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  ) : (
+                    <div className="col-sm-6 col-12 col-lg-3">
+                      <div className="service-wrap">
+                        <div className="service-img">
+                          <img
+                            src="http://localhost:3000/images/car-1376190.jpg"
+                            alt=""
+                          />
+                        </div>
+                        <div className="service-content position_r">
+                          <h4>{item.pBrand}</h4>
+                          <p>{item.pSit}</p>
+                          <p>{item.pRent} /日</p>
+                          <a href="servic-details.html">
+                            <Link
+                              key={item.pNo}
+                              to={'/productMain/' + item.pNo}
+                              product={this.props.product}
+                              onClick={() => this.productMainTo(item.pNo)}
+                              id="linkTo"
+                            >
+                              詳細
+                            </Link>
+                          </a>
+                          <i
+                            className="far fa-bookmark position_a"
+                            id="collect"
+                            style={collection}
+                            onClick={() => this.memberItem(item.pNo, collects)}
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  )
+                )}
               </div>
             </div>
             <div className="productList-footer" />

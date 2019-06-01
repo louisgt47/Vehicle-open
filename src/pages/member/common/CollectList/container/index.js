@@ -18,6 +18,10 @@ export default class index extends Component {
     }
   }
   async componentDidMount() {
+    this.getCollection()
+    // this.searchList()
+  }
+  getCollection = async _ => {
     try {
       let mNo = 1
       const response = await fetch(
@@ -46,7 +50,6 @@ export default class index extends Component {
       console.log(e)
     } finally {
     }
-    // this.searchList()
   }
   inputKeySetState = event => {
     this.setState({ inputkey: event.target.value }, this.searchList())
@@ -54,12 +57,22 @@ export default class index extends Component {
   searchList = _ => {
     var searchData = this.state.inputkey
     console.log(searchData)
-    fetch(
-      `http://localhost:4000/searchList?inputkey=${searchData}&searchkey1=0&searchkey2=0&searchkey3=0&searchkey4=0`
-    )
+    fetch(`http://localhost:4000/searchList2?inputkey=${searchData}&mNo=1`)
       .then(response => response.json())
       .then(response => this.setState({ searchList: response.data }))
       // .then(console.log(this.state.hotList_car))
+      .catch(err => console.error(err))
+  }
+  itemDelete = pNo => {
+    fetch(`http://localhost:4000/deleteItem?mNo=1&pNo=${pNo}`)
+      .then(response => response.json())
+      // .then(response =>
+      //   this.setState(
+      //     { memberCollectionList: response.data },
+      //     console.log(response.data)
+      //   )
+      // )
+      // .then(this.getCollection())
       .catch(err => console.error(err))
   }
 
@@ -95,11 +108,14 @@ export default class index extends Component {
       margin: '0 auto',
       /* height: 40px; */
     }
+    const order_picture = {
+      maxHeight: '50px',
+    }
     // console.log(this.state.searchList)
-    // let listData = this.state.searchList
-    //   ? this.state.searchList
-    //   : this.state.memberCollectionList
-    // console.log(listData)
+    let listData = this.state.inputkey
+      ? this.state.searchList
+      : this.state.memberCollectionList
+    console.log(listData)
     return (
       <div className="con-set1">
         <div style={listContainer}>
@@ -115,7 +131,7 @@ export default class index extends Component {
                   placeholder="資料查詢"
                   type="text"
                   id="inputkey"
-                  onChange={this.inputKeySetState}
+                  onKeyPress={this.inputKeySetState}
                 />
               </div>
             </div>
@@ -136,7 +152,7 @@ export default class index extends Component {
               </tr>
             </thead>
             <tbody>
-              {this.state.memberCollectionList.map(item => (
+              {listData.map(item => (
                 <tr>
                   <th scope="row">
                     <Link
@@ -145,8 +161,14 @@ export default class index extends Component {
                       product={this.props.product}
                     >
                       <a className="buttonToProduct">車輛頁面</a>
-                      <a className="buttonDelete ">移除</a>
                     </Link>
+                    <a
+                      className="buttonDelete"
+                      onClick={() => this.itemDelete(item.pNo)}
+                      href=""
+                    >
+                      移除
+                    </a>
                   </th>
                   <td>{item.pBrand}</td>
                   <td>{item.rentState}</td>
@@ -154,7 +176,9 @@ export default class index extends Component {
                   <td>{item.pRent}</td>
                   <td>{item.shopName}</td>
                   <td>台北市</td>
-                  <td>暫缺</td>
+                  <td>
+                    <div style={order_picture}>1</div>
+                  </td>
                 </tr>
               ))}
             </tbody>

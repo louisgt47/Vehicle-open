@@ -1,7 +1,26 @@
 body {
   font-family: '微軟正黑體';
 }
-
+.sent {
+  background-color: #6eb7b0;
+  color: #fff;
+}
+.sent:hover {
+  background-color: #434948;
+  color: #fff;
+}
+.buttonEndRatting {
+  background-color: #434948;
+  height: 35px;
+  width: 110px;
+  font-size: 14px;
+  text-transform: uppercase;
+  font-weight: 500;
+  text-align: center;
+  display: inline-block;
+  line-height: 35px;
+  color: #fff !important;
+}
 .con-set1 {
   background-image: url(./images/bg-01.jpg);
   width: auto;

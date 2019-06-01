@@ -319,6 +319,54 @@ app.get('/searchList2', (req, res) => {
     }
   })
 })
+//取得車商編號
+app.get('/shopNo', (req, res) => {
+  let { shopName } = req.query
+
+  const SELECT_SHOPNO_QUERY = `SELECT * FROM user_shop WHERE shopName = '${shopName}'`
+  console.log(SELECT_SHOPNO_QUERY)
+  connection.query(SELECT_SHOPNO_QUERY, (err, results) => {
+    if (err) {
+      return res.send(err)
+    } else {
+      return res.json({
+        data: results,
+      })
+    }
+  })
+})
+//新增評價
+app.get('/insertRate', (req, res) => {
+  // console.log('req:' + req.query) //req.query==={name:xxx, price:xxx}
+  const { shopNo, shopName, mNo, orderNo, rate, rateText } = req.query
+  // console.log(pNo)
+  const INSERT_MEMBERITEM_QUERY = `INSERT INTO shopratting (shopNo, shopName, mNo, orderNo, rate, rateText) VALUES ('${shopNo}','${shopName}','${mNo}','${orderNo}','${rate}','${rateText}')`
+  connection.query(INSERT_MEMBERITEM_QUERY, (err, results) => {
+    if (err) {
+      return res.send(err)
+    } else {
+      return res.send('successfully added product')
+    }
+  })
+})
+//取得已評價清單
+app.get('/rated', (req, res) => {
+  // console.log('req:' + req.query) //req.query==={name:xxx, price:xxx}
+  const { mNo } = req.query
+  // console.log(pNo)
+  const SELECT_RATED_QUERY = `SELECT * FROM shopratting WHERE mNo = '${mNo}'`
+  console.log(SELECT_RATED_QUERY)
+  connection.query(SELECT_RATED_QUERY, (err, results) => {
+    if (err) {
+      return res.send(err)
+    } else {
+      return res.json({
+        data: results,
+      })
+    }
+  })
+})
+
 app.listen(4000, () => {
   console.log(`Products server listening on port 4000`)
 })

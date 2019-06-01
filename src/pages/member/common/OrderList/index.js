@@ -1,5 +1,8 @@
 import React, { Component } from 'react'
 import './container.css'
+// import '../../../rent_car/css/search.css'
+import $ from 'jquery'
+// import './modal/css/style.css'
 import {
   BrowserRouter as Router,
   Route,
@@ -16,12 +19,86 @@ export default class index extends Component {
       memberOrderListed: [],
       inputkey: '',
       searchList: [],
+      shopNo: [],
+      ratedList: [],
+      rate: '',
+      rateText: '',
     }
   }
-  async componentDidMount() {
+  componentDidMount = () => {
     this.getCollection1()
     this.getCollection2()
+    this.rated()
     // this.searchList()
+    $('.sel').each(function() {
+      $(this)
+        .children('select')
+        .css('display', 'none')
+
+      var $current = $(this)
+
+      $(this)
+        .find('option')
+        .each(function(i) {
+          if (i == 0) {
+            $current.prepend(
+              $('<div>', {
+                class: $current.attr('class').replace(/sel/g, 'sel__box'),
+              })
+            )
+
+            var placeholder = $(this).text()
+            $current.prepend(
+              $('<span>', {
+                class: $current
+                  .attr('class')
+                  .replace(/sel/g, 'sel__placeholder'),
+                text: placeholder,
+                'data-placeholder': placeholder,
+              })
+            )
+
+            return
+          }
+
+          $current.children('div').append(
+            $('<span>', {
+              class: $current
+                .attr('class')
+                .replace(/sel/g, 'sel__box__options'),
+              text: $(this).text(),
+            })
+          )
+        })
+    })
+
+    // Toggling the `.active` state on the `.sel`.
+    $('.sel').click(function() {
+      $(this).toggleClass('active')
+    })
+
+    // Toggling the `.selected` state on the options.
+    $('.sel__box__options').click(function() {
+      var txt = $(this).text()
+      var index = $(this).index()
+
+      $(this)
+        .siblings('.sel__box__options')
+        .removeClass('selected')
+      $(this).addClass('selected')
+
+      var $currentSel = $(this).closest('.sel')
+      $currentSel.children('.sel__placeholder').text(txt)
+      $currentSel.children('select').prop('selectedIndex', index + 1)
+    })
+  }
+  rated = _ => {
+    let mNo = 1
+    fetch(`http://localhost:4000/rated?mNo=${mNo}`)
+      .then(response => response.json())
+      .then(response => this.setState({ ratedList: response.data }))
+      // .then(console.log(this.state.hotList_car))
+      .catch(err => console.error(err))
   }
   getCollection1 = async _ => {
     try {
@@ -93,6 +170,38 @@ export default class index extends Component {
   handleSearchTextChange = event => {
     this.setState({ searchText: event.target.value })
   }
+  shopNo = shopName => {
+    console.log(shopName)
+    fetch(`http://localhost:4000/shopNo?shopName=${shopName}`)
+      .then(response => response.json())
+      .then(response => this.setState({ shopNo: response.data.shopNo }))
+      // .then(console.log(this.state.hotList_car))
+      .catch(err => console.error(err))
+  }
+  rate = (value, shopName) => {
+    this.setState({ rate: value })
+    fetch(`http://localhost:4000/shopNo?shopName=${shopName}`)
+      .then(response => response.json())
+      .then(response => this.setState({ shopNo: response.data.shopNo }))
+      // .then(console.log(this.state.hotList_car))
+      .catch(err => console.error(err))
+  }
+  rateText = event => {
+    this.setState({ rateText: event.target.value })
+  }
+  sent = (shopName, orderNo) => {
+    fetch(
+      `http://localhost:4000/insertRate?shopNo=${
+        this.state.shopNo
+      }&shopName=${shopName}&mNo=1&orderNo=${orderNo}&rate=${
+        this.state.rate
+      }&rateText=${this.state.rateText}`
+    )
+      .then(response => response.json())
+      .then(response => this.setState({ searchList: response.data }))
+      // .then(console.log(this.state.hotList_car))
+      .catch(err => console.error(err))
+  }
 
   // renderProduct = ({ pNo, pBrand }) => <div key={pNo}>{pBrand}</div>
   render() {
@@ -107,11 +216,31 @@ export default class index extends Component {
     const order_picture = {
       maxHeight: '50px',
     }
+    const thLength = {
+      maxWidth: '184px',
+    }
+
+    const green = {
+      backgroundColor: '#6eb7b0',
+      border: '#6eb7b0',
+    }
+
     // console.log(this.state.searchList)
     let listData = this.state.memberOrderListing
 
     let listData2 = this.state.memberOrderListed
+    const cursor = {
+      cursor: 'pointer',
+    }
+    let rattedNo = []
 
+    for (let i = 0; i < this.state.ratedList.length; i++) {
+      rattedNo[i] = this.state.ratedList[i].orderNo
+    }
+    console.log(rattedNo)
+    for (let i = 0; i < rattedNo.length; i++) {
+      rattedNo[i] = Number(rattedNo[i])
+    }
     console.log(listData)
     return (
       <div className="con-set1">
@@ -154,8 +283,8 @@ export default class index extends Component {
                   <th scope="row" />
                   <td>{item.orderNo}</td>
                   <td>{item.pBrand}</td>
-                  <td>{item.startDate}</td>
-                  <td>{item.endDate}</td>
+                  <td>{item.startDate.slice(0, 10)}</td>
+                  <td>{item.endDate.slice(0, 10)}</td>
                   <td>{item.total}</td>
                   <td>{item.shopName}</td>
                   <td>
@@ -169,7 +298,9 @@ export default class index extends Component {
           <table class="table mt-5">
             <thead>
               <tr>
-                <th scope="col">歷史訂單</th>
+                <th scope="col" style={thLength}>
+                  歷史訂單
+                </th>
                 <th scope="col">訂單編號</th>
                 <th scope="col">車輛名稱</th>
                 <th scope="col">租車日期</th>
@@ -181,22 +312,192 @@ export default class index extends Component {
               </tr>
             </thead>
             <tbody>
-              {listData2.map(item => (
-                <tr>
-                  <th scope="row">
-                    <a className="buttonToProduct">給予評價</a>
-                  </th>
-                  <td>{item.orderNo}</td>
-                  <td>{item.pBrand}</td>
-                  <td>{item.startDate}</td>
-                  <td>{item.endDate}</td>
-                  <td>{item.total}</td>
-                  <td>{item.shopName}</td>
-                  <td>
-                    <div style={order_picture}>1</div>
-                  </td>
-                </tr>
-              ))}
+              {listData2.map(item =>
+                rattedNo.includes(item.orderNo) ? (
+                  <tr>
+                    <th scope="row" style={thLength}>
+                      <div
+                        className="buttonEndRatting"
+                        // class="btn btn-primary"
+                        // style={cursor}
+                      >
+                        已評價
+                      </div>
+                    </th>
+                    <td>{item.orderNo}</td>
+                    <td>{item.pBrand}</td>
+                    <td>{item.startDate.slice(0, 10)}</td>
+                    <td>{item.endDate.slice(0, 10)}</td>
+                    <td>{item.total}</td>
+                    <td>{item.shopName}</td>
+                    <td>
+                      <div style={order_picture}>1</div>
+                    </td>
+                  </tr>
+                ) : (
+                  <tr>
+                    <th scope="row" style={thLength}>
+                      <div
+                        className="buttonToProduct"
+                        // class="btn btn-primary"
+                        data-toggle="modal"
+                        data-target="#exampleModal"
+                        data-whatever="@mdo"
+                        style={cursor}
+                        onClick={() => this.shopNo(item.shopName)}
+                      >
+                        給予評價
+                      </div>
+                      <div id="main" />
+                      {/* 彈出 */}
+
+                      <div
+                        className="modal fade"
+                        id="exampleModal"
+                        tabIndex={-1}
+                        role="dialog"
+                        aria-labelledby="exampleModalLabel"
+                        aria-hidden="true"
+                      >
+                        <div className="modal-dialog" role="document">
+                          <div className="modal-content">
+                            <div className="modal-header">
+                              <h5
+                                className="modal-title"
+                                id="exampleModalLabel"
+                              >
+                                New message
+                              </h5>
+                              <button
+                                type="button"
+                                className="close"
+                                data-dismiss="modal"
+                                aria-label="Close"
+                              >
+                                <span aria-hidden="true">×</span>
+                              </button>
+                            </div>
+                            <div className="modal-body">
+                              <form>
+                                <div className="form-group">
+                                  <label
+                                    htmlFor="recipient-name"
+                                    className="col-form-label"
+                                  >
+                                    評分:
+                                  </label>
+                                  <div
+                                    class="btn-toolbar"
+                                    role="toolbar"
+                                    aria-label="Toolbar with button groups"
+                                  >
+                                    <div
+                                      class="btn-group mr-2"
+                                      role="group"
+                                      aria-label="First group"
+                                    >
+                                      <button
+                                        type="button"
+                                        class="btn btn-secondary"
+                                        style={green}
+                                        onClick={() =>
+                                          this.rate(1, item.shopName)
+                                        }
+                                      >
+                                        1
+                                      </button>
+                                      <button
+                                        type="button"
+                                        class="btn btn-secondary"
+                                        style={green}
+                                        onClick={() =>
+                                          this.rate(2, item.shopName)
+                                        }
+                                      >
+                                        2
+                                      </button>
+                                      <button
+                                        type="button"
+                                        class="btn btn-secondary"
+                                        style={green}
+                                        onClick={() =>
+                                          this.rate(3, item.shopName)
+                                        }
+                                      >
+                                        3
+                                      </button>
+                                      <button
+                                        type="button"
+                                        class="btn btn-secondary"
+                                        style={green}
+                                        onClick={() =>
+                                          this.rate(4, item.shopName)
+                                        }
+                                      >
+                                        4
+                                      </button>
+                                      <button
+                                        type="button"
+                                        class="btn btn-secondary"
+                                        style={green}
+                                        onClick={() =>
+                                          this.rate(5, item.shopName)
+                                        }
+                                      >
+                                        5
+                                      </button>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div className="form-group">
+                                  <label
+                                    htmlFor="message-text"
+                                    className="col-form-label"
+                                  >
+                                    留言:
+                                  </label>
+                                  <textarea
+                                    className="form-control"
+                                    id="message-text"
+                                    onChange={this.rateText}
+                                  />
+                                </div>
+                              </form>
+                            </div>
+                            <div className="modal-footer">
+                              <button
+                                type="button"
+                                className="btn btn-secondary"
+                                data-dismiss="modal"
+                              >
+                                關閉
+                              </button>
+                              <a
+                                className="btn sent"
+                                onClick={() =>
+                                  this.sent(item.shopName, item.orderNo)
+                                }
+                                href=""
+                              >
+                                確認送出
+                              </a>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </th>
+                    <td>{item.orderNo}</td>
+                    <td>{item.pBrand}</td>
+                    <td>{item.startDate.slice(0, 10)}</td>
+                    <td>{item.endDate.slice(0, 10)}</td>
+                    <td>{item.total}</td>
+                    <td>{item.shopName}</td>
+                    <td>
+                      <div style={order_picture}>1</div>
+                    </td>
+                  </tr>
+                )
+              )}
             </tbody>
           </table>
         </div>

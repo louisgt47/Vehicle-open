@@ -131,13 +131,13 @@ body {
 }
 
 .sel--black-panther {
-  z-index: 3;
+  z-index: 99;
 }
 
 /* ----- Select Box Superman ----- */
 .sel--superman {
   /*   display: none; */
-  z-index: 2;
+  z-index: 98;
 }
 
 /* ===== Keyframes ===== */

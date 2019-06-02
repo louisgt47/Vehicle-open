@@ -1,0 +1,19 @@
+.container_nav {
+  width: 1350px;
+  margin: 0px auto;
+  justify-content: space-between;
+}
+.navLogo {
+  height: 80px;
+}
+a.nav-item {
+  text-align: end;
+  /* padding:16px;  */
+}
+.navbar-nav {
+  padding: 16px;
+}
+.navbar-nav a:active {
+  background: #6eb7b0;
+  color: white;
+}

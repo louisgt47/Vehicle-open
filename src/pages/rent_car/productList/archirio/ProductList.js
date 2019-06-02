@@ -43,6 +43,7 @@ class ProductList extends React.Component {
     this.hotProduct()
     // this.mAccount()
     this.mCollect()
+
     // $('#collect').click(function() {
     //   $(this).removeClass('far fa-bookmark position_a')
 
@@ -131,13 +132,23 @@ class ProductList extends React.Component {
 
   //分類搜索
   all = () => {
+    $('#buttonAll').toggleClass('active')
+    $('#buttonS').removeClass('active')
+    $('#buttonB').removeClass('active')
+
     this.setState({ searchState: 0 })
   }
   sSearch = key => {
+    $('#buttonAll').removeClass('active')
+    $('#buttonS').addClass('active')
+    $('#buttonB').removeClass('active')
     let data = this.state.product.filter(item => item.pType.includes(key))
     this.setState({ sProduct: data, searchState: 1 })
   }
   bSearch = key => {
+    $('#buttonAll').removeClass('active')
+    $('#buttonS').removeClass('active')
+    $('#buttonB').addClass('active')
     let data = this.state.product.filter(item => item.pType.includes(key))
     this.setState({ bProduct: data, searchState: 2 })
   }
@@ -608,18 +619,21 @@ class ProductList extends React.Component {
                       className="active"
                       data-filter="*"
                       onClick={this.all}
+                      id="buttonAll"
                     >
                       全部
                     </button>
                     <button
                       data-filter=".cat1"
                       onClick={() => this.sSearch('小客車')}
+                      id="buttonS"
                     >
                       小客車
                     </button>
                     <button
                       data-filter=".cat2"
                       onClick={() => this.bSearch('休旅車')}
+                      id="buttonB"
                     >
                       休旅車
                     </button>

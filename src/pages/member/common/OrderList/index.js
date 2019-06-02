@@ -246,7 +246,7 @@ export default class index extends Component {
       <div className="con-set1">
         <div style={listContainer}>
           <div className="set-text1">
-            <h2 className="set-text1-1">收藏清單</h2>
+            <h2 className="set-text1-1">訂單查詢</h2>
             <br />
             {/* <h4 className="">List</h4> */}
             <div className="set-input mt-3">

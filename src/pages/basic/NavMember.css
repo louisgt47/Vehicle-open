@@ -17,3 +17,11 @@ a.nav-item {
   background: #6eb7b0;
   color: white;
 }
+.navbar {
+  display: flex;
+  justify-content: center;
+}
+.navSize{
+  display: flex;
+  justify-content: center;
+}

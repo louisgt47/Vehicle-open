@@ -1,14 +1,14 @@
 import React, { Component } from 'react'
-import Header from './common/CollectList/Header/index'
+import NavMember from '../basic/NavMember'
 
 import Container from './common/CollectList/container/index'
-import Footer from './common/CollectList/Footer/index'
+import Footer from '../basic/Footer'
 import './App.css'
 export default class App extends Component {
   render() {
     return (
       <div className="App">
-        <Header />
+        <NavMember />
         <Container />
         <Footer />
       </div>

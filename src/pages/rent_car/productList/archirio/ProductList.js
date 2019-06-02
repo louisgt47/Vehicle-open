@@ -8,6 +8,8 @@ import {
 } from 'react-router-dom'
 // import Radium from 'radium'
 import $ from 'jquery'
+import NavMember from '../../../basic/NavMember'
+import Footer from '../../../basic/Footer'
 
 import ProductListSearch_bar from '../../component-list/ProductListSearch_bar'
 
@@ -281,6 +283,7 @@ class ProductList extends React.Component {
 
     return (
       <>
+        <NavMember />
         <a id="scrollUp" href="#top">
           <i className="fa fa-arrow-up" />
         </a>
@@ -761,6 +764,7 @@ class ProductList extends React.Component {
             </ul>
           </div>
         </div>
+        <Footer />
       </>
     )
   }

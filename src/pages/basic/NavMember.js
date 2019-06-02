@@ -26,7 +26,7 @@ class NavMember extends Component {
       margin: '0 auto',
     }
     return (
-      <div>
+      <div className="navSize">
         <nav
           className="navbar navbar-expand-lg navbar-light bg-light"
           style={navFix}

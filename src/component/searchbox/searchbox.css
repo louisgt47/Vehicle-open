@@ -1,0 +1,181 @@
+.searchnav {
+  width: 100%;
+  height: 100px;
+  margin-top: 300px;
+  position: relative;
+}
+.searchboxinput {
+  border: 0;
+  transition: 1.5s;
+  background-color: transparent;
+  position: absolute;
+  border: none;
+  border-bottom: rgba(0, 0, 0, 0.1) 2px solid;
+  text-align: center;
+  font-family: '微軟正黑體';
+  font-size: 20px;
+  width: 80%;
+  height: 50%;
+  top: calc(50% - 25%);
+  opacity: 0;
+}
+.searchboxinput:focus {
+  outline: none;
+}
+.searchbox {
+  width: 100px;
+  height: 100%;
+  position: relative;
+  margin: 0 auto;
+}
+.top {
+  left: 0px;
+  position: relative;
+  transition: 1s;
+}
+.top2 {
+  transform: scale(0.7);
+  top: 13px;
+  left: -246px;
+  position: relative;
+  transition: 1s;
+  opacity: 0;
+}
+.bottom {
+  left: 0px;
+  position: relative;
+  transition: 1s;
+}
+
+.bottom2 {
+  transform: scale(0.7);
+  top: 19px;
+  left: 247px;
+  position: relative;
+  transition: 1s;
+  opacity: 0;
+}
+
+.addline {
+  transition: 1s;
+  width: 5px;
+  height: 50px;
+  position: absolute;
+  background-color: green;
+  right: calc(50% - 32px);
+  top: 7.2px;
+  transform: rotate(90deg);
+  transform-origin: top left;
+}
+.addline2 {
+  transition: 1s;
+  width: 5px;
+  height: 50px;
+  position: absolute;
+  background-color: green;
+  right: calc(50% + 17px);
+  bottom: -86.5px;
+  transform: rotate(90deg);
+  transform-origin: bottom left;
+}
+.linemiddle1 {
+  transition: 2s;
+  width: 40%;
+  height: 4px;
+  position: absolute;
+  background-color: #2d2d2d;
+  top: calc(50% - 2px);
+}
+.linemiddle2 {
+  transition: 2s;
+  width: 40%;
+  height: 4px;
+  position: absolute;
+  background-color: #2d2d2d;
+  top: calc(50% - 2px);
+  right: 0;
+}
+.bottom2line2 {
+  width: 5px;
+  height: 48px;
+  position: absolute;
+  background-color: #000;
+  left: 85px;
+  top: 6px;
+  transform: rotate(-210deg);
+}
+.bottom2line1 {
+  width: 5px;
+  height: 48px;
+  position: absolute;
+  background-color: #000;
+  left: 85px;
+  top: 46px;
+  transform: rotate(-330deg);
+}
+.bottomline3 {
+  width: 5px;
+  height: 48px;
+  position: absolute;
+  background-color: green;
+  left: 85px;
+  top: 6px;
+  transform: rotate(-210deg);
+}
+.bottomline2 {
+  width: 5px;
+  height: 48px;
+  position: absolute;
+  background-color: green;
+  left: 85px;
+  top: 46px;
+  transform: rotate(-330deg);
+}
+.top2line2 {
+  width: 5px;
+  height: 48px;
+  position: absolute;
+  background-color: #000;
+  right: 80px;
+  top: 6px;
+  transform: rotate(210deg);
+}
+.top2line1 {
+  width: 5px;
+  height: 408px;
+  position: absolute;
+  background-color: #000;
+  right: calc(50% - 32px);
+  left: 435px;
+  top: 7.2px;
+  transform: rotate(90deg);
+  transform-origin: top left;
+}
+.topline1 {
+  width: 5px;
+  height: 48px;
+  position: absolute;
+  background-color: green;
+  right: 80px;
+  top: 46px;
+  transform: rotate(330deg);
+}
+.topline2 {
+  width: 5px;
+  height: 48px;
+  position: absolute;
+  background-color: green;
+  right: 80px;
+  top: 6px;
+  transform: rotate(210deg);
+}
+.search-icon {
+  position: absolute;
+  color: #aaa;
+  font-size: 30pt;
+  left: calc(50% - 17px);
+  top: calc(50% - 19px);
+  cursor: pointer;
+  transition: 1s;
+  opacity: 1;
+}

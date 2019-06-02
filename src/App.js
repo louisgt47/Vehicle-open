@@ -1,7 +1,8 @@
 import React from 'react'
 import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom'
-import Enter from './pages/home/Enter'
-import Login from './pages/log_in/LogIn'
+import Enter from './component/Enter/Enter.js'
+import IndexPage from './component/Indexpage/IndexPage.js'
+
 import SignUp from './pages/sign_up/SignUp'
 // import RentCar from './pages/rent_car/RentCar'
 import Agent from './pages/agent/Agent'
@@ -14,6 +15,15 @@ import productSearchList from './pages/rent_car/productSearchList'
 //member
 import MemberList from './pages/member/MemberList'
 import OrderList from './pages/member/OrderList'
+import searchbox from './component/searchbox/searchbox.js'
+//login
+import loginBox from './component/Login/LoginBox/LoginBox.js'
+import loginDriver from './component/Login/LoginBox/LoginDriver.js'
+import LoginStore from './component/Login/LoginBox/LoginStore.js'
+import LoginUser from './component/Login/LoginBox/LoginUser.js'
+import RegisteredDriver from './component/Login/LoginBox/Registered/RegisteredDriver.js'
+import RegisteredStore from './component/Login/LoginBox/Registered/RegisteredStore.js'
+import RegisteredUser from './component/Login/LoginBox/Registered/RegisteredUser.js'
 class App extends React.Component {
   render() {
     return (
@@ -21,7 +31,16 @@ class App extends React.Component {
         <>
           <Switch>
             <Route exact path="/" component={Enter} />
-            <Route path="/log_in" component={Login} />
+            <Route exact path="/searchbox" component={searchbox} />
+            <Route exact path="/IndexPage" component={IndexPage} />
+            //Login
+            <Route exact path="/loginbox" component={loginBox} />
+            <Route path="/LoginDriver" component={loginDriver} />
+            <Route path="/LoginStore" component={LoginStore} />
+            <Route path="/LoginUser" component={LoginUser} />
+            <Route path="/RegisteredDriver" component={RegisteredDriver} />
+            <Route path="/RegisteredStore" component={RegisteredStore} />
+            <Route path="/RegisteredUser" component={RegisteredUser} />
             <Route path="/sign_up" component={SignUp} />
             //member
             <Route path="/memberList" component={MemberList} />

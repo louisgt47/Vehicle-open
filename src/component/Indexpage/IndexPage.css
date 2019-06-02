@@ -1,0 +1,455 @@
+.logohome{
+    position: relative;
+  }
+  .logo{
+      position: absolute;
+      top:180px;
+      left:140px;
+      width: 250px;
+      height: 540px;
+  }
+  .title1
+
+  { 
+      position: absolute;
+      animation:animatetitle .3s cubic-bezier(.85,.27,.83,.67)    ;
+      width: 100px;
+      height: 120px;
+      left:350px;
+      top:495px;
+      transition: 1.2s;
+      cursor: pointer;
+      
+
+  }
+  .title2
+  { 
+      position: absolute;
+      animation:animatetitle 1.6s cubic-bezier(.85,.27,.83,.67)    ;
+      width: 100px;
+      height: 120px;
+      left:500px;
+      top:220px;
+      transition: 1.2s;
+      cursor: pointer;
+
+  }
+  .title3
+  { 
+      position: absolute;
+      animation:animatetitle 1.8s cubic-bezier(.85,.27,.83,.67)    ;
+      width: 100px;
+      height: 120px;
+      left:630px;
+      top:735px;
+      transition: 1.2s;
+      cursor: pointer;
+
+  }
+  .title4
+  { 
+      position: absolute;
+      animation:animatetitle 2s cubic-bezier(.85,.27,.83,.67)    ;
+      width: 100px;
+      height: 120px;
+      left:915px;
+      top:45px;
+      transition: 1.2s;
+      cursor: pointer;
+
+  }
+  .title5
+  { 
+      position: absolute;
+      animation:animatetitle 2.2s cubic-bezier(.85,.27,.83,.67)    ;
+      width: 100px;
+      height: 120px;
+      left:1200px;
+      top:500px;
+      transition: 1.2s;
+      cursor: pointer;
+
+  }
+  .title6
+  { 
+      position: absolute;
+      animation:animatetitle 2.4s cubic-bezier(.85,.27,.83,.67)    ;
+      width: 100px;
+      height: 120px;
+      left:1330px;
+      top:635px;
+      transition: 1.2s;
+      cursor: pointer;
+
+  }
+  .title7
+  { 
+      position: absolute;
+      animation:animatetitle 2.6s cubic-bezier(.85,.27,.83,.67)    ;
+      width: 100px;
+      height: 120px;
+      left:1470px;
+      top:350px;
+      transition: 1.2s;
+      cursor: pointer;
+
+  }
+  .text
+  { 
+      top:415px;
+      left:925px;
+      position: absolute;
+        background-color: #faa;
+      width: 385px;
+      height: 30px;
+  }
+  body{
+    background: #ffffff;
+}
+path{
+    stroke:#2d2d2d9c;
+    fill:#2d2d2d;
+    stroke-dasharray: 1050;
+          
+    opacity: 10;
+    animation:animate 1.2s cubic-bezier(.85,.27,.83,.67)    ;
+}
+svg{
+    width: 100%;
+    height: auto;
+    margin: 0 auto;
+    text-align: center;
+}
+@keyframes animate
+{
+    0%{
+        opacity: 0;
+        fill:none;
+        stroke-dashoffset: 1050;        
+        }
+    90%{
+        opacity: 10;
+       
+        stroke-dashoffset: 0;  
+
+         fill:#2d2d2d00;
+  }
+    100%{
+        /* opacity: 10; */
+        fill:#2d2d2d;
+        stroke:#2d2d2d;
+       
+    }
+}
+@keyframes animatetitle
+{
+    0%{
+        opacity: 0;
+    }
+
+    100%{
+        opacity: 10;
+    }
+}
+@keyframes animatetitleleft
+{
+    0%{
+        transform: translateY(80px);
+    }
+    50%{
+        transform: translateY(80px);
+    }
+    /* 80%{
+        transform: translateY(-30px);
+    }
+    83%{
+        transform: translateY(25px);
+    }
+    86%{
+        transform: translateY(-20px);
+    }
+    89%{
+        transform: translateY(15px);
+    }
+    90%{
+        transform: translateY(-10px);
+    }
+    93%{
+        transform: translateY(5px);
+    } */
+    100%{
+        transform: translateY(0px);
+    }
+}
+.logobar{
+    width: 210px;
+    height: 20px;
+    background: #2d2d2d;;
+    margin-top: 60px;
+    color: #fff;
+    font-size:10pt;
+    line-height: 16px;
+    text-justify: auto;
+    text-align: center;
+}
+.logobottom{
+    display: flex;
+}
+.logobottomleft
+{
+    height: 248px;
+    width: 3px;
+    background-color: #2D2D2D;
+    border-radius: 10%;
+    margin-top:9px;
+    margin-right:9px; 
+    
+}
+.logobottomright
+{
+
+    line-height: 40px;
+    font-weight: 500;
+    
+}
+.logoone
+{
+    font-size: 21pt;
+    line-height: 1;
+    color: #6D6D6D;
+}
+.titletop
+{
+    display: flex;
+}
+.titletopleft
+{
+    font-family: "微軟正黑體";
+    font-size: 65pt;
+    line-height: 65px;
+    font-weight: 500;
+    color: #2D2D2D;
+    transform: translateY(0px);
+    transition: 1.2s;
+
+}
+
+.titletopright
+{
+    height: 6px;
+    width: 6px;
+    border-radius: 50%;        
+    margin-left: 43px;
+    background: #2d2d2d;
+    margin-top: 64px;
+    transition: 1.2s;
+}
+.titlehr
+{
+    background-color: #2d2d2d;
+    width: 100px;
+    height: 2px;
+    margin-top: 13px;
+    margin-bottom: 6px;
+    transition: 1.2s;
+}
+.titleenglish
+{
+    width: 120px;
+    font-family: "微軟正黑體";
+    font-size: 12px;
+    transform: scale(0.7);
+    white-space:nowrap;
+    font-weight: 600;
+    line-height: 1;
+    text-align: right;
+    color: #2d2d2d;
+    display:none;
+    transition: 1.2s;
+}
+.titletext
+{
+    width: 100px;
+    font-family: "微軟正黑體";
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 1;
+    text-align: left;
+    color: #2d2d2d;
+    display: none;
+    opacity: 0;
+    transition: 1.2s;
+}
+.ramdomcomde1
+{
+    width: 100px;
+    font-family: "微軟正黑體";
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 1;
+    text-align: left;
+    color: #2d2d2d;
+}
+.letter
+{
+    
+    font-family: "微軟正黑體";
+    font-size: 12px;
+    transform: scale(0.7);
+    white-space:nowrap;
+    font-weight: 600;
+    line-height: 1;
+    text-align: right;
+    color: #2d2d2d;;
+}
+.ramdomcomde
+{
+  width: 120px;
+    font-family: "微軟正黑體";
+    font-size: 12px;
+    transform: scale(0.7);
+    white-space:nowrap;
+    font-weight: 600;
+    line-height: 1;
+    text-align: right;
+    color: #492929;
+    
+}
+.titletopleftbox{
+    overflow: hidden;
+}
+.hover1
+{
+    width: 40%;
+    height: 100vh;
+    overflow: hidden;
+    position: absolute;
+    opacity: 0;
+    transition: 1.2s;
+
+
+}
+.hover1box
+{
+    opacity: 0.8;
+}
+.hover1img{
+    max-width:1600px;height: 100vh; right: -400px;position: absolute;
+}
+.hover2
+{
+    width: 1046px;
+    height: 100vh;
+    overflow: hidden;
+    position: absolute;
+
+    opacity: 0;
+    transition: 1.2s;
+}
+.hover2box
+{
+    opacity: 0.8;
+}
+.hover2img{
+    width:100% ;top:-15px;position: absolute;left: -15px;
+}
+
+.hover3
+{
+    width: 100%;
+    height: 400px;
+    overflow: hidden;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    opacity: 0;
+    transition: 1.2s;
+}
+.hover3box
+{
+    opacity: 0.8;
+}
+.hover3img{
+    width:100% ;position: absolute;top:-400px;
+    
+}
+
+.hover4
+{
+    width: 40%;
+    height: 100vh;
+    overflow: hidden;
+    position: absolute;
+    left: calc( 50% - 20%);
+    opacity: 0;
+    transition: 1.2s;
+}
+.hover4box
+{
+    opacity: 0.8;
+}
+.hover4img{
+    max-width:1300px ;position: absolute;height: 100vh;
+}
+
+.hover5
+{
+    width: 900px;
+    height: 100vh;
+    overflow: hidden;
+    position: absolute;
+    right: 0;
+    opacity: 0;
+    transition: 1.2s;
+}
+.hover5box
+{
+    opacity: 0.8;
+}
+.hover5img{
+    max-width:1900px ;position: absolute;left: -100px; height: 100vh;
+}
+
+.hover6
+{
+    width: 100%;
+    height: 700px;
+    overflow: hidden;
+    position: absolute;
+    bottom: 0;
+    opacity: 0;
+    transition: 1.2s;
+}
+.hover6box
+{
+    opacity: 0.8;
+}
+.hover6img{
+    width:100% ;top:-200px;position: absolute;
+}
+
+.hover7
+{
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    position: absolute;
+
+    opacity: 0;
+    transition: 1.2s;
+}
+.hover7box
+{
+    opacity: 0.8;
+}
+.hover7img{
+    width:90% ;position: absolute;left:calc( 50% - 40%);top:-10%
+}
+
+.indexbackground
+{
+    width: 100%;
+    height: 100vh;
+    background-image: url(./images/bg-01.jpg);
+    background-repeat: no-repeat
+}

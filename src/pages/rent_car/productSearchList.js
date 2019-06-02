@@ -6,12 +6,19 @@ import {
   Switch,
   NavLink,
 } from 'react-router-dom'
+import $ from 'jquery'
+
+import NavMember from '../basic/NavMember'
+import NavShop from '../basic/NavShop'
+import Footer from '../basic/Footer'
 
 class productSearchList extends React.Component {
   constructor() {
     super()
     this.state = {
       searchList: [],
+      collection: [],
+      thisPage: '',
     }
   }
   componentDidMount() {
@@ -24,6 +31,7 @@ class productSearchList extends React.Component {
     // let ifAND2 = key3 && key4 ? 'AND' : ''
     // let ifAND3 = key4 ? 'AND' : ''
     this.searchList()
+    this.mCollect()
   }
   searchList = _ => {
     var searchData = this.props.location.state
@@ -47,7 +55,144 @@ class productSearchList extends React.Component {
       // .then(console.log(this.state.hotList_car))
       .catch(err => console.error(err))
   }
+
+  //會員帳號(session)=>拿到mAccount
+  // mAccount = _ =>{
+
+  // }
+  //會員收藏判定mCollectPNo
+  mCollect = _ => {
+    fetch(`http://localhost:4000/mCollectPNo?mNo=1`)
+      .then(response => response.json())
+      // .then(response => console.log(response.data))
+
+      .then(response =>
+        this.setState({ collection: response.data }, () =>
+          console.log(response.data)
+        )
+      )
+
+      // .then(console.log(this.state.hotProduct))
+      .catch(err => console.error(err))
+  }
+  //收藏動作
+  memberItem = (pNo, collects) => {
+    console.log(pNo)
+    console.log(collects)
+    if (!collects.includes(pNo)) {
+      $(`#collect${pNo}`).removeClass('far fa-bookmark position_a')
+
+      $(`#collect${pNo}`).addClass('fas fa-bookmark position_a')
+
+      fetch(`http://localhost:4000/insertItem?mNo=1&pNo=${pNo}`)
+        .then(response => response.json())
+        .then(response => this.setState({ hotList_car: response.data }))
+        // .then(console.log(this.state.hotList_car))
+        .catch(err => console.error(err))
+    } else {
+      $(`#discollect${pNo}`).removeClass('fas fa-bookmark position_a')
+
+      $(`#discollect${pNo}`).addClass('far fa-bookmark position_a')
+
+      fetch(`http://localhost:4000/deleteItem?mNo=1&pNo=${pNo}`)
+        .then(response => response.json())
+        .then(response => this.setState({ hotList_car: response.data }))
+        // .then(console.log(this.state.hotList_car))
+        .catch(err => console.error(err))
+    }
+    this.mCollect()
+  }
+  //跳頁函式
+  myFunctionB(page) {
+    // window.location.href = `?page=${page - 1}`
+    // console.log(window.location.href)
+    this.setState({ thisPage: page - 1 })
+  }
+
+  myFunction(page) {
+    // window.location.href = `?page=${page}`
+    // console.log(window.location.href)
+    this.setState({ thisPage: page })
+  }
+
+  myFunctionC(page) {
+    // window.location.href = `?page=${page + 1}`
+    // console.log(window.location.href)
+    this.setState({ thisPage: page + 1 })
+  }
   render() {
+    const light = {
+      filter: 'brightness(.3)',
+      transition: '.5s',
+    }
+    const line = {
+      position: 'absolute',
+      width: '610px',
+      height: '410px',
+      left: '0',
+      top: '-40px',
+      zIndex: '-9',
+      border: 'solid 2px #6eb7b0',
+    }
+    const fWhite = {
+      color: '#fff',
+    }
+    const collection = {
+      fontSize: '32px',
+      color: '#6eb7b0',
+      right: '10px',
+      top: '-45px',
+      zIndex: '9',
+    }
+
+    const collection2 = {
+      fontSize: '32px',
+      color: '#fff',
+      right: '25px',
+      bottom: '40px',
+      zIndex: '99',
+    }
+    // const pageStyle = {
+    //   ':active': { backgrounColor: '#6eb7b0', borderColor: '#6eb7b0' },
+    // }
+    //每頁總數
+    const perPage = 12
+    //總筆數
+    var totalProducts = this.state.searchList.length
+
+    console.log('totalProducts: ' + totalProducts)
+
+    //總頁數
+    const totalPage = Math.ceil(totalProducts / perPage)
+    //現在頁數
+    // var strUrl = location
+    // const page = parseInt(location.search)
+    const page = this.state.thisPage ? this.state.thisPage : 1
+    //限制9筆資料
+    console.log('perPage: ' + perPage)
+    console.log('totalProducts: ' + totalProducts)
+    console.log('totalPage' + totalPage)
+    console.log('page: ' + page)
+    var perPageRender = this.state.searchList.filter(function(value, index) {
+      return index >= (page - 1) * perPage && index < page * perPage
+    })
+    //中間單頁創建函式
+    let PageArray = []
+
+    for (let i = 0; i < totalPage; i++) {
+      PageArray[i] = i + 1
+    }
+
+    let collects = []
+
+    for (let i = 0; i < this.state.collection.length; i++) {
+      collects[i] = this.state.collection[i].pNo
+    }
+    console.log(collects)
+    for (let i = 0; i < collects.length; i++) {
+      collects[i] = Number(collects[i])
+    }
+    console.log(collects)
     const heart = {
       color: '#6eb7b0',
       fontSize: '24px',
@@ -55,51 +200,70 @@ class productSearchList extends React.Component {
     const padding0 = { padding: '0' }
     return (
       <>
-        <div
-          className="list_item d-flex flex-wrap justify-content-center"
-          style={{ marginTop: '100px' }}
-        >
-          {this.state.searchList.map(item => (
-            <div className="card my-5 mx-2 col-3" style={{ width: '520px' }}>
-              <Link
-                key={item.pNo}
-                to={'/productMain/' + item.pNo}
-                product={this.props.product}
-              >
-                <div className="card_img relative">
-                  <img
-                    src="http://localhost:3000/images/Mercedes-Benz-logo-2009-1920x1080.png"
-                    className="card-img-logo absolute"
-                    alt="..."
-                  />
-                  <img
-                    src="http://localhost:3000/images/6-1.png"
-                    className="card-img-top"
-                    alt="..."
-                  />
-                </div>
-                <div
-                  style={padding0}
-                  className="card-body py-2 d-flex justify-content-between"
+        <div className="row grid">
+          {perPageRender.map(item =>
+            collects.includes(item.pNo) ? (
+              <div className="col-lg-3 col-sm-6 col-12 project cat2 cat3 position_r">
+                <Link
+                  key={item.pNo}
+                  to={'/productMain/' + item.pNo}
+                  // product={this.props.product}
                 >
-                  <div className="card-text">
-                    <h5>{item.pBrand}</h5>
-                    {item.pSit}人座/{item.pType}
-                  </div>
-                  <a href className="mx-2 d-flex">
-                    <div
-                      className="t-center  px-2 d-flex align-items-center"
-                      onClick={() => this.insertItem(item.pNo)}
-                    >
-                      <p className="m-0 ">
-                        <i className="far fa-heart" style={heart} />
-                      </p>
+                  <div className="project-wrap">
+                    <img
+                      src="http://localhost:3000/images/car-1376190.jpg"
+                      alt=""
+                    />
+                    <div className="project-content">
+                      <a
+                        href="assets/images/project/project2/1.jpg"
+                        className="popup"
+                      >
+                        <i className="fa fa-search" />
+                      </a>
+                      <h3 style={fWhite}>{item.pBrand}</h3>
                     </div>
-                  </a>
-                </div>
-              </Link>
-            </div>
-          ))}
+                  </div>
+                </Link>
+                <i
+                  className="fas fa-bookmark position_a"
+                  id="discollect"
+                  style={collection2}
+                  onClick={() => this.memberItem(item.pNo, collects)}
+                />
+              </div>
+            ) : (
+              <div className="col-lg-3 col-sm-6 col-12 project cat2 cat3 position_r">
+                <Link
+                  key={item.pNo}
+                  to={'/productMain/' + item.pNo}
+                  product={this.props.product}
+                >
+                  <div className="project-wrap">
+                    <img
+                      src="http://localhost:3000/images/car-1376190.jpg"
+                      alt=""
+                    />
+                    <div className="project-content">
+                      <a
+                        href="assets/images/project/project2/1.jpg"
+                        className="popup"
+                      >
+                        <i className="fa fa-search" />
+                      </a>
+                      <h3 style={fWhite}>{item.pBrand}</h3>
+                    </div>
+                  </div>
+                </Link>
+                <i
+                  className="far fa-bookmark position_a"
+                  id="collect"
+                  style={collection2}
+                  onClick={() => this.memberItem(item.pNo, collects)}
+                />
+              </div>
+            )
+          )}
         </div>
       </>
     )

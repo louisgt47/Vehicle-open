@@ -101,9 +101,12 @@ class ProductListSearch_bar extends React.Component {
     })
   }
   inputKeySetState = event => {
+    console.log(event.target.value)
     this.setState({ inputkey: event.target.value })
   }
   searchKey1SetState = event => {
+    console.log(event.target.value)
+
     this.setState({ searchkey1: event.target.value })
   }
   searchKey2SetState = event => {
@@ -125,6 +128,7 @@ class ProductListSearch_bar extends React.Component {
     const center = {
       textAlign: 'center',
       textAlignLast: 'center',
+      zIndex: '99',
     }
     const inputSize = {
       width: '975px',
@@ -162,7 +166,8 @@ class ProductListSearch_bar extends React.Component {
                 // className="form-control"
                 // id="searchkey1"
                 style={center}
-                onChange={this.searchKey1SetState}
+                // onChange={this.searchKey1SetState.bind(this)}
+                onClick={() => console.log(111)}
               >
                 <option style={center} value={0}>
                   地點
@@ -183,7 +188,12 @@ class ProductListSearch_bar extends React.Component {
                 <option style={center} value={0}>
                   廠牌
                 </option>
-                <option style={center}>TOYOTA</option>
+                <option
+                  style={center}
+                  onChange={() => this.searchKey2SetState('TOYOTA')}
+                >
+                  TOYOTA
+                </option>
                 <option style={center}>3</option>
                 <option style={center}>4</option>
                 <option style={center}>5</option>
@@ -201,8 +211,8 @@ class ProductListSearch_bar extends React.Component {
                 </option>
                 <option style={center}>1000</option>
                 <option style={center}>1000～2000</option>
-                <option style={center}>2000</option>
-                <option style={center}>5</option>
+                <option style={center}>2000～3000</option>
+                <option style={center}>3000以上</option>
               </select>
             </div>
             <div style={selectSize} className="sel sel--black-panther">

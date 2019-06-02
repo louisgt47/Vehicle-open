@@ -1,0 +1,130 @@
+.Edituserpage
+{
+    background-image: url(./images/bg-01.jpg) ;
+    background-repeat: no-repeat;
+    width: 100%;
+    
+    padding: 80px;
+}
+.EdituserpageTitle{
+    font-family: "微軟正黑體";
+    font-size: 28pt;
+    font-weight: 700;
+    text-align: left;
+    width: 100%;
+    height: 200px;
+
+}
+.EdituserpageTop{
+    display: flex;
+    width: 100%;
+    justify-content:space-evenly;
+}
+.EdituserpageImgBox{
+    width: 285px;
+    height: 350px;
+    box-shadow: #aaa 3px 3px 3px ;
+    background-color: #eee;
+    align-self:center;
+    display:flex;
+    overflow:hidden;
+}
+.EdituserpageInput
+{
+    border: none;
+    border-bottom:#6EB7B0 2px solid; 
+    width: 300px;
+    height: 40px;
+    font-size: 12pt;
+    color: #2d2d2d;
+    margin-top: 5px;
+    transition: .3s;
+    font-family: "微軟正黑體";
+    transition: .8s;
+    background-color: transparent;
+    margin-right: 20px;
+    
+}
+.EdituserpageInputText
+{
+    font-size: 20pt;
+    font-family: "微軟正黑體";
+    font-weight: 700;
+    color: #2d2d2d;
+    width: 140px;
+    text-align: left;
+    line-height: 27px;
+    padding-left:10px ;
+
+}
+.EdituserpageInputBox{
+    margin: 0 auto;
+    width: 350px;
+}
+.EdituserpageInput:focus{
+    text-indent: 12px;
+    font-size: 16pt;
+    box-shadow: inset 0 -5px 45px rgba(100,100,100,0.3), 0 1px 1px rgba(255,255,255,0.2);
+}
+.EdituserpageInputLine{
+    border-left: #6EB7B0 2px solid;
+    height: 25px;
+        
+    float: left;
+}
+.EdituserpageMiddleTop{
+    width: 1200px;
+    display: flex;
+    margin: 0 auto;
+    margin-bottom: 20px;
+    margin-top: 60px;
+    
+}
+.EdituserpageInputButton{
+    width: 300px;
+    height: 60px;
+    border-radius: 10px;
+    background-color: #2d2d2d;
+    font-family: "微軟正黑體";
+    color: #fff;
+    font-size: 16pt;
+    text-align: center;
+    cursor: pointer;
+    font-weight: 600;
+    transition: .5s
+
+}
+.EdituserpageInputButtonNo{
+    width: 300px;
+    height: 60px;
+    border-radius: 10px;
+    background-color: rgb(204, 112, 112);
+    font-family: "微軟正黑體";
+    color: #fff;
+    font-size: 16pt;
+    text-align: center;
+    cursor: pointer;
+    font-weight: 600;
+    transition: .5s;
+}
+.EdituserpageInputButton:hover{
+    display: inline;
+    background-color: #2d2d2d;    border: 1px solid rgb(0, 0, 0);
+    box-shadow: inset 0 0 4px rgba(63, 55, 55, 0.75);
+    font-size: 18pt;
+    
+}
+.EdituserpageInputButtonNo:hover{
+    display: inline;
+    background-color: rgb(138, 69, 69);
+    border: 1px solid rgb(252, 101, 101);
+    box-shadow: inset 0 0 4px rgba(63, 55, 55, 0.75);
+    font-size: 18pt;
+}
+.EdituserpageMiddleBottom{
+    width: 800px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-around;
+    margin-top:200px; 
+}

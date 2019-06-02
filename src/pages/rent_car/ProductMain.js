@@ -6,6 +6,9 @@ import './css/shopList.css'
 import './css/basic.css'
 import $ from 'jquery'
 
+import NavMember from '../basic/NavMember'
+import Footer from '../basic/Footer'
+
 class ProductMain extends React.Component {
   constructor(props) {
     super(props)
@@ -131,15 +134,18 @@ class ProductMain extends React.Component {
     for (let i = 0; i < collects.length; i++) {
       collects[i] = Number(collects[i])
     }
+    const topMargin = {
+      marginTop: '106px',
+    }
     return (
       <>
         {/* {productMain.map(this.renderProduct)}
         {productMain.map(this.renderLinkOder)} */}
-
+        <NavMember />
         {productMain.map(item => (
-          <div className="productList-wrap">
+          <div className="productList-wrap" style={topMargin}>
             {/* nav */}
-            <div className="productList-nav" />
+
             {/* main */}
             <div className="main d-flex">
               <div className="mainImg position_r col-10" style={padding0}>
@@ -256,6 +262,7 @@ class ProductMain extends React.Component {
                               key={item.pNo}
                               to={'/productMain/' + item.pNo}
                               product={this.props.product}
+                              href=""
                             >
                               詳細
                             </Link>
@@ -309,6 +316,7 @@ class ProductMain extends React.Component {
             <div className="productList-footer" />
           </div>
         ))}
+        <Footer />
       </>
     )
   }

@@ -1,0 +1,94 @@
+.LoginBox
+{
+    position: absolute;
+    height: 100%;width: 100%;
+    background-color: rgba(0,0,0,.6);
+    z-index: 1;
+    opacity: 1;
+    transition: .5s;
+}
+.loginpage
+{
+    height: 600px;
+    width: 700px;
+    background: #fff;
+    border-radius: 10%;
+    position: absolute;
+    left: calc(50% - 400px);
+    top: calc(50% - 350px);
+    padding: 60px;
+    z-index: 99;
+    line-height: 50px;
+}
+.logintopc
+{
+    font-size: 48pt;
+    font-family: "微軟正黑體";
+    margin-bottom: 5px;
+    margin-top: 30px;
+}
+.logintope
+{
+    font-size: 24pt;
+    font-family:Arial, Helvetica, sans-serif;
+    margin-bottom: 10px;
+}
+.loginbottom
+{
+
+    height: 200px;
+    background-color: #6EB7B0;
+    margin: 0 auto;
+    margin-top: 90px; 
+    border-radius: 20px;  
+
+    
+}
+.loginbottomtext{
+    font-size: 24pt;
+    font-family: "微軟正黑體";
+    text-align: center;
+    margin: 10px;
+    padding-top: 10px;
+    font-weight: 700;
+    color: #fff;
+}
+.loginbottombutton
+{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+.loginbottomDriver
+{
+    
+    text-align: center;
+    border-radius: 20px;
+    cursor: pointer;
+}
+.loginbottomuser{
+    
+    text-align: center;
+    border-radius: 20px;
+    cursor: pointer;
+}
+.loginbottomstore
+{
+    
+    text-align: center;
+    border-radius: 20px;
+    cursor: pointer;
+}
+.loginbottomtexticon
+{
+    font-size: 18pt;
+    font-family: "微軟正黑體";
+    text-align: center;
+    font-weight: 700;
+    color: #fff;
+}
+.LoginLightBox{
+
+transition: .5s
+
+}

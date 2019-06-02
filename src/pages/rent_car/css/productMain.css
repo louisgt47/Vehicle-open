@@ -6,12 +6,18 @@ body {
 .mainImg {
   width: 1535px;
   height: 870px;
+  overflow: hidden;
 }
 .importantImg {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  -webkit-filter: brightness(0.5);
+  filter: brightness(0.5);
+  transition: 0.5s;
+}
+.mainImg:hover .importantImg {
+  filter: brightness(1);
+  transform: scale(1.1);
 }
 .mainContent {
   width: 385px;

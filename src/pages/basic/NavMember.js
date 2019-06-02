@@ -28,7 +28,7 @@ class NavMember extends Component {
     return (
       <div className="navSize">
         <nav
-          className="navbar navbar-expand-lg navbar-light bg-light"
+          className="navbar navbar-expand-lg navbar-light bg-light "
           style={navFix}
         >
           <div className="container_nav row">
@@ -51,7 +51,7 @@ class NavMember extends Component {
               <span className="navbar-toggler-icon" />
             </button>
             <div
-              className="collapse navbar-collapse row"
+              className="collapse navbar-collapse row ml-3"
               id="navbarNavAltMarkup"
             >
               <div className="navbar-nav">

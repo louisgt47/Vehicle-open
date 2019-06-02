@@ -34,6 +34,7 @@ class ProductList extends React.Component {
       product: [],
       sProduct: [],
       bProduct: [],
+      mProduct: [],
       thisPage: '',
       searchState: 0,
       hotProduct: [],
@@ -137,6 +138,7 @@ class ProductList extends React.Component {
     $('#buttonAll').toggleClass('active')
     $('#buttonS').removeClass('active')
     $('#buttonB').removeClass('active')
+    $('#buttonM').removeClass('active')
 
     this.setState({ searchState: 0 })
   }
@@ -144,6 +146,8 @@ class ProductList extends React.Component {
     $('#buttonAll').removeClass('active')
     $('#buttonS').addClass('active')
     $('#buttonB').removeClass('active')
+    $('#buttonM').removeClass('active')
+
     let data = this.state.product.filter(item => item.pType.includes(key))
     this.setState({ sProduct: data, searchState: 1 })
   }
@@ -151,8 +155,19 @@ class ProductList extends React.Component {
     $('#buttonAll').removeClass('active')
     $('#buttonS').removeClass('active')
     $('#buttonB').addClass('active')
+    $('#buttonM').removeClass('active')
+
     let data = this.state.product.filter(item => item.pType.includes(key))
     this.setState({ bProduct: data, searchState: 2 })
+  }
+  mSearch = key => {
+    $('#buttonAll').removeClass('active')
+    $('#buttonS').removeClass('active')
+    $('#buttonB').removeClass('active')
+    $('#buttonM').addClass('active')
+
+    let data = this.state.product.filter(item => item.pType.includes(key))
+    this.setState({ mProduct: data, searchState: 3 })
   }
 
   //跳頁函式
@@ -222,6 +237,9 @@ class ProductList extends React.Component {
         break
       case 2:
         totalProducts = this.state.bProduct.length
+        break
+      case 3:
+        totalProducts = this.state.mProduct.length
         break
     }
     console.log('totalProducts: ' + totalProducts)
@@ -640,7 +658,13 @@ class ProductList extends React.Component {
                     >
                       休旅車
                     </button>
-                    {/* <button data-filter=".cat4">Industrial</button> */}
+                    <button
+                      data-filter=".cat3"
+                      onClick={() => this.mSearch('貨車')}
+                      id="buttonM"
+                    >
+                      貨車
+                    </button>
                   </div>
                 </div>
               </div>

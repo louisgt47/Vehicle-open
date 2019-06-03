@@ -69,12 +69,16 @@ readURLIMG=(e)=>{
         console.log('Error: ', error);
       }
     }
+    CheckFormNo=()=>{
+        window.history.go(-1);
+    }
 SetState=(e)=>{
   const name =e.target.name
   this.setState({[name]:e.target.value})
 }
 CheckFormUser=()=>{
-    
+  
+        if(this.state.Pwd===this.state.CheckPwd){
               var formData = new FormData();
 
               formData.append('No', this.state.No);
@@ -103,20 +107,27 @@ CheckFormUser=()=>{
             })
               .then(res=>res.json())
               .then(obj => {
-                  console.log(obj)
+                  console.log(obj.success)
+                  
                     if(obj.success)
                     {
                       alert(obj.data.message)
-                      window.history.go(-2); 
+                      window.history.go(-1); 
                     }
                     else{
-                      window.history.go(-3);
+                      window.history.go(-1);
                       alert(obj.data.message);
                        
                     }
               })
-}
-CheckFormUser=()=>{
+} else{
+    alert('密碼有誤!!!');
+    this.setState({Pwd:''});
+    this.setState({CheckPwd:''});
+} }
+checkFormDriver=()=>{
+    
+    if(this.state.Pwd===this.state.CheckPwd){
                   var formData = new FormData();
 
               formData.append('No', this.state.No);
@@ -149,17 +160,22 @@ CheckFormUser=()=>{
                     if(obj.success)
                     {
                       alert(obj.data.message)
-                      window.history.go(-2); 
+                      window.history.go(-1); 
                     }
                     else{
-                      window.history.go(-3);
+                      window.history.go(-1);
                       alert(obj.data.message);
                        
                     }
               })
               
-}
+}else{
+    alert('密碼有誤!!!');
+    this.setState({Pwd:''});
+    this.setState({CheckPwd:''});
+}}
 CheckFormStore=()=>{
+    if(this.state.Pwd===this.state.CheckPwd){
                   var formData = new FormData();
 
               formData.append('No', this.state.No);
@@ -192,7 +208,7 @@ CheckFormStore=()=>{
                     if(obj.success)
                     {
                       alert(obj.data.message)
-                      window.history.go(-2); 
+                      window.history.go(-1); 
                     }
                     else{
                       window.history.go(-1);
@@ -202,7 +218,11 @@ CheckFormStore=()=>{
                     }
               })
               
-}
+}else{
+    alert('密碼有誤!!!');
+    this.setState({Pwd:''});
+    this.setState({CheckPwd:''});
+}}
   render() {
 
          if(this.state.Loginman=='driver'){
@@ -225,13 +245,13 @@ CheckFormStore=()=>{
                                 <div class="EdituserpageInputLine"></div>
                                 <div class="EdituserpageInputText">密碼:</div>
                             </div>
-                        <input class="EdituserpageInput" id="EdituserpageInputName" name="Pwd" placeholder="請輸入姓名"  onChange={this.SetState} value={this.state.Pwd} />
+                        <input class="EdituserpageInput" id="EdituserpageInputName" name="Pwd" placeholder="請輸入密碼"  onChange={this.SetState} value={this.state.Pwd} />
                         <small id="EdituserpageInputPwdHelp" class="form-text  "></small>
                             <div class="EdituserpageInputTextbox">
                                 <div class="EdituserpageInputLine"></div>
                                 <div class="EdituserpageInputText">確認密碼:</div>
                             </div>
-                        <input class="EdituserpageInput" id="EdituserpageInputName" name="CheckPwd" placeholder="請輸入姓名"  onChange={this.SetState}  value={this.state.CheckPwd}/>
+                        <input class="EdituserpageInput" id="EdituserpageInputName" name="CheckPwd" placeholder="請再次輸入密碼"  onChange={this.SetState}  value={this.state.CheckPwd}/>
                         <small id="EdituserpageInputNameHelp" class="form-text  "></small>
                 </div>
                 <div class="EdituserpageMiddleTop">
@@ -258,8 +278,7 @@ CheckFormStore=()=>{
                     <div class="EdituserpageMiddleBottom">
                 <button class="EdituserpageInputButton" id="EdituserpageInputButton" onClick={this.checkFormDriver}>修{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}改</button>  
 
-                <button class="EdituserpageInputButtonNo">取&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;消</button>
-
+                <button class="EdituserpageInputButtonNo" onClick={this.CheckFormNo}>取&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;消</button>
 
                 </div>
                 </div>
@@ -290,13 +309,13 @@ CheckFormStore=()=>{
                                 <div class="EdituserpageInputLine"></div>
                                 <div class="EdituserpageInputText">密碼:</div>
                             </div>
-                        <input class="EdituserpageInput" id="EdituserpageInputName" name="Pwd" placeholder="請輸入姓名"  onChange={this.SetState} value={this.state.Pwd} />
+                        <input class="EdituserpageInput" id="EdituserpageInputName" name="Pwd"type="password" placeholder="請輸入密碼"  onChange={this.SetState} value={this.state.Pwd} />
                         <small id="EdituserpageInputNameHelp" class="form-text  "></small>
                             <div class="EdituserpageInputTextbox">
                                 <div class="EdituserpageInputLine"></div>
                                 <div class="EdituserpageInputText">確認密碼:</div>
                             </div>
-                        <input class="EdituserpageInput" id="EdituserpageInputName" name="CheckPwd" placeholder="請輸入姓名"  onChange={this.SetState}  value={this.state.CheckPwd}/>
+                        <input class="EdituserpageInput" id="EdituserpageInputName" name="CheckPwd" type="password" placeholder="請再次輸入密碼"  onChange={this.SetState}  value={this.state.CheckPwd}/>
                         <small id="EdituserpageInputNameHelp" class="form-text  "></small>
                 </div>
                 <div class="EdituserpageMiddleTop">
@@ -323,8 +342,7 @@ CheckFormStore=()=>{
                     <div class="EdituserpageMiddleBottom">
                 <button class="EdituserpageInputButton" id="EdituserpageInputButton" onClick={this.CheckFormUser}>修{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}改</button>  
 
-                <button class="EdituserpageInputButtonNo">取&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;消</button>
-
+                <button class="EdituserpageInputButtonNo" onClick={this.CheckFormNo}>取&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;消</button>
 
                 </div>
                 </div>
@@ -349,17 +367,17 @@ CheckFormStore=()=>{
                             </div>
                         <input class="EdituserpageInput" id="EdituserpageInputName" name="Name" placeholder="請輸入姓名"  onChange={this.SetState} value={this.state.Name}/>
                         <small id="EdituserpageInputNameHelp" class="form-text  "></small>
-                            <div class="EdituserpageInputTextbox">
+                            <div class="EdituserpageInput`Textbox">
                                 <div class="EdituserpageInputLine"></div>
                                 <div class="EdituserpageInputText">密碼:</div>
                             </div>
-                        <input class="EdituserpageInput" id="EdituserpageInputName" name="Pwd" placeholder="請輸入姓名"  onChange={this.SetState} value={this.state.Pwd} />
+                        <input class="EdituserpageInput" id="EdituserpageInputName" name="Pwd" placeholder="請輸入密碼"  onChange={this.SetState} value={this.state.Pwd} />
                         <small id="EdituserpageInputNameHelp" class="form-text  "></small>
                             <div class="EdituserpageInputTextbox">
                                 <div class="EdituserpageInputLine"></div>
                                 <div class="EdituserpageInputText">確認密碼:</div>
                             </div>
-                        <input class="EdituserpageInput" id="EdituserpageInputName" name="CheckPwd" placeholder="請輸入姓名"  onChange={this.SetState}  value={this.state.CheckPwd}/>
+                        <input class="EdituserpageInput" id="EdituserpageInputName" name="CheckPwd" placeholder="請再次輸入密碼"  onChange={this.SetState}  value={this.state.CheckPwd}/>
                         <small id="EdituserpageInputNameHelp" class="form-text  "></small>
                 </div>
                 <div class="EdituserpageMiddleTop">
@@ -386,7 +404,7 @@ CheckFormStore=()=>{
                     <div class="EdituserpageMiddleBottom">
                 <button class="EdituserpageInputButton" id="EdituserpageInputButton" onClick={this.CheckFormStore}>修{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}改</button>  
 
-                <button class="EdituserpageInputButtonNo">取&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;消</button>
+                <button class="EdituserpageInputButtonNo" onClick={this.CheckFormNo}>取&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;消</button>
 
 
                 </div>

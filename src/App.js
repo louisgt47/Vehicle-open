@@ -18,6 +18,7 @@ import OrderList from './pages/member/OrderList'
 import searchbox from './component/searchbox/searchbox.js'
 import uploads from './component/uploads/uploads'
 import Edituser from './component/uploads/Edituser/Edituser'
+import StoreOrderList from './component/StoreOrderList.js'
 //login
 import loginBox from './component/Login/LoginBox/LoginBox.js'
 import loginDriver from './component/Login/LoginBox/LoginDriver.js'
@@ -47,8 +48,9 @@ class App extends React.Component {
             //member
             <Route path="/memberList" component={MemberList} />
             <Route path="/orderList" component={OrderList} />
-            <Route path="/uploads" component={uploads} />
+            <Route path="/uploadss" component={uploads} />
             <Route path="/Edituser" component={Edituser} />
+            <Route path="/StoreOrderList" component={StoreOrderList} />
 
             //rentCar
             <Route path="/productList" component={ProductList} />

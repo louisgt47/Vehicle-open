@@ -218,3 +218,6 @@
 .RegisteredPageLeftMyImgBoximg{
     object-fit: cover;
 }
+.RegisteredPageInputTextbox{
+    margin-top: 10px;
+}

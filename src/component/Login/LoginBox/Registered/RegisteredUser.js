@@ -367,13 +367,13 @@ checkForm=()=>{
                     if(obj.data.success)
                     {
                       alert(obj.data.message)
-                      window.history.go(-2); 
+                      window.location = 'http://localhost:3000/IndexPage';
                     }
                     else{
                       window.history.go(-3);
-                      alert(obj.data.message);
+                      window.location = 'http://localhost:3000/IndexPage';
                        
-                      document.querySelector('.LoginLightBox').style.display="none";
+          
                     }
               })
 

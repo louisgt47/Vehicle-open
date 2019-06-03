@@ -116,10 +116,10 @@ fetch("http://localhost:4000/islogin",{
               id="navbarNavAltMarkup"
             >
               <div className="navbar-nav">
-                <Link className="nav-item nav-link " href="#">
+              <Link className="nav-item nav-link " to="Indexpage">
                   首頁 <span className="sr-only">(current)</span>
                 </Link>
-                <Link className="nav-item nav-link" href="#">
+                <Link className="nav-item nav-link" to ="uploadss">
                   會員專區
                 </Link>
                 <Link className="nav-item nav-link" to={'/productList'}>
@@ -131,7 +131,7 @@ fetch("http://localhost:4000/islogin",{
                 <Link className="nav-item nav-link" href="#">
                   關於我們
                 </Link>
-                <Link className="nav-item nav-link" href="#">
+                <Link className="nav-item nav-link" href="Login">
                   註冊/登入
                 </Link>
               </div>
@@ -175,7 +175,7 @@ fetch("http://localhost:4000/islogin",{
                   <Link className="nav-item nav-link " to="Indexpage">
                     首頁 <span className="sr-only">(current)</span>
                   </Link>
-                  <Link className="nav-item nav-link" to ="uploads">
+                  <Link className="nav-item nav-link" to ="uploadss">
                     會員專區
                   </Link>
                   <Link className="nav-item nav-link" to={'/productList'}>

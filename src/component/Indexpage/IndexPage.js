@@ -186,7 +186,7 @@ class App extends React.Component {
         </div>
         
 
-        <Link to="uploads">
+        <Link to="uploadss">
         <div class="title1">
             <div class="titletop">
                 <div class="titletopleftbox">

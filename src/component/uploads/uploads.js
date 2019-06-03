@@ -1,6 +1,10 @@
 import React from 'react'
 import "./uploadsheader.css"
 
+import '../Login/LoginBox/LoginBox.css'
+import login1 from '../Login/LoginBox/Loginicon/Login1.gif'
+import login2 from '../Login/LoginBox/Loginicon/Login2.gif'
+import login3 from '../Login/LoginBox/Loginicon/Login3.gif'
 import NavMember from '../../pages/basic/NavMember'
 import Footer from '../../pages/basic/Footer'
 
@@ -19,6 +23,8 @@ class App extends React.Component {
         userNo:'',
         Loginman: '',
         IsLogined:'',
+        Img:'',
+        Name:'',
     }
    
   }
@@ -33,7 +39,8 @@ componentDidMount=()=>{
          this.setState({No:obj.No})
          this.setState({Loginman:obj.Loginman})
          this.setState({IsLogined:obj.IsLogined})
-            
+         this.setState({Img:obj.Img})
+         this.setState({Name:obj.Name})
      }
      )
 }
@@ -46,7 +53,14 @@ componentDidMount=()=>{
     <>
         <NavMember/>
     <div>
-        <div class="uploadsheader">
+    <div class="uploadsheader">
+          <div class="uploadsheaderimghome">
+            <div class="uploadsheaderimgbox">
+          <img src={this.state.Img} width="100%" class="uploadsheaderimg"/>
+          </div>
+        
+            <div class="uploadsheadertext">{this.state.Name}</div>
+          </div>
         </div>
         <div>
           <div class="uploadsheaderpage">
@@ -97,6 +111,13 @@ componentDidMount=()=>{
     <> <NavMember/>
     <div>
         <div class="uploadsheader">
+          <div class="uploadsheaderimghome">
+            <div class="uploadsheaderimgbox">
+          <img src={this.state.Img} width="100%" class="uploadsheaderimg"/>
+          </div>
+        
+            <div class="uploadsheadertext">{this.state.Name}</div>
+          </div>
         </div>
         <div>
           <div class="uploadsheaderpage">
@@ -146,7 +167,14 @@ componentDidMount=()=>{
  
     <> <NavMember/>
     <div>
-        <div class="uploadsheader">
+    <div class="uploadsheader">
+          <div class="uploadsheaderimghome">
+            <div class="uploadsheaderimgbox">
+          <img src={this.state.Img} width="100%" class="uploadsheaderimg"/>
+          </div>
+        
+            <div class="uploadsheadertext">{this.state.Name}</div>
+          </div>
         </div>
         <div>
           <div class="uploadsheaderpage">
@@ -157,10 +185,10 @@ componentDidMount=()=>{
                 <div class="uploadsheaderpagetext">車商資料編輯</div>
               </div>
               </Link>
-              <Link to="orderList">
+              <Link to="StoreOrderList">
               <div class="uploadsheaderpageicon">
                 <img src={Icon2}/>
-                 <div class="uploadsheaderpagetext">租車訂單查詢</div>
+                 <div class="uploadsheaderpagetext">訂單查詢</div>
               </div>
               </Link>
               <div class="uploadsheaderpageiconnone">
@@ -192,7 +220,39 @@ componentDidMount=()=>{
 
     }
     else{
-      return(<></>)
+      return(<>
+      <div class="LoginDriverPageback">
+
+      <div class="loginpage">
+          <div class="logintop">
+              <div class="logintopc">登入</div>
+              <div class="logintope">Welcome to Vehicle</div>
+          </div>
+          <div class="loginbottom">
+          <div class="loginbottomtext">請選擇登入身分</div>
+          <div class="loginbottombutton">
+            <Link to="loginDriver">
+            <div class="loginbottomDriver">
+              <div><img src={login1} width="70px" alt=""/></div>
+              <div class="loginbottomtexticon">代理駕駛</div>
+            </div>
+            </Link>
+            <Link to="loginUser">
+            <div class="loginbottomuser">
+              <div><img src={login2} width="70px"alt=""/></div>
+              <div  class="loginbottomtexticon">一般會員</div>
+            </div>
+            </Link>
+            <Link to="loginStore">
+            <div class="loginbottomstore">
+              <div><img src={login3} width="70px"alt=""/></div>
+              <div  class="loginbottomtexticon">車商</div>
+            </div>
+            </Link>
+          </div>
+          </div>
+      </div>
+      </div></>)
     }
   }
 }

@@ -1,0 +1,63 @@
+body {
+  font-family: '微軟正黑體';
+}
+
+.orc2-set1 {
+  background-image: url(./images/bg-01.jpg);
+  padding-top: 130px;
+  height: 1200px;
+  width: auto;
+}
+.orcon2-img {
+  width: 110%;
+  height: 110%;
+}
+.orcon2-set1 {
+  display: flex;
+  justify-content: space-around;
+}
+.orcon2-text1-1 {
+  font-size: 60px;
+}
+.orinput1 {
+  position: absolute;
+  z-index: 3;
+  left: calc(50% - 108px);
+  top: calc(50% - 13px);
+  border-width: 0;
+  background-color: transparent;
+  outline: none;
+  text-align: center;
+}
+.orcon2-set1-2 {
+  margin-left: 36.5vh;
+}
+.ortab1-1 {
+  padding-left: 20vh;
+}
+
+.orlitext1-2 {
+  font-size: 20px;
+}
+.orlitext1-1 {
+  font-size: 30px;
+}
+
+.bbb {
+  padding-left: 35vh;
+  padding-right: 30vh;
+}
+.aaa {
+  padding-left: 35vh;
+  padding-right: 30vh;
+}
+.orbor1-1 {
+  width: 105vh;
+  height: 1px;
+  background: rgb(71, 216, 144);
+  margin-left: 20vh;
+}
+.orcon-input{
+  position: relative;
+  
+}

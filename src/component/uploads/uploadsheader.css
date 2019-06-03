@@ -1,10 +1,11 @@
 .uploadsheader{
-    background-image: url(./images/uploadbackgrand.gif) ;
+    background-image:linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),url(./images/uploadbackgrand.gif);
     width: 100%;height: 300px;
-    background-position: 0px -350px;
+    background-position: 0px -380px;
     background-repeat: no-repeat;
     background-size: cover;
-    margin-top: 90px;
+    margin-top: 100px;
+    position: relative;
 }
 .uploadsheaderpage{
     background: #ffffff;
@@ -49,4 +50,21 @@
     margin: 20px;
     text-align: center;
     
+}
+.uploadsheaderimghome{
+    position: absolute;top:calc(50% - 70px);margin-left: 150px;padding: 10px 30px;border-radius: 10px;
+    display: flex;justify-content: space-evenly;align-items: center;background-color: rgba(0, 0, 0, 0.3)
+}
+.uploadsheaderimgbox
+{
+    width: 120px;height: 120px;border-radius: 50%;overflow: hidden;
+}
+.uploadsheaderimg{
+    object-fit: cover;
+    height: 100%;
+}
+.uploadsheadertext{
+    font-size:36px;
+    color: #ffffff;
+    margin-left: 30px;
 }

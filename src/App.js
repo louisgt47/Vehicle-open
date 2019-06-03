@@ -12,6 +12,11 @@ import Shop from './pages/shop/Shop'
 import ProductList from './pages/rent_car/productList/archirio/ProductList'
 import ProductMain from './pages/rent_car/ProductMain'
 import productSearchList from './pages/rent_car/productSearchList'
+import Order from './pages/rent_car/order/Order'
+import OAuthorizationrder from './pages/rent_car/order/Authorization'
+import Pay from './pages/rent_car/order/Pay'
+import Order_Finish from './pages/rent_car/order/Order_Finish'
+
 //member
 import MemberList from './pages/member/MemberList'
 import OrderList from './pages/member/OrderList'
@@ -51,7 +56,6 @@ class App extends React.Component {
             <Route path="/uploadss" component={uploads} />
             <Route path="/Edituser" component={Edituser} />
             <Route path="/StoreOrderList" component={StoreOrderList} />
-
             //rentCar
             <Route path="/productList" component={ProductList} />
             <Route path="/productList/:page" component={ProductList} />
@@ -60,7 +64,11 @@ class App extends React.Component {
             <Route path="/agent" component={Agent} />
             <Route path="/qa" component={QA} />
             <Route path="/about_me" component={AboutMe} />
+            <Route path="/Order/:pNo" component={Order} />
             <Route path="/shop" component={Shop} />
+            <Route path="/OAuthorizationrder" component={OAuthorizationrder} />
+            <Route path="/Pay" component={Pay} />
+            <Route path="/Order_Finish" component={Order_Finish} />
           </Switch>
         </>
       </Router>

@@ -11,6 +11,7 @@ import $ from 'jquery'
 import NavMember from '../basic/NavMember'
 import NavShop from '../basic/NavShop'
 import Footer from '../basic/Footer'
+import ProductListSearch_bar from './component-list/ProductListSearch_bar'
 
 class productSearchList extends React.Component {
   constructor() {
@@ -19,19 +20,19 @@ class productSearchList extends React.Component {
       searchList: [],
       collection: [],
       thisPage: '',
-      mNo:"",
+      mNo: '',
     }
   }
   componentDidMount() {
-    fetch("http://localhost:4000/islogin",{
-        credentials: 'include',
-      method: 'GET'})
-     .then(res=>res.json())
-     .then(obj=>{
+    fetch('http://localhost:4000/islogin', {
+      credentials: 'include',
+      method: 'GET',
+    })
+      .then(res => res.json())
+      .then(obj => {
         console.log(obj)
-         this.setState({mNo:obj.No})       
-     }
-     )
+        this.setState({ mNo: obj.No })
+      })
     // let key1 = !(searchkey1 = 0) ? searchkey1 : ''
     // let key2 = !(searchkey2 = 0) ? searchkey2 : ''
     // let key3 = !(searchkey3 = 0) ? searchkey3 : ''
@@ -43,9 +44,7 @@ class productSearchList extends React.Component {
     setTimeout(() => {
       this.searchList()
       this.mCollect()
-    }, 200);
-
-
+    }, 200)
   }
   searchList = _ => {
     var searchData = this.props.location.state
@@ -74,9 +73,9 @@ class productSearchList extends React.Component {
   // mAccount = _ =>{
 
   // }
-  //會員收藏判定mCollectPNo
+  //會員收藏判定mCollectPNo  ${this.state.mNo}
   mCollect = _ => {
-    fetch(`http://localhost:4000/mCollectPNo?mNo=${this.state.mNo}`)
+    fetch(`http://localhost:4000/mCollectPNo?mNo=1`)
       .then(response => response.json())
       // .then(response => console.log(response.data))
 
@@ -212,73 +211,145 @@ class productSearchList extends React.Component {
       fontSize: '24px',
     }
     const padding0 = { padding: '0' }
+    const font16 = { fontSize: '16px', color: '#aaa' }
     return (
       <>
-        <div className="row grid">
-          {perPageRender.map(item =>
-            collects.includes(item.pNo) ? (
-              <div className="col-lg-3 col-sm-6 col-12 project cat2 cat3 position_r">
-                <Link
-                  key={item.pNo}
-                  to={'/productMain/' + item.pNo}
-                  // product={this.props.product}
-                >
-                  <div className="project-wrap">
-                    <img
-                      src="http://localhost:3000/images/car-1376190.jpg"
-                      alt=""
-                    />
-                    <div className="project-content">
-                      <a
-                        href="assets/images/project/project2/1.jpg"
-                        className="popup"
-                      >
-                        <i className="fa fa-search" />
-                      </a>
-                      <h3 style={fWhite}>{item.pBrand}</h3>
-                    </div>
-                  </div>
-                </Link>
-                <i
-                  className="fas fa-bookmark position_a"
-                  id="discollect"
-                  style={collection2}
-                  onClick={() => this.memberItem(item.pNo, collects)}
-                />
+        <NavMember />
+        <div className="project-area">
+          <div className="container">
+            <div className="row">
+              <ProductListSearch_bar product={this.state.product} />
+              <div className="col-lg-4 col-12">
+                <div className="section-title mt-5">
+                  <h2>搜尋結果</h2>
+                  <h3>
+                    The list of all models
+                    <span style={font16} className="ml-3">
+                      共{totalProducts}筆資料
+                    </span>
+                  </h3>
+                </div>
               </div>
-            ) : (
-              <div className="col-lg-3 col-sm-6 col-12 project cat2 cat3 position_r">
-                <Link
-                  key={item.pNo}
-                  to={'/productMain/' + item.pNo}
-                  product={this.props.product}
-                >
-                  <div className="project-wrap">
-                    <img
-                      src="http://localhost:3000/images/car-1376190.jpg"
-                      alt=""
+            </div>
+            <div className="row grid">
+              {perPageRender.map(item =>
+                collects.includes(item.pNo) ? (
+                  <div className="col-lg-3 col-sm-6 col-12 project cat2 cat3 position_r">
+                    <Link
+                      key={item.pNo}
+                      to={'/productMain/' + item.pNo}
+                      // product={this.props.product}
+                    >
+                      <div className="project-wrap">
+                        <img
+                          src="http://localhost:3000/images/car-1376190.jpg"
+                          alt=""
+                        />
+                        <div className="project-content">
+                          <a
+                            href="assets/images/project/project2/1.jpg"
+                            className="popup"
+                          >
+                            <i className="fa fa-search" />
+                          </a>
+                          <h3 style={fWhite}>{item.pBrand}</h3>
+                        </div>
+                      </div>
+                    </Link>
+                    <i
+                      className="fas fa-bookmark position_a"
+                      id="discollect"
+                      style={collection2}
+                      onClick={() => this.memberItem(item.pNo, collects)}
                     />
-                    <div className="project-content">
-                      <a
-                        href="assets/images/project/project2/1.jpg"
-                        className="popup"
-                      >
-                        <i className="fa fa-search" />
-                      </a>
-                      <h3 style={fWhite}>{item.pBrand}</h3>
-                    </div>
                   </div>
+                ) : (
+                  <div className="col-lg-3 col-sm-6 col-12 project cat2 cat3 position_r">
+                    <Link
+                      key={item.pNo}
+                      to={'/productMain/' + item.pNo}
+                      product={this.props.product}
+                    >
+                      <div className="project-wrap">
+                        <img
+                          src="http://localhost:3000/images/car-1376190.jpg"
+                          alt=""
+                        />
+                        <div className="project-content">
+                          <a
+                            href="assets/images/project/project2/1.jpg"
+                            className="popup"
+                          >
+                            <i className="fa fa-search" />
+                          </a>
+                          <h3 style={fWhite}>{item.pBrand}</h3>
+                        </div>
+                      </div>
+                    </Link>
+                    <i
+                      className="far fa-bookmark position_a"
+                      id="collect"
+                      style={collection2}
+                      onClick={() => this.memberItem(item.pNo, collects)}
+                    />
+                  </div>
+                )
+              )}
+            </div>
+            <ul class="pagination pagination-sm justify-content-center">
+              {/* 上一頁 */}
+              <li className="page-item">
+                <Link
+                  to={'/productList/' + (page - 1)}
+                  onClick={page <= 1 ? '' : () => this.myFunctionB(page)}
+                >
+                  <a className="page-link" id="p2">
+                    &lt;
+                  </a>
                 </Link>
-                <i
-                  className="far fa-bookmark position_a"
-                  id="collect"
-                  style={collection2}
-                  onClick={() => this.memberItem(item.pNo, collects)}
-                />
-              </div>
-            )
-          )}
+              </li>
+              {/* 中間單頁 */}
+              {PageArray.map(item =>
+                item === page ? (
+                  <li
+                    className="page-item active pageActive"
+                    onClick={() => this.myFunction(item)}
+                  >
+                    <Link
+                      to={'/productList/' + item}
+                      onClick={() => this.myFunction(item)}
+                    >
+                      <a className="page-link">{item}</a>
+                    </Link>
+                  </li>
+                ) : (
+                  <li className="page-item ">
+                    <Link
+                      to={'/productList/' + item}
+                      onClick={() => this.myFunction(item)}
+                    >
+                      <a className="page-link">{item}</a>
+                    </Link>
+                  </li>
+                )
+              )}
+              {/* 下一頁 */}
+              <li className="page-item">
+                <Link
+                  to={'/productList/' + (page + 1)}
+                  onClick={
+                    page >= totalPage ? '' : () => this.myFunctionC(page)
+                  }
+                >
+                  <a className="page-link" id="p2">
+                    &gt;
+                  </a>
+                </Link>
+              </li>
+            </ul>
+          </div>
         </div>
+        <Footer />
       </>
     )
   }

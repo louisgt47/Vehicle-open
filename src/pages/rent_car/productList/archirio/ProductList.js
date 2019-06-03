@@ -39,30 +39,26 @@ class ProductList extends React.Component {
       searchState: 0,
       hotProduct: [],
       collection: [],
-      mNo:'',
+      mNo: '',
     }
   }
   componentDidMount = () => {
-    fetch("http://localhost:4000/islogin",{
+    fetch('http://localhost:4000/islogin', {
       credentials: 'include',
-    method: 'GET'})
-   .then(res=>res.json())
-   .then(obj=>{
-      console.log(obj)
+      method: 'GET',
+    })
+      .then(res => res.json())
+      .then(obj => {
+        console.log(obj)
 
-       this.setState({mNo:obj.No})
-       
-          
-   }
-   
-   )
-   setTimeout(() => {
-    this.product()
-    this.hotProduct()
-    // this.mAccount()
-    this.mCollect()
-   }, 200);
-
+        this.setState({ mNo: obj.No })
+      })
+    setTimeout(() => {
+      this.product()
+      this.hotProduct()
+      // this.mAccount()
+      this.mCollect()
+    }, 200)
 
     // $('#collect').click(function() {
     //   $(this).removeClass('far fa-bookmark position_a')
@@ -107,9 +103,9 @@ class ProductList extends React.Component {
   // mAccount = _ =>{
 
   // }
-  //會員收藏判定mCollectPNo
+  //會員收藏判定mCollectPNo  ${this.state.mNo}
   mCollect = _ => {
-    fetch(`http://localhost:4000/mCollectPNo?mNo=${this.state.mNo}`)
+    fetch(`http://localhost:4000/mCollectPNo?mNo=1`)
       .then(response => response.json())
       // .then(response => console.log(response.data))
 
@@ -373,7 +369,7 @@ class ProductList extends React.Component {
               <div className="carousel-item">
                 <div className="" style={{ height: '990px' }}>
                   <img
-                    src="http://localhost:3000/images/car-1376190.jpg"
+                    src="http://localhost:3000/images/Toyota-Corolla.jpg"
                     alt=""
                     className=""
                     style={light}
@@ -406,7 +402,7 @@ class ProductList extends React.Component {
               <div className="carousel-item">
                 <div className="" style={{ height: '990px' }}>
                   <img
-                    src="http://localhost:3000/images/car-1376190.jpg"
+                    src="http://localhost:3000/images/My Post.jpg"
                     alt=""
                     className=""
                     style={light}

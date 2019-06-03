@@ -367,6 +367,176 @@ app.get('/rated', (req, res) => {
   })
 })
 
+// Danny
+
+const bodyParser = require('body-parser')
+
+const moment = require('moment-timezone')
+
+const SELECT_ALL_ORDER_QUERY1 = 'SELECT * FROM order2'
+const SELECT_ALL_ORDER_QUERY2 =
+  "SELECT pNo, pBrand,	pModel, pModel, shopName, pRent FROM commodity WHERE pNo='565'"
+
+const SELECT_ALL_ORDER_QUERY9 =
+  'SELECT pNo, pBrand,	pModel, pModel, shopName, pRent FROM commodity WHERE pNo='
+
+const SELECT_ALL_ORDER_QUERY3 = 'SELECT shopAddress FROM user_shop'
+const SELECT_ALL_ORDER_QUERY4 = "SELECT mNo, mName FROM lessee WHERE mNo='2'"
+// Danny
+app.get('/order', (req, res) => {
+  connection.query(SELECT_ALL_ORDER_QUERY1, (err, results) => {
+    for (let s in results) {
+      results[s].orderDate2 = moment(results[s].orderDate).format('YYYY-MM-DD') //轉換時間格式
+      results[s].startDate2 = moment(results[s].startDate).format('YYYY-MM-DD') //轉換時間格式
+      results[s].endDate2 = moment(results[s].endDate).format('YYYY-MM-DD') //轉換時間格式
+    }
+    if (err) {
+      return res.send(err)
+    } else {
+      return res.json({
+        order: results,
+      })
+    }
+  })
+})
+
+app.get('./order', (req, res) => {})
+
+app.get('/member', (req, res) => {
+  connection.query(SELECT_ALL_ORDER_QUERY4, (err, results) => {
+    if (err) {
+      return res.send(err)
+    } else {
+      return res.json({
+        member: results,
+      })
+    }
+  })
+})
+
+app.get('./member', (req, res) => {})
+
+app.get('/commoditydata', (req, res) => {
+  const { pNo } = req.query
+  const queryString = SELECT_ALL_ORDER_QUERY9 + "'" + pNo + "'"
+
+  connection.query(queryString, (err, results) => {
+    if (err) {
+      return res.send(err)
+    } else {
+      return res.json({
+        data: results,
+      })
+    }
+  })
+})
+app.get('./commoditydata', (req, res) => {})
+
+app.get('/shopAddress', (req, res) => {
+  connection.query(SELECT_ALL_ORDER_QUERY3, (err, results) => {
+    if (err) {
+      return res.send(err)
+    } else {
+      let output = []
+      results.forEach(function(val) {
+        output.push(val['shopAddress'])
+      })
+      return res.json(output)
+    }
+  })
+})
+app.get('./shopAddress', (req, res) => {})
+
+app.get('/orderAdd', (req, res) => {
+  res.render('orderAdd')
+})
+
+app.post('/orderAdd', (req, res) => {
+  const body = req.body
+  let sql =
+    'INSERT INTO `order2` (`mNo`, `mName`, `orderDate`,`total`, `pNo`, `startDate`, `endDate`,`pRent`, `shopName`, `rentcarStatus`, `rentAddress`,`deliveryFee`, `startPlace`, `endPlace`, `pBrand`,`pModel`, `orderstate`, `orderFinish`) VALUES(?, ?, ?,?, ?, ?, ?, ?, ?, ?, ?,?, ?, ?, ?, ?, ?, ?)'
+  // [body.sales_id, body.name, body.birthday],
+  connection.query(
+    sql,
+    [
+      body.mNo,
+      body.mName,
+      body.orderDate,
+      body.total,
+      body.pNo,
+      body.startDate,
+      body.endDate,
+      body.pRent,
+      body.shopName,
+      body.rentcarStatus,
+      body.rentAddress,
+      body.deliveryFee,
+      body.startPlace,
+      body.endPlace,
+      body.pBrand,
+      body.pModel,
+      body.orderstate,
+      body.orderFinish,
+    ],
+    (error, results, fields) => {
+      if (error) throw error
+      if (results.affectedRows === 1) {
+        res.send('success')
+      } else {
+        res.send('error')
+      }
+      // res.render("orderAdd", data);
+    }
+  )
+})
+
+app.post('/orderUpdate', (req, res) => {
+  const body = req.body
+  let sql = 'UPDATE `order2` SET ? WHERE `orderNo` = ? '
+  // [body.sales_id, body.name, body.birthday],
+  connection.query(
+    sql,
+    [
+      {
+        orderstate: 1,
+        orderFinish: 1,
+      },
+      req.body.orderNo,
+    ],
+    (error, results, fields) => {
+      if (error) throw error
+      if (results.affectedRows === 1) {
+        res.send('success')
+      } else {
+        res.send('error')
+      }
+    }
+  )
+})
+
+app.get('/try-moment', (req, res) => {
+  // res.send(req.session.cookie.expires);
+  const fm = 'YYYY-MM-DD'
+  // const exp = req.session.cookie.expires;
+  // const mo1 = moment(exp);
+  const mo = moment()
+
+  let out = ''
+
+  res.contentType('text/plain')
+
+  // out += mo1.format(fm) + "\n"; //多3分鐘是因為cookie maxAge: 180000 設為3分鐘
+  out += mo.format(fm) + '\n'
+  res.send(out)
+})
+
+// 此段放在所有路由設定的後面
+app.use((req, res) => {
+  res.type('text/plain')
+  res.status(404)
+  res.send('404 - 找不到網頁')
+})
+
 app.listen(4000, () => {
   console.log(`Products server listening on port 4000`)
 })

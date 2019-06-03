@@ -16,29 +16,26 @@ class ProductMain extends React.Component {
       productMain: [],
       hotProduct: [],
       collection: [],
-      mNo:''
+      mNo: '',
     }
   }
-  componentDidMount() {
-    fetch("http://localhost:4000/islogin",{
+  componentDidMount = () => {
+    fetch('http://localhost:4000/islogin', {
       credentials: 'include',
-    method: 'GET'})
-   .then(res=>res.json())
-   .then(obj=>{
-      console.log(obj)
+      method: 'GET',
+    })
+      .then(res => res.json())
+      .then(obj => {
+        console.log(obj)
 
-       this.setState({mNo:obj.No})
-       
-          
-   }
-   
-   )
-   setTimeout(() => {
-    this.productMain()
-    this.hotProduct()
-    this.mCollect()
-  }, 200);
-
+        this.setState({ mNo: obj.No })
+      })
+    setTimeout(() => {
+      this.productMain()
+      this.hotProduct()
+      this.mCollect()
+    }, 200)
+    // $('.toTop').scroll(0)
   }
   productMain = _ => {
     console.log(this.props.match.params.pNo)
@@ -59,7 +56,7 @@ class ProductMain extends React.Component {
       .then(response => response.json())
       .then(response =>
         this.setState({ productMain: response.data }, () =>
-          console.log({ response_data: response.data })
+          window.history.go(0)
         )
       )
       .catch(err => console.error(err))
@@ -88,9 +85,9 @@ class ProductMain extends React.Component {
       <h3>order</h3>
     </Link>
   )
-  //會員收藏判定mCollectPNo
+  //會員收藏判定mCollectPNo  mNo=${this.state.mNo}
   mCollect = _ => {
-    fetch(`http://localhost:4000/mCollectPNo?mNo=${this.state.mNo}`)
+    fetch(`http://localhost:4000/mCollectPNo?mNo=1`)
       .then(response => response.json())
       // .then(response => console.log(response.data))
 
@@ -129,7 +126,9 @@ class ProductMain extends React.Component {
     }
     this.mCollect()
   }
-
+  top = () => {
+    window.location.reload()
+  }
   render() {
     const { productMain } = this.state
     const padding0 = {
@@ -246,7 +245,13 @@ class ProductMain extends React.Component {
                   </div>
                 </div>
                 <div className="buttonArea d-flex column justify-content-end align-items-center pr-4">
-                  <div className="my-2 rentButton py-2 px-3">我要租車</div>
+                  <Link
+                    key={item.pNo}
+                    to={'/Order/' + item.pNo}
+                    product={this.props.product}
+                  >
+                    <div className="my-2 rentButton py-2 px-3">我要租車</div>
+                  </Link>
                   <div className="my-2 collectButton py-2 px-3">加入收藏</div>
                   <div className="my-2 toShopButton py-2 px-3">關於車商</div>
                 </div>
@@ -274,12 +279,11 @@ class ProductMain extends React.Component {
                           <h4>{item.pBrand}</h4>
                           <p>{item.pSit}</p>
                           <p>{item.pRent} /日</p>
-                          <a href="servic-details.html">
+                          <a href="#top" className="toTop">
                             <Link
                               key={item.pNo}
-                              to={'/productMain/' + item.pNo}
+                              to={'/productMain/' + item.pNo + '#top'}
                               product={this.props.product}
-                              href=""
                             >
                               詳細
                             </Link>
@@ -306,7 +310,7 @@ class ProductMain extends React.Component {
                           <h4>{item.pBrand}</h4>
                           <p>{item.pSit}</p>
                           <p>{item.pRent} /日</p>
-                          <a href="servic-details.html">
+                          <a href="#top">
                             <Link
                               key={item.pNo}
                               to={'/productMain/' + item.pNo}
@@ -330,7 +334,6 @@ class ProductMain extends React.Component {
                 )}
               </div>
             </div>
-
           </div>
         ))}
         <Footer />

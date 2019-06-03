@@ -1,9 +1,9 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 // import './css/normalize.css'
-import '../../pages/rent_car/css/productMain.css'
-import '../../pages/rent_car/shopList.css'
-import '../../pages/rent_car/basic.css'
+// import '../../pages/rent_car/css/productMain.css'
+// import '../../pages/rent_car/shopList.css'
+// import '../../pages/rent_car/basic.css'
 import $ from 'jquery'
 
 import NavMember from '../../pages/basic/NavMember'

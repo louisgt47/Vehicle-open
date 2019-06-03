@@ -178,7 +178,7 @@ class ProductList extends React.Component {
     $('#buttonS').removeClass('active')
     $('#buttonB').removeClass('active')
     $('#buttonM').addClass('active')
-
+    console.log(key)
     let data = this.state.product.filter(item => item.pType.includes(key))
     this.setState({ mProduct: data, searchState: 3 })
   }
@@ -280,6 +280,9 @@ class ProductList extends React.Component {
       case 2:
         var searchList = this.state.bProduct
         break
+      case 3:
+        var searchList = this.state.mProduct
+        break
     }
     console.log(searchList)
 
@@ -304,7 +307,9 @@ class ProductList extends React.Component {
       collects[i] = Number(collects[i])
     }
     console.log(collects)
-
+    const cursor = {
+      cursor: 'pointer',
+    }
     // this.state.hotProduct.map(item => {
     //   console.log(item.pNo)
     //   // console.log(collects)
@@ -650,31 +655,38 @@ class ProductList extends React.Component {
                 <div className="col-lg-8 col-12">
                   <div className="project-menu text-right">
                     <button
-                      className="active"
+                      className="active mr-1"
                       data-filter="*"
                       onClick={this.all}
                       id="buttonAll"
+                      style={cursor}
                     >
                       全部
                     </button>
                     <button
+                      className=" mx-1"
                       data-filter=".cat1"
                       onClick={() => this.sSearch('小客車')}
                       id="buttonS"
+                      style={cursor}
                     >
                       小客車
                     </button>
                     <button
+                      className=" mx-1"
                       data-filter=".cat2"
                       onClick={() => this.bSearch('休旅車')}
                       id="buttonB"
+                      style={cursor}
                     >
                       休旅車
                     </button>
                     <button
+                      className=" ml-1"
                       data-filter=".cat3"
                       onClick={() => this.mSearch('貨車')}
                       id="buttonM"
+                      style={cursor}
                     >
                       貨車
                     </button>

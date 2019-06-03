@@ -24,6 +24,8 @@ import searchbox from './component/searchbox/searchbox.js'
 import uploads from './component/uploads/uploads'
 import Edituser from './component/uploads/Edituser/Edituser'
 import StoreOrderList from './component/StoreOrderList.js'
+import shopMainProduct from './component/container/shopMainProduct.js'
+
 //login
 import loginBox from './component/Login/LoginBox/LoginBox.js'
 import loginDriver from './component/Login/LoginBox/LoginDriver.js'
@@ -56,6 +58,7 @@ class App extends React.Component {
             <Route path="/uploadss" component={uploads} />
             <Route path="/Edituser" component={Edituser} />
             <Route path="/StoreOrderList" component={StoreOrderList} />
+            <Route path="/shopMainProduct/:pNo" component={shopMainProduct} />
             //rentCar
             <Route path="/productList" component={ProductList} />
             <Route path="/productList/:page" component={ProductList} />

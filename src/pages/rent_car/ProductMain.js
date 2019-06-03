@@ -17,6 +17,7 @@ class ProductMain extends React.Component {
       hotProduct: [],
       collection: [],
       mNo: '',
+      productRate: [],
     }
   }
   componentDidMount = () => {
@@ -61,6 +62,20 @@ class ProductMain extends React.Component {
       )
       .catch(err => console.error(err))
   }
+  //取評價
+  // getRate = () => {
+  //   fetch(
+  //     `http://localhost:4000/mainProductGetRate?pNo=${+this.props.match.params
+  //       .pNo}`
+  //   )
+  //     .then(response => response.json())
+  //     .then(response =>
+  //       this.setState({ productRate: response.data }, () =>
+  //         console.log({ productRate: response.data })
+  //       )
+  //     )
+  //     .catch(err => console.error(err))
+  // }
   hotProduct = _ => {
     fetch('http://localhost:4000/hotproduct')
       .then(response => response.json())

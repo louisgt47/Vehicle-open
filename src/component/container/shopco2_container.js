@@ -12,23 +12,23 @@ export default class index extends Component {
       searchText: '',
       singleNo: '',
       singleOrder: [],
-      Name:'',
+      Name: '',
     }
   }
   async componentDidMount() {
-    fetch("http://localhost:4000/islogin",{
-        credentials: 'include',
-      method: 'GET'})
-     .then(res=>res.json())
-     .then(obj=>{
+    fetch('http://localhost:4000/islogin', {
+      credentials: 'include',
+      method: 'GET',
+    })
+      .then(res => res.json())
+      .then(obj => {
         console.log(obj)
-         this.setState({Name:obj.Name},()=>{
+        this.setState({ Name: obj.Name }, () => {
           this.getOrdering()
           this.getOrdered()
-         })
-     }
-     )
-  
+        })
+      })
+
     // await this.getSingleOrder()
     // jq
     // $('#exampleModalCenter').on('show.bs.modal', function(event) {
@@ -52,13 +52,16 @@ export default class index extends Component {
   }
   getOrdering = async _ => {
     try {
-      const response = await fetch(`http://localhost:4000/OrderListing?shopName=${this.state.Name}`, {
-        method: 'GET',
-        headers: new Headers({
-          Accept: 'application/json',
-          'Content-Type': 'application/json',
-        }),
-      })
+      const response = await fetch(
+        `http://localhost:4000/OrderListing?shopName=${this.state.Name}`,
+        {
+          method: 'GET',
+          headers: new Headers({
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+          }),
+        }
+      )
 
       if (!response.ok) throw new Error(response.statusText)
 
@@ -78,13 +81,16 @@ export default class index extends Component {
   }
   getOrdered = async _ => {
     try {
-      const response = await fetch(`http://localhost:4000/OrderListed?shopName=${this.state.Name}`, {
-        method: 'GET',
-        headers: new Headers({
-          Accept: 'application/json',
-          'Content-Type': 'application/json',
-        }),
-      })
+      const response = await fetch(
+        `http://localhost:4000/OrderListed?shopName=${this.state.Name}`,
+        {
+          method: 'GET',
+          headers: new Headers({
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+          }),
+        }
+      )
 
       if (!response.ok) throw new Error(response.statusText)
 
@@ -163,7 +169,6 @@ export default class index extends Component {
     this.setState({ searchText: event.target.value })
   }
 
-  
   render() {
     //搜尋先過濾
 
@@ -174,7 +179,7 @@ export default class index extends Component {
       data = this.state.commodity.filter(
         item =>
           // console.log(item.Vehicle_name)
-          item.shopName.includes(this.state.searchText) 
+          item.shopName.includes(this.state.searchText)
 
         // console.log(data)
 
@@ -194,7 +199,7 @@ export default class index extends Component {
       data = this.state.commodity.filter(
         item =>
           // console.log(item.Vehicle_name)
-          item.shopName.includes(this.state.searchText) 
+          item.shopName.includes(this.state.searchText)
         // console.log(data)
 
         // item.agentStartLoc.includes(this.state.searchText) ||
@@ -234,7 +239,6 @@ export default class index extends Component {
                 <th scope="col">還車日期</th>
                 <th scope="col">總金額</th>
                 <th scope="col">租借會員</th>
-                
               </tr>
             </thead>
             <tbody>
@@ -307,7 +311,6 @@ export default class index extends Component {
                   <td>{item.endDate}</td>
                   <td>{item.total}</td>
                   <td>{item.mNo}</td>
-                  
                 </tr>
               ))}
             </tbody>
@@ -325,7 +328,6 @@ export default class index extends Component {
                 <th scope="col">還車日期</th>
                 <th scope="col">總金額</th>
                 <th scope="col">租借會員</th>
-            
               </tr>
             </thead>
             <tbody>

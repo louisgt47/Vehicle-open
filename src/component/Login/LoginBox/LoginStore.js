@@ -40,8 +40,7 @@ console.log(data)
         {
           alert(obj.data.message)
           console.log(obj.data)
-          window.history.go(-1);
-          document.querySelector('.LoginLightBox').style.display="none";
+          window.history.go(-2);
           localStorage.setItem('account',obj.data.body.account)
         }
         else{

@@ -186,7 +186,7 @@ class App extends React.Component {
         </div>
         
 
-        <Link to="loginbox">
+        <Link to="uploads">
         <div class="title1">
             <div class="titletop">
                 <div class="titletopleftbox">
@@ -200,7 +200,7 @@ class App extends React.Component {
             <div class="ramdomcomde"></div>
             <div class="titleenglish">MEMBER LOGIN</div>
             <div class="ramdomcomde1"></div>
-            <div class="titletext">會員註冊</div>
+            <div class="titletext">會員專區</div>
 
         </div>
         </Link>

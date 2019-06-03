@@ -86,9 +86,12 @@ class ProductListSearch_bar extends React.Component {
     })
 
     // Toggling the `.selected` state on the options.
+    const that = this
     $('.sel__box__options').click(function() {
       var txt = $(this).text()
       var index = $(this).index()
+      console.log($(this).parent())
+      that.setState({searchkey2:txt})
 
       $(this)
         .siblings('.sel__box__options')
@@ -159,29 +162,28 @@ class ProductListSearch_bar extends React.Component {
             />
           </div>
           <div className="d-flex justify-content-center">
-            <div style={selectSize} className="sel sel--black-panther">
+            <div style={selectSize} className="sel sel--black-panther" id='s1'>
               <select
-                name="select-profession"
-                id="select-profession"
-                // className="form-control"
-                // id="searchkey1"
+                name="select-profession1"
+                className="form-control"
+                id="searchkey1"
                 style={center}
-                // onChange={this.searchKey1SetState.bind(this)}
-                onClick={() => console.log(111)}
+                onChange={this.searchKey1SetState}
+
               >
                 <option style={center} value={0}>
                   地點
                 </option>
-                <option style={center}>台北</option>
+                <option style={center} >台北</option>
                 <option style={center}>新竹</option>
                 <option style={center}>台中</option>
                 <option style={center}>高雄</option>
               </select>
             </div>
-            <div style={selectSize} className="sel sel--black-panther">
+            <div style={selectSize} className="sel sel--black-panther" id='s2'>
               <select
-                name="select-profession"
-                id="select-profession"
+                name="select-profession2"
+                id="searchkey1"
                 style={center}
                 onChange={this.searchKey2SetState}
               >
@@ -199,10 +201,10 @@ class ProductListSearch_bar extends React.Component {
                 <option style={center}>5</option>
               </select>
             </div>
-            <div style={selectSize} className="sel sel--black-panther">
+            <div style={selectSize} className="sel sel--black-panther" id='s3'>
               <select
-                name="select-profession"
-                id="select-profession"
+                name="select-profession3"
+                id="searchkey4"
                 style={center}
                 onChange={this.searchKey3SetState}
               >
@@ -215,10 +217,10 @@ class ProductListSearch_bar extends React.Component {
                 <option style={center}>3000以上</option>
               </select>
             </div>
-            <div style={selectSize} className="sel sel--black-panther">
+            <div style={selectSize} className="sel sel--black-panther" id='s4'>
               <select
-                name="select-profession"
-                id="select-profession"
+                name="select-profession4"
+                id="searchkey4"
                 style={center}
                 onChange={this.searchKey4SetState}
               >

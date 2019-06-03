@@ -38,10 +38,9 @@ console.log(data)
         console.log(obj)
         if(obj.data.success)
         {
-           window.history.go(-1);
+           window.history.go(-2);
           alert(obj.data.message)
           console.log(obj.data)
-          document.querySelector('.LoginLightBox').style.display="none";
           localStorage.setItem('account',obj.data.body.account)
         }
         else{

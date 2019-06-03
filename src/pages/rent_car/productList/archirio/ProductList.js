@@ -39,13 +39,30 @@ class ProductList extends React.Component {
       searchState: 0,
       hotProduct: [],
       collection: [],
+      mNo:'',
     }
   }
   componentDidMount = () => {
+    fetch("http://localhost:4000/islogin",{
+      credentials: 'include',
+    method: 'GET'})
+   .then(res=>res.json())
+   .then(obj=>{
+      console.log(obj)
+
+       this.setState({mNo:obj.No})
+       
+          
+   }
+   
+   )
+   setTimeout(() => {
     this.product()
     this.hotProduct()
     // this.mAccount()
     this.mCollect()
+   }, 200);
+
 
     // $('#collect').click(function() {
     //   $(this).removeClass('far fa-bookmark position_a')
@@ -92,7 +109,7 @@ class ProductList extends React.Component {
   // }
   //會員收藏判定mCollectPNo
   mCollect = _ => {
-    fetch(`http://localhost:4000/mCollectPNo?mNo=1`)
+    fetch(`http://localhost:4000/mCollectPNo?mNo=${this.state.mNo}`)
       .then(response => response.json())
       // .then(response => console.log(response.data))
 
@@ -114,7 +131,7 @@ class ProductList extends React.Component {
 
       $(`#collect${pNo}`).addClass('fas fa-bookmark position_a')
 
-      fetch(`http://localhost:4000/insertItem?mNo=1&pNo=${pNo}`)
+      fetch(`http://localhost:4000/insertItem?mNo=${this.state.mNo}&pNo=${pNo}`)
         .then(response => response.json())
         .then(response => this.setState({ hotList_car: response.data }))
         // .then(console.log(this.state.hotList_car))
@@ -124,7 +141,7 @@ class ProductList extends React.Component {
 
       $(`#discollect${pNo}`).addClass('far fa-bookmark position_a')
 
-      fetch(`http://localhost:4000/deleteItem?mNo=1&pNo=${pNo}`)
+      fetch(`http://localhost:4000/deleteItem?mNo=${this.state.mNo}&pNo=${pNo}`)
         .then(response => response.json())
         .then(response => this.setState({ hotList_car: response.data }))
         // .then(console.log(this.state.hotList_car))

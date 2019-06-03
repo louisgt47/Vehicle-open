@@ -39,9 +39,8 @@ var data = {"account":this.state.account,"password":this.state.password}
         .then(obj => {
           if(obj.data.success)
           {
-             window.history.go(-1);
+             window.history.go(-2);
             alert(obj.data.message)
-            document.querySelector('.LoginLightBox').style.display="none";
             localStorage.setItem('account',obj.data.body.account)
           }
           else{

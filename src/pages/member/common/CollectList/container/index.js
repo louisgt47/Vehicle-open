@@ -15,12 +15,27 @@ export default class index extends Component {
       memberCollectionList: [],
       inputkey: '',
       searchList: [],
+      mNo:'',
     }
   }
   async componentDidMount() {
+    fetch("http://localhost:4000/islogin",{
+      credentials: 'include',
+    method: 'GET'})
+   .then(res=>res.json())
+   .then(obj=>{
+      console.log(obj)
+
+       this.setState({mNo:obj.No})
+       
+          
+   }
+   
+   )
+   setTimeout(() => {
     this.getCollection()
-    // this.searchList()
-  }
+  }, 200);
+}
   getCollection = async _ => {
     try {
       let mNo = 1
@@ -57,14 +72,14 @@ export default class index extends Component {
   searchList = _ => {
     var searchData = this.state.inputkey
     console.log(searchData)
-    fetch(`http://localhost:4000/searchList2?inputkey=${searchData}&mNo=1`)
+    fetch(`http://localhost:4000/searchList2?inputkey=${searchData}&mNo=${this.state.mNo}`)
       .then(response => response.json())
       .then(response => this.setState({ searchList: response.data }))
       // .then(console.log(this.state.hotList_car))
       .catch(err => console.error(err))
   }
   itemDelete = pNo => {
-    fetch(`http://localhost:4000/deleteItem?mNo=1&pNo=${pNo}`)
+    fetch(`http://localhost:4000/deleteItem?mNo=${this.state.mNo}&pNo=${pNo}`)
       .then(response => response.json())
       // .then(response =>
       //   this.setState(
@@ -81,15 +96,15 @@ export default class index extends Component {
     // console.log('this.state.pNo.length:' + totalPNo)
     for (var i = 0; i < totalPNo; i++) {
       var pNo = this.state.pNo[i].pNo
-      // console.log(this.state.pNo[i].pNo)
+      console.log(this.state.pNo[i].pNo)
       await fetch(`http://localhost:4000/memberCollectionList?pNo=${pNo}`)
         .then(response => response.json())
         .then(response => {
-          console.log(response.data[0])
+          console.log(response.data)
           let newList = [...this.state.memberCollectionList, response.data[0]]
           this.setState({ memberCollectionList: newList })
         })
-        // .then(console.log(this.state.memberCollectionList))
+        .then(console.log(this.state.memberCollectionList))
         .catch(err => console.error(err))
     }
     // console.log(this.state.memberCollectionList)
@@ -115,7 +130,7 @@ export default class index extends Component {
     let listData = this.state.inputkey
       ? this.state.searchList
       : this.state.memberCollectionList
-    console.log(listData)
+    console.log(this.state.pNo)
     return (
       <div className="con-set1">
         <div style={listContainer}>

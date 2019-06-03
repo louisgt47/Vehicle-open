@@ -35,15 +35,7 @@ body {
   cursor: pointer;
 }
 
-.sel::before {
-  position: absolute;
-  content: '\f063';
-  font-family: 'FontAwesome';
-  font-size: 2em;
-  color: #fff;
-  right: 20px;
-  top: calc(50% - 0.5em);
-}
+
 
 .sel.active::before {
   transform: rotateX(-180deg);

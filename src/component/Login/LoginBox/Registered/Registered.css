@@ -212,7 +212,8 @@
 .LoginDriverPageback{
     width: 100%;
     height: 100vh;
-    background-image: url(../../../Indexpage/images/bg-01.jpg)
+    background-image: url(../../../Indexpage/images/bg-01.jpg);
+    background-size: cover;
 }
 .RegisteredPageLeftMyImgBoximg{
     object-fit: cover;

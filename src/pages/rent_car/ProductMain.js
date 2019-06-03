@@ -16,12 +16,29 @@ class ProductMain extends React.Component {
       productMain: [],
       hotProduct: [],
       collection: [],
+      mNo:''
     }
   }
   componentDidMount() {
+    fetch("http://localhost:4000/islogin",{
+      credentials: 'include',
+    method: 'GET'})
+   .then(res=>res.json())
+   .then(obj=>{
+      console.log(obj)
+
+       this.setState({mNo:obj.No})
+       
+          
+   }
+   
+   )
+   setTimeout(() => {
     this.productMain()
     this.hotProduct()
     this.mCollect()
+  }, 200);
+
   }
   productMain = _ => {
     console.log(this.props.match.params.pNo)
@@ -73,7 +90,7 @@ class ProductMain extends React.Component {
   )
   //會員收藏判定mCollectPNo
   mCollect = _ => {
-    fetch(`http://localhost:4000/mCollectPNo?mNo=1`)
+    fetch(`http://localhost:4000/mCollectPNo?mNo=${this.state.mNo}`)
       .then(response => response.json())
       // .then(response => console.log(response.data))
 
@@ -94,7 +111,7 @@ class ProductMain extends React.Component {
 
       $(`#collect${pNo}`).addClass('fas fa-bookmark position_a')
 
-      fetch(`http://localhost:4000/insertItem?mNo=1&pNo=${pNo}`)
+      fetch(`http://localhost:4000/insertItem?mNo=${this.state.mNo}&pNo=${pNo}`)
         .then(response => response.json())
         .then(response => this.setState({ hotList_car: response.data }))
         // .then(console.log(this.state.hotList_car))
@@ -104,7 +121,7 @@ class ProductMain extends React.Component {
 
       $(`#discollect${pNo}`).addClass('far fa-bookmark position_a')
 
-      fetch(`http://localhost:4000/deleteItem?mNo=1&pNo=${pNo}`)
+      fetch(`http://localhost:4000/deleteItem?mNo=${this.state.mNo}&pNo=${pNo}`)
         .then(response => response.json())
         .then(response => this.setState({ hotList_car: response.data }))
         // .then(console.log(this.state.hotList_car))
@@ -313,7 +330,7 @@ class ProductMain extends React.Component {
                 )}
               </div>
             </div>
-            <div className="productList-footer" />
+
           </div>
         ))}
         <Footer />

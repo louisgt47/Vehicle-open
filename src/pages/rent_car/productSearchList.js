@@ -19,9 +19,19 @@ class productSearchList extends React.Component {
       searchList: [],
       collection: [],
       thisPage: '',
+      mNo:"",
     }
   }
   componentDidMount() {
+    fetch("http://localhost:4000/islogin",{
+        credentials: 'include',
+      method: 'GET'})
+     .then(res=>res.json())
+     .then(obj=>{
+        console.log(obj)
+         this.setState({mNo:obj.No})       
+     }
+     )
     // let key1 = !(searchkey1 = 0) ? searchkey1 : ''
     // let key2 = !(searchkey2 = 0) ? searchkey2 : ''
     // let key3 = !(searchkey3 = 0) ? searchkey3 : ''
@@ -30,8 +40,12 @@ class productSearchList extends React.Component {
     // let ifAND1 = key2 && key3 && key4 ? 'AND' : ''
     // let ifAND2 = key3 && key4 ? 'AND' : ''
     // let ifAND3 = key4 ? 'AND' : ''
-    this.searchList()
-    this.mCollect()
+    setTimeout(() => {
+      this.searchList()
+      this.mCollect()
+    }, 200);
+
+
   }
   searchList = _ => {
     var searchData = this.props.location.state
@@ -62,7 +76,7 @@ class productSearchList extends React.Component {
   // }
   //會員收藏判定mCollectPNo
   mCollect = _ => {
-    fetch(`http://localhost:4000/mCollectPNo?mNo=1`)
+    fetch(`http://localhost:4000/mCollectPNo?mNo=${this.state.mNo}`)
       .then(response => response.json())
       // .then(response => console.log(response.data))
 
@@ -84,7 +98,7 @@ class productSearchList extends React.Component {
 
       $(`#collect${pNo}`).addClass('fas fa-bookmark position_a')
 
-      fetch(`http://localhost:4000/insertItem?mNo=1&pNo=${pNo}`)
+      fetch(`http://localhost:4000/insertItem?mNo=${this.state.mNo}&pNo=${pNo}`)
         .then(response => response.json())
         .then(response => this.setState({ hotList_car: response.data }))
         // .then(console.log(this.state.hotList_car))
@@ -94,7 +108,7 @@ class productSearchList extends React.Component {
 
       $(`#discollect${pNo}`).addClass('far fa-bookmark position_a')
 
-      fetch(`http://localhost:4000/deleteItem?mNo=1&pNo=${pNo}`)
+      fetch(`http://localhost:4000/deleteItem?mNo=${this.state.mNo}&pNo=${pNo}`)
         .then(response => response.json())
         .then(response => this.setState({ hotList_car: response.data }))
         // .then(console.log(this.state.hotList_car))

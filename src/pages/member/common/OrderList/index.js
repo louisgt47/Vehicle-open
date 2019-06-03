@@ -23,12 +23,29 @@ export default class index extends Component {
       ratedList: [],
       rate: '',
       rateText: '',
+      mNo:'',
     }
   }
   componentDidMount = () => {
+    fetch("http://localhost:4000/islogin",{
+      credentials: 'include',
+    method: 'GET'})
+   .then(res=>res.json())
+   .then(obj=>{
+      console.log(obj)
+
+       this.setState({mNo:obj.No})
+       
+          
+   }
+   
+   )
+   setTimeout(() => {
     this.getCollection1()
     this.getCollection2()
     this.rated()
+  }, 200);
+
     // this.searchList()
     $('.sel').each(function() {
       $(this)
@@ -160,7 +177,7 @@ export default class index extends Component {
   searchList = _ => {
     var searchData = this.state.inputkey
     console.log(searchData)
-    fetch(`http://localhost:4000/searchList2?inputkey=${searchData}&mNo=1`)
+    fetch(`http://localhost:4000/searchList2?inputkey=${searchData}&mNo=${this.state.mNo}`)
       .then(response => response.json())
       .then(response => this.setState({ searchList: response.data }))
       // .then(console.log(this.state.hotList_car))
@@ -193,7 +210,7 @@ export default class index extends Component {
     fetch(
       `http://localhost:4000/insertRate?shopNo=${
         this.state.shopNo
-      }&shopName=${shopName}&mNo=1&orderNo=${orderNo}&rate=${
+      }&shopName=${shopName}&mNo=${this.state.mNo}&orderNo=${orderNo}&rate=${
         this.state.rate
       }&rateText=${this.state.rateText}`
     )

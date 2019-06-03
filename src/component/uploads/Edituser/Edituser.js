@@ -1,5 +1,9 @@
 import React from 'react'
 import './Edituser.css'
+
+import NavMember from '../../../pages/basic/NavMember'
+import Footer from '../../../pages/basic/Footer'
+
 class App extends React.Component {
      constructor(props) {
         super(props)
@@ -109,7 +113,6 @@ CheckFormUser=()=>{
                       window.history.go(-3);
                       alert(obj.data.message);
                        
-                      document.querySelector('.LoginLightBox').style.display="none";
                     }
               })
 }
@@ -152,7 +155,6 @@ CheckFormUser=()=>{
                       window.history.go(-3);
                       alert(obj.data.message);
                        
-                      document.querySelector('.LoginLightBox').style.display="none";
                     }
               })
               
@@ -206,6 +208,7 @@ CheckFormStore=()=>{
          if(this.state.Loginman=='driver'){
          return (
             <>
+            <NavMember/>
             <div class="Edituserpage">
                 <div class="EdituserpageTop">
                     <div class="EdituserpageTitle">代駕資料修改</div>
@@ -263,12 +266,14 @@ CheckFormStore=()=>{
 
                
             </div>
-              
+            <Footer/>
+
             </>
          )
          }
          if(this.state.Loginman=='user'){
       return(<>
+      <NavMember/>
             <div class="Edituserpage">
                 <div class="EdituserpageTop">
                     <div class="EdituserpageTitle">租賃會員修改</div>
@@ -326,10 +331,12 @@ CheckFormStore=()=>{
 
                
             </div>
-              
+            <Footer/>
+
             </>)}
          if(this.state.Loginman=='store'){
       return(<>
+      <NavMember/>
             <div class="Edituserpage">
                 <div class="EdituserpageTop">
                     <div class="EdituserpageTitle">車商修改</div>
@@ -387,7 +394,7 @@ CheckFormStore=()=>{
 
                
             </div>
-              
+            <Footer/>
             </>)}
       else{
          return(<></>)

@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Title</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  </head>
+  <style>
+  body{
+  padding:0;
+  margin:0;
+}
+#container{
+  background: white;
+  height:100%;
+  width:100%;
+  position: absolute;
+  margin: 0;
+  padding:0;
+}
+.center {
+  position: relative;
+  top:50%;
+  left:50%;
+  transform: translate(-50%,-50%);
+}
+
+.box {
+  padding: 0;
+  margin: 0;
+  width:300px;
+  height: 160px;
+}
+
+.button{
+  padding:0;
+  margin:0;
+  width:200px;
+  height:60px;
+  float: left;
+  background-color:#404040;
+  overflow: hidden;
+  cursor:pointer;
+  z-index:20;
+  border-radius:5px;
+  
+}
+
+.button:hover {
+  -webkit-animation: ButtonScale 0.5s ease-out;
+  animation: ButtonScale 0.5s ease-out;
+}
+
+@-webkit-keyframes ButtonScale {
+  0% {height:60px;}
+  75% {height:70px;}
+  85% {height:60px;}
+  92% {height:66px;}  
+  100% {height:60px;}
+}
+
+.drop {
+  height:50px;
+  width:25px;
+  border-radius:50%;
+  background: #404040;
+  position:relative;
+  transform: rotate(-45deg);
+  top:47px;
+  left:61px;
+}
+
+.button:hover + .drop {
+  -webkit-animation: ButtonScale 1s ease-out;
+  animation: DropScale 1s ease-out;
+}
+
+@-webkit-keyframes DropScale {
+  0% {top:47px; left:61px;height:50px;width:25px;opacity:1}
+  37.5% {top:25px;left:35px;height:40px;width:25px;opacity:1}
+  50% {top:15px;left:18px;height:20px;width:25px;}
+  75% {top:15px;left:18px;height:10px;width:12.5px;opacity:0;}  
+  100% {top:15px;left:18px;height:20px;width:25px;opacity:0;}
+}
+
+.moon {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  box-shadow: 8px -5px 0 0 red;
+  position: relative;
+}</style>
+  <body>
+    <div id="container">
+        
+          <div class="button center"></div>
+          <div class="drop"></div>
+        </div>
+      </div>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  </body>
+</html>

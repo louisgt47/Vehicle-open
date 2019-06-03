@@ -153,6 +153,9 @@ class ProductMain extends React.Component {
     const topMargin = {
       marginTop: '106px',
     }
+    const cursor = {
+      cursor: 'pointer',
+    }
     return (
       <>
         {/* {productMain.map(this.renderProduct)}
@@ -252,7 +255,23 @@ class ProductMain extends React.Component {
                   >
                     <div className="my-2 rentButton py-2 px-3">我要租車</div>
                   </Link>
-                  <div className="my-2 collectButton py-2 px-3">加入收藏</div>
+                  {collects.includes(item.pNo) ? (
+                    <div
+                      className="my-2 collectButton py-2 px-3 "
+                      style={cursor}
+                      onClick={() => this.memberItem(item.pNo, collects)}
+                    >
+                      取消收藏
+                    </div>
+                  ) : (
+                    <div
+                      className="my-2  py-2 px-3 rentButton"
+                      style={cursor}
+                      onClick={() => this.memberItem(item.pNo, collects)}
+                    >
+                      加入收藏
+                    </div>
+                  )}
                   <div className="my-2 toShopButton py-2 px-3">關於車商</div>
                 </div>
               </div>

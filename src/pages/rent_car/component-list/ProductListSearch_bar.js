@@ -297,15 +297,10 @@ class ProductListSearch_bar extends React.Component {
                 <option style={center} value={0}>
                   廠牌
                 </option>
-                <option
-                  style={center}
-                  onChange={() => this.searchKey2SetState('TOYOTA')}
-                >
-                  TOYOTA
-                </option>
-                <option style={center}>3</option>
-                <option style={center}>4</option>
-                <option style={center}>5</option>
+                <option style={center}>TOYOTA</option>
+                <option style={center}>BENZ</option>
+                <option style={center}>FORD</option>
+                <option style={center}>三菱</option>
               </select>
             </div>
             <div style={selectSize} className="sel sel--black-panther" id="s3">
@@ -316,12 +311,20 @@ class ProductListSearch_bar extends React.Component {
                 onChange={this.searchKey3SetState}
               >
                 <option style={center} value={0}>
-                  價位
+                  價位/每日
                 </option>
-                <option style={center}>1000</option>
-                <option style={center}>1000～2000</option>
-                <option style={center}>2000～3000</option>
-                <option style={center}>3000以上</option>
+                <option style={center} value="1000">
+                  1000以內
+                </option>
+                <option style={center} value="2000">
+                  1000～2000
+                </option>
+                <option style={center} value="3000">
+                  2000～3000
+                </option>
+                <option style={center} value="4000">
+                  3000以上
+                </option>
               </select>
             </div>
             <div style={selectSize} className="sel sel--black-panther" id="s4">

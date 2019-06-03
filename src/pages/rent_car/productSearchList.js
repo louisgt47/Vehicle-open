@@ -23,7 +23,9 @@ class productSearchList extends React.Component {
       mNo: '',
     }
   }
+
   componentDidMount() {
+    window.scrollTo(0, 0)
     fetch('http://localhost:4000/islogin', {
       credentials: 'include',
       method: 'GET',

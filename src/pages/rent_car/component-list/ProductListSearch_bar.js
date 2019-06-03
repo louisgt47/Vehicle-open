@@ -13,6 +13,7 @@ import '../css/shopList.css'
 import '../css/normalize.css'
 import '../css/basic.css'
 import '../css/search.css'
+import './searchbox.css'
 
 //需要state紀錄各條件
 
@@ -38,6 +39,66 @@ class ProductListSearch_bar extends React.Component {
     }
   }
   componentDidMount = () => {
+    $('.searchboxinput').focus(function() {
+      $('.top').css('left', '-250px')
+      $('.addline2').css('height', '250px')
+      $('.addline2').css('right', '267px')
+      $('.bottom').css('left', '250px')
+      $('.addline').css('height', '250px')
+      $('.addline').css('right', 'calc(50% - 232px)')
+      setTimeout(function() {
+        $('.top2').css('opacity', 1)
+      }, 800)
+      setTimeout(function() {
+        $('.bottom2').css('opacity', 1)
+      }, 800)
+      $('.searchboxinput').css('left', 'calc(50% - 250px)')
+      $('.linemiddle1').css('width', '25%')
+      $('.linemiddle2').css('width', '25%')
+      $('.searchboxinput').css('width', '500px')
+      $('.search-icon').css('opacity', '0')
+      setTimeout(function() {
+        $('.searchboxinput').css('opacity', 1)
+      }, 800)
+    })
+    $('.searchboxinput').blur(function() {
+      setTimeout(function() {
+        $('.search-icon').css('opacity', '1')
+      }, 300)
+      setTimeout(function() {
+        $('.top').css('left', '0px')
+      }, 300)
+      setTimeout(function() {
+        $('.addline2').css('height', '50px')
+      }, 300)
+      setTimeout(function() {
+        $('.addline2').css('right', 'calc(50% + 17px)')
+      }, 300)
+      setTimeout(function() {
+        $('.bottom').css('left', '0')
+      }, 300)
+      setTimeout(function() {
+        $('.addline').css('height', '50px')
+      }, 300)
+      setTimeout(function() {
+        $('.addline').css('right', 'calc(50% - 32px)')
+      }, 300)
+      $('.top2').css('opacity', 0)
+      $('.bottom2').css('opacity', 0)
+      setTimeout(function() {
+        $('.searchboxinput').css('left', 'calc(50% - 40%)')
+      }, 300)
+      setTimeout(function() {
+        $('.linemiddle2').css('width', '40%')
+      }, 300)
+      setTimeout(function() {
+        $('.linemiddle1').css('width', '40%')
+      }, 300)
+      setTimeout(function() {
+        $('.searchboxinput').css('width', '80%')
+      }, 300)
+      $('.searchboxinput').css('opacity', 0)
+    })
     $('.sel').each(function() {
       $(this)
         .children('select')
@@ -153,13 +214,43 @@ class ProductListSearch_bar extends React.Component {
       <div className="productList-search_bar">
         <div className="productList-container search_bar">
           <div className="d-flex justify-content-center">
-            <input
-              type="text"
-              id="inputkey"
-              placeholder="關鍵字搜尋"
-              style={inputSize}
-              onChange={this.inputKeySetState}
-            />
+          <div class="newsearchnav">
+          <div class="searchnav">
+            <div class="linemiddle1" />
+            <div class="linemiddle2" />
+            <div class="searchbox">
+              <i class="fas search-icon fa-search" />
+              <input
+                type="text"
+                class="searchboxinput"
+                placeholder="關鍵字搜尋?"
+                onChange={this.inputKeySetState}
+                id="inputkey"
+              />
+              <div class="linebox">
+                <div class="top">
+                  <div class="addline" />
+                  <div class="topline1" />
+                  <div class="topline2" />
+                </div>
+                <div class="top2">
+                  <div class="top2line1" />
+
+                  <div class="top2line2" />
+                </div>
+                <div class="bottom">
+                  <div class="addline2" />
+                  <div class="bottomline2" />
+                  <div class="bottomline3" />
+                </div>
+                <div class="bottom2">
+                  <div class="bottom2line1" />
+                  <div class="bottom2line2" />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
           </div>
           <div className="d-flex justify-content-center">
             <div style={selectSize} className="sel sel--black-panther" id='s1'>

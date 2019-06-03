@@ -78,7 +78,9 @@ class App extends React.Component {
               <input
                 type="text"
                 class="searchboxinput"
-                placeholder="輸入點甚麼吧?"
+                placeholder="關鍵字搜尋?"
+                onChange={this.inputKeySetState}
+                id="inputkey"
               />
               <div class="linebox">
                 <div class="top">

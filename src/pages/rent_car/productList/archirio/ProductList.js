@@ -58,7 +58,7 @@ class ProductList extends React.Component {
       this.hotProduct()
       // this.mAccount()
       this.mCollect()
-    }, 200)
+    }, 500)
 
     // $('#collect').click(function() {
     //   $(this).removeClass('far fa-bookmark position_a')
@@ -289,7 +289,7 @@ class ProductList extends React.Component {
     var perPageRender = searchList.filter(function(value, index) {
       return index >= (page - 1) * perPage && index < page * perPage
     })
-
+console.log(perPageRender)
     //中間單頁創建函式
     let PageArray = []
 
@@ -574,10 +574,14 @@ class ProductList extends React.Component {
                     <div className="col-sm-6 col-12 col-lg-4">
                       <div className="service-wrap">
                         <div className="service-img">
+                        <div class="prodimg">
                           <img
-                            src="http://localhost:3000/images/car-1376190.jpg"
+                            src={require(`../../../../../public/uploads/${
+                              item.pImg.split(',')[0]
+                            }`)}
                             alt=""
                           />
+                          </div>
                         </div>
                         <div className="service-content position_r">
                           <h4>{item.pBrand}</h4>
@@ -605,10 +609,16 @@ class ProductList extends React.Component {
                     <div className="col-sm-6 col-12 col-lg-4">
                       <div className="service-wrap">
                         <div className="service-img">
-                          <img
-                            src="http://localhost:3000/images/car-1376190.jpg"
+                        <div class="prodimg">
+
+                          <img 
+                                   src={require(`../../../../../public/uploads/${
+                                    item.pImg.split(',')[0]
+                                  }`)}
                             alt=""
                           />
+                                                  </div>
+
                         </div>
                         <div className="service-content position_r">
                           <h4>{item.pBrand}</h4>
@@ -699,10 +709,14 @@ class ProductList extends React.Component {
                         product={this.props.product}
                       >
                         <div className="project-wrap">
+                        <div class="prodimg">
                           <img
-                            src="http://localhost:3000/images/car-1376190.jpg"
+                                   src={require(`../../../../../public/uploads/${
+                                    item.pImg.split(',')[0]
+                                  }`)}
                             alt=""
                           />
+                          </div>
                           <div className="project-content">
                             <a
                               href="assets/images/project/project2/1.jpg"
@@ -729,10 +743,15 @@ class ProductList extends React.Component {
                         product={this.props.product}
                       >
                         <div className="project-wrap">
+                          <div class="prodimg">
                           <img
-                            src="http://localhost:3000/images/car-1376190.jpg"
+                                   src={require(`../../../../../public/uploads/${
+                                    item.pImg.split(',')[0]
+                                  }`)}
                             alt=""
+                          
                           />
+                          </div>
                           <div className="project-content">
                             <a
                               href="assets/images/project/project2/1.jpg"

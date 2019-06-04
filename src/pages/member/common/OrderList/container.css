@@ -9,10 +9,18 @@ body {
   background-color: #434948;
   color: #fff;
 }
-.buttonEndRatting {
-  background-color: #434948;
+
+.buttonEndRatting1{
   height: 35px;
   width: 110px;
+  display: inline-block;
+  line-height: 35px;
+  text-align: center;
+
+}
+.buttonEndRatting {
+  background-color: #434948;
+
   font-size: 14px;
   text-transform: uppercase;
   font-weight: 500;

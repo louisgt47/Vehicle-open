@@ -1,0 +1,14 @@
+.ShopListTopBg {
+  background-size: cover;
+  position: relative;
+  margin-bottom: 100px;
+}
+.card-car {
+  flex-wrap: wrap;
+}
+.ShopListBg {
+  background-image: url(../images/bg-01.jpg);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+}

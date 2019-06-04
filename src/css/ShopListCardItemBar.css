@@ -1,0 +1,41 @@
+.ShopListCardItem {
+  font-size: 48px;
+}
+.ShopListCardItem p {
+  width: 100px;
+  border-bottom: 4px solid;
+  color: #6eb7b0;
+  line-height: 100px;
+  margin-bottom: 30px;
+  padding: 0;
+}
+button {
+  font-size: 24px;
+}
+.ShopListCardItemButton {
+  padding: 0px;
+  font-size: 18px;
+
+  color: white;
+}
+.addItem {
+  background: #6eb7b0;
+  border-radius: 10px;
+  padding: 8px;
+}
+
+.searchItem {
+  background: #6eb7b0;
+  border-radius: 10px;
+  padding: 8px;
+}
+.a {
+  color: white;
+  border: none;
+  background: none;
+  display: inline-block;
+}
+a:hover {
+  color: white;
+  text-decoration: none;
+}

@@ -8,7 +8,7 @@ import SignUp from './pages/sign_up/SignUp'
 import Agent from './pages/agent/Agent'
 import QA from './pages/qa/QA'
 import AboutMe from './pages/about_me/AboutMe'
-import Shop from './pages/shop/Shop'
+
 import ProductList from './pages/rent_car/productList/archirio/ProductList'
 import ProductMain from './pages/rent_car/ProductMain'
 import productSearchList from './pages/rent_car/productSearchList'
@@ -34,7 +34,20 @@ import LoginUser from './component/Login/LoginBox/LoginUser.js'
 import RegisteredDriver from './component/Login/LoginBox/Registered/RegisteredDriver.js'
 import RegisteredStore from './component/Login/LoginBox/Registered/RegisteredStore.js'
 import RegisteredUser from './component/Login/LoginBox/Registered/RegisteredUser.js'
+import Shop_add from './pages/shop/Shop_add'
+import Shop_edit from './pages/shop/Shop_edit'
+import Shop_list from './pages/shop/Shop_list'
+
 class App extends React.Component {
+  constructor() {
+    super()
+    this.state = {
+      data: null,
+    }
+  }
+  handleDataChange = data => {
+    this.setState({ data })
+  }
   render() {
     return (
       <Router>
@@ -58,7 +71,7 @@ class App extends React.Component {
             <Route path="/uploadss" component={uploads} />
             <Route path="/Edituser" component={Edituser} />
             <Route path="/StoreOrderList" component={StoreOrderList} />
-            <Route path="/shopMainProduct/:pNo" component={shopMainProduct} />
+            <Route path="/shopMainProduct" component={shopMainProduct} />
             //rentCar
             <Route path="/productList" component={ProductList} />
             <Route path="/productList/:page" component={ProductList} />
@@ -68,10 +81,25 @@ class App extends React.Component {
             <Route path="/qa" component={QA} />
             <Route path="/about_me" component={AboutMe} />
             <Route path="/Order/:pNo" component={Order} />
-            <Route path="/shop" component={Shop} />
+            
             <Route path="/Authorization" component={Authorization} />
             <Route path="/Pay" component={Pay} />
             <Route path="/Order_Finish" component={Order_Finish} />
+            <Route path="/Shop_add" component={Shop_add} />
+            <Route path="/Shop_edit" component={() => (
+            <Shop_edit data={this.state.data} handleDataChange={this.handleDataChange}
+                />
+              )}
+            />
+            <Route
+              path="/Shop_list"
+              component={() => (
+                <Shop_list
+                  data={this.state.data}
+                  handleDataChange={this.handleDataChange}
+                />
+              )}
+            />
           </Switch>
         </>
       </Router>

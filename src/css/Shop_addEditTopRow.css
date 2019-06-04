@@ -35,7 +35,12 @@
   bottom: 0;
   right: 0;
   position: absolute;
-  background: transparent;
-  border-radius: 10px;
+
   /* border: 2px solid #000; */
+}
+.uploadPic:hover {
+}
+.shop_addBg {
+  position: relative;
+  top: 100px;
 }

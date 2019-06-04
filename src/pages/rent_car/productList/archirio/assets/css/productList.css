@@ -5,3 +5,11 @@ img.sliderImg:hover {
   filter: brightness(0.3);
   transition: 0.5s;
 }
+.prodimg{
+  height: 305px;
+  width: 100%;
+}
+.prodimg img{
+  object-fit: cover;
+  height: 305px;
+}

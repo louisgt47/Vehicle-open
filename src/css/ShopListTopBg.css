@@ -1,0 +1,67 @@
+.ShopListTopBg {
+  background: #ccc;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 200px;
+  top: 100px;
+  width: 100%;
+  bottom: 0;
+  right: 0;
+  /* position: absolute; */
+  color: white;
+  position: relative;
+  z-index: 97;
+}
+.ShopListTopBg p {
+  font-weight: bold;
+  margin: 0;
+  padding: 0;
+  line-height: 1;
+  margin-block-end: 0;
+  margin-block-start: 0;
+}
+.ShopListTopBgTopRightText {
+  text-align: right;
+}
+.ShopListTopBg svg {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  width: 20px;
+  height: 20px;
+}
+.upload_input {
+  display: none;
+}
+
+.delAvatar {
+  position: absolute;
+}
+.ShopListCardTopEditButton {
+  position: absolute;
+  top: 6px;
+  width: 25px;
+  height: 25px;
+  box-shadow: none;
+  border: none;
+  z-index: 95;
+}
+.ShopListCardTopEditButton svg {
+  width: 25px;
+  height: 25px;
+  margin: auto auto;
+  top: 50%;
+  cursor: pointer;
+  z-index: 98;
+}
+.upload_cover {
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+  z-index: 99;
+}
+.upload_input {
+  width: 10px;
+  height: 10px;
+}

@@ -201,10 +201,10 @@ componentDidMount=()=>{
                 <img src={Icon4}/>
                  <div class="uploadsheaderpagetext">信用卡設定</div>
               </div>
-              <Link to='MemberList'>
+              <Link to='Shop_List'>
               <div class="uploadsheaderpageicon">
                 <img src={Icon5}/>
-                 <div class="uploadsheaderpagetext">我的收藏</div>
+                 <div class="uploadsheaderpagetext">車輛清單</div>
               </div>
               </Link>
               <div class="uploadsheaderpageicon">

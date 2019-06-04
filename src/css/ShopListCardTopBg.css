@@ -1,0 +1,50 @@
+.ShopListCardTopBg {
+  height: 100px;
+  overflow: hidden;
+  background: white;
+}
+.ShopListCardTopBg button {
+  background: white;
+  height: 36px;
+  width: 36px;
+}
+.ShopListCardTopBg .textEllipsis {
+  white-space: pre-wrap;
+  overflow: hidden;
+  text-overflow: ellipsis; /*ellipsis;*/ /*clip;*/
+}
+.ShopListCard {
+  position: relative;
+  top: -30px;
+  z-index: 98;
+}
+.ShopListCardEditButton {
+  position: absolute;
+  top: 3px;
+  right: 3px;
+  width: 25px;
+  height: 25px;
+  box-shadow: none;
+  border: none;
+  z-index: 95;
+}
+.ShopListCardEditButton svg {
+  width: 25px;
+  height: 25px;
+  margin: auto auto;
+  top: 50%;
+  cursor: pointer;
+  z-index: 99;
+}
+.ShopListCardTopShopInfo {
+  position: relative;
+  white-space: pre-wrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.ShopListCardTopShopInfo2 {
+  position: relative;
+  white-space: pre-wrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

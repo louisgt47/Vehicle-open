@@ -306,7 +306,7 @@ export default class index extends Component {
               className="nav-link my-2"
               id="v-pills-messages-tab"
               data-toggle="pill"
-              href="#v-pills-messages"
+              
               role="tab"
               aria-controls="v-pills-messages"
               aria-selected="false"
@@ -317,7 +317,6 @@ export default class index extends Component {
               className="nav-link my-2"
               id="v-pills-settings-tab"
               data-toggle="pill"
-              href="#v-pills-settings"
               role="tab"
               aria-controls="v-pills-settings"
               aria-selected="false"
@@ -385,7 +384,13 @@ export default class index extends Component {
               <tbody>
                 {listData.map(item => (
                   <tr>
-                    <th scope="row" />
+                    <th scope="row" style={thLength}>
+                        <div
+                          className="buttonEndRatting1"
+
+                        >
+                          
+                        </div></th>
                     <td>{item.orderNo}</td>
                     <td>{item.pBrand}</td>
                     <td>{item.startDate.slice(0, 10)}</td>

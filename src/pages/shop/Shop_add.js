@@ -1,28 +1,30 @@
 import React from 'react'
-import Nav from '../../component/Nav'
+import Nav from '../basic/NavMember'
 import BgGreenTop from '../../component/BgGreenTop'
 import BgGreenBot from '../../component/BgGreenBot'
 import { Container, Row, Col } from 'react-bootstrap'
-import TopRow from '../../component/TopRow'
 import BotRowAdd from '../../component/BotRowAdd'
+import '../../css/Shop_addEditTopRow.css'
+import CarPic1 from '../../images/car1.jpg'
+import CarPic2 from '../../images/car1.jpg'
 
 class Shop_add extends React.Component {
   constructor() {
     super()
-    this.state = {}
+    this.state = {
+      preViewImgs: [],
+    }
   }
 
   render() {
     return (
-      <>
+      <div className="">
         <Nav />
-        <div className="">
+        <div className="shop_addBg">
           <BgGreenTop />
           <Container>
             <Row>
-              <Col>
-                <TopRow />
-              </Col>
+              <Col />
             </Row>
             <Row>
               <Col>
@@ -32,7 +34,7 @@ class Shop_add extends React.Component {
           </Container>
           <BgGreenBot />
         </div>
-      </>
+      </div>
     )
   }
 }

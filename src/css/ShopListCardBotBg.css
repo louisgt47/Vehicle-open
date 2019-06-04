@@ -1,0 +1,12 @@
+.ShopListCardBotBg {
+  background-color: #434948;
+  color: white;
+  font-size: 21px;
+  height: 60px;
+}
+.ShopListCardBotBg p {
+  font-size: 14px;
+  vertical-align: bottom;
+  margin: 0;
+  padding: 0;
+}

@@ -36,9 +36,14 @@ class shopMainProduct extends React.Component {
     // $('.toTop').scroll(0)
   }
   productMain = _ => {
-    console.log(this.props.match.params.pNo)
+    var itemPno = localStorage.getItem('pNo')
+    var data = {
+      key: itemPno,
+    }
+    console.log(data)
+
     fetch(
-      `http://localhost:4000/productMain?pNo=${+this.props.match.params.pNo}`
+      `http://localhost:4000/productMain?pNo=${data}`
     )
       .then(response => response.json())
       .then(response =>

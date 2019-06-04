@@ -289,7 +289,7 @@ class ProductList extends React.Component {
     var perPageRender = searchList.filter(function(value, index) {
       return index >= (page - 1) * perPage && index < page * perPage
     })
-console.log(perPageRender)
+    console.log(perPageRender)
     //中間單頁創建函式
     let PageArray = []
 
@@ -574,13 +574,13 @@ console.log(perPageRender)
                     <div className="col-sm-6 col-12 col-lg-4">
                       <div className="service-wrap">
                         <div className="service-img">
-                        <div class="prodimg">
-                          <img
-                            src={require(`../../../../../public/uploads/${
-                              item.pImg.split(',')[0]
-                            }`)}
-                            alt=""
-                          />
+                          <div class="prodimg">
+                            <img
+                              src={require(`../../../../../public/uploads/${
+                                item.pImg.split(',')[0]
+                              }`)}
+                              alt=""
+                            />
                           </div>
                         </div>
                         <div className="service-content position_r">
@@ -609,16 +609,14 @@ console.log(perPageRender)
                     <div className="col-sm-6 col-12 col-lg-4">
                       <div className="service-wrap">
                         <div className="service-img">
-                        <div class="prodimg">
-
-                          <img 
-                                   src={require(`../../../../../public/uploads/${
-                                    item.pImg.split(',')[0]
-                                  }`)}
-                            alt=""
-                          />
-                                                  </div>
-
+                          <div class="prodimg">
+                            <img
+                              src={require(`../../../../../public/uploads/${
+                                item.pImg.split(',')[0]
+                              }`)}
+                              alt=""
+                            />
+                          </div>
                         </div>
                         <div className="service-content position_r">
                           <h4>{item.pBrand}</h4>
@@ -709,13 +707,13 @@ console.log(perPageRender)
                         product={this.props.product}
                       >
                         <div className="project-wrap">
-                        <div class="prodimg">
-                          <img
-                                   src={require(`../../../../../public/uploads/${
-                                    item.pImg.split(',')[0]
-                                  }`)}
-                            alt=""
-                          />
+                          <div class="prodimg">
+                            <img
+                              src={require(`../../../../../public/uploads/${
+                                item.pImg.split(',')[0]
+                              }`)}
+                              alt=""
+                            />
                           </div>
                           <div className="project-content">
                             <a
@@ -744,13 +742,12 @@ console.log(perPageRender)
                       >
                         <div className="project-wrap">
                           <div class="prodimg">
-                          <img
-                                   src={require(`../../../../../public/uploads/${
-                                    item.pImg.split(',')[0]
-                                  }`)}
-                            alt=""
-                          
-                          />
+                            <img
+                              src={require(`../../../../../public/uploads/${
+                                item.pImg.split(',')[0]
+                              }`)}
+                              alt=""
+                            />
                           </div>
                           <div className="project-content">
                             <a

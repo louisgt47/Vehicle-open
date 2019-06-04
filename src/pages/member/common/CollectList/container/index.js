@@ -133,7 +133,7 @@ export default class index extends Component {
       : this.state.memberCollectionList
     console.log(this.state.pNo)
     const top = {
-      paddingTop: '400px',
+      paddingTop: '250px',
       backgroundColor: '#f8f9fa',
     }
     const color = {

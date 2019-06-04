@@ -51,6 +51,7 @@ export default class index extends Component {
     this.setState({ singleOrder: this.state.commodity[this.state.singleNo] })
   }
   getOrdering = async _ => {
+    console.log(this.state.Name)
     try {
       const response = await fetch(
         `http://localhost:4000/OrderListing?shopName=${this.state.Name}`,
@@ -112,7 +113,7 @@ export default class index extends Component {
     try {
       console.log(orderNo)
       const response = await fetch(
-        `http://localhost:4000/rated?orderNo=${orderNo}`,
+        `http://localhost:4000/israted?orderNo=${orderNo}`,
         {
           method: 'GET',
           headers: new Headers({
@@ -174,6 +175,7 @@ export default class index extends Component {
 
     //[{},{}]
     let data = this.state.commodity
+    console.log(this.state.commodity)
 
     if (this.state.searchText && this.state.searchText.trim() !== '') {
       data = this.state.commodity.filter(
@@ -195,6 +197,7 @@ export default class index extends Component {
     const { commodity2 } = this.state
 
     let data2 = this.state.commodity2
+    console.log(data2)
     if (this.state.searchText && this.state.searchText.trim() !== '') {
       data = this.state.commodity.filter(
         item =>
@@ -243,7 +246,7 @@ export default class index extends Component {
             </thead>
             <tbody>
               {data.map((item, index) => (
-                <tr key={item.product_id}>
+                <tr key={item.orderNo}>
                   <th>
                     <button
                       type="button"
@@ -251,7 +254,7 @@ export default class index extends Component {
                       data-toggle="modal"
                       data-target="#exampleModalCenter"
                       onClick={() => {
-                        console.log(item.order_no)
+                        console.log(item.orderNo)
                         this.getOrderIndex(index)
                       }}
                     >
@@ -306,11 +309,11 @@ export default class index extends Component {
                   </th>
 
                   <th>{item.orderNo}</th>
-                  <td>{item.shopName}</td>
-                  <td>{item.startDate}</td>
-                  <td>{item.endDate}</td>
+                  <td>{item.pBrand}</td>
+                  <td>{item.startDate.slice(0, 10)}</td>
+                  <td>{item.endDate.slice(0, 10)}</td>
                   <td>{item.total}</td>
-                  <td>{item.mNo}</td>
+                  <td>{item.mName}</td>
                 </tr>
               ))}
             </tbody>
@@ -332,7 +335,7 @@ export default class index extends Component {
             </thead>
             <tbody>
               {data2.map(item => (
-                <tr key={item.product_id}>
+                <tr key={item.orderNo}>
                   <th>
                     <button
                       type="button"
@@ -341,7 +344,7 @@ export default class index extends Component {
                       data-target="#exampleModalCenter2"
                       onClick={() => {
                         console.log(item)
-                        this.getshopratting(item.order_no)
+                        this.getshopratting(item.orderNo)
                       }}
                     >
                       確認評價
@@ -413,13 +416,12 @@ export default class index extends Component {
                       </div>
                     ))}
                   </th>
-                  <th>{item.order_no}</th>
-                  <td>{item.Vehicle_name}</td>
-                  <td>{item.Car_rental_data}</td>
-                  <td>{item.Return_data}</td>
-                  <td>{item.total_amount}</td>
-                  <td>{item.Rental_member}</td>
-                  <td>{item.A_also}</td>
+                  <th>{item.orderNo}</th>
+                  <td>{item.pBrand}</td>
+                  <td>{item.startDate.slice(0, 10)}</td>
+                  <td>{item.endDate.slice(0, 10)}</td>
+                  <td>{item.total}</td>
+                  <td>{item.mName}</td>
                 </tr>
               ))}
             </tbody>

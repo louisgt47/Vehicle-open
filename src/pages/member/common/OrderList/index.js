@@ -261,7 +261,7 @@ export default class index extends Component {
     }
     console.log(listData)
     const top = {
-      paddingTop: '400px',
+      paddingTop: '250px',
       backgroundColor: '#f8f9fa',
     }
     const color = {
@@ -306,7 +306,6 @@ export default class index extends Component {
               className="nav-link my-2"
               id="v-pills-messages-tab"
               data-toggle="pill"
-              
               role="tab"
               aria-controls="v-pills-messages"
               aria-selected="false"
@@ -331,8 +330,9 @@ export default class index extends Component {
               role="tab"
               aria-controls="v-pills-settings"
               aria-selected="false"
+              // onClick={console.log(11111)}
             >
-              <Link to={'/memberList'}>租車訂單查詢</Link>
+              <Link to={'/memberList'}>收藏清單</Link>
             </a>
             <a
               className="nav-link my-2 "
@@ -378,19 +378,15 @@ export default class index extends Component {
 
                   <th scope="col">總金額</th>
                   <th scope="col">車商</th>
-                  <th scope="col">商品圖</th>
+                  {/* <th scope="col">商品圖</th> */}
                 </tr>
               </thead>
               <tbody>
                 {listData.map(item => (
                   <tr>
                     <th scope="row" style={thLength}>
-                        <div
-                          className="buttonEndRatting1"
-
-                        >
-                          
-                        </div></th>
+                      <div className="buttonEndRatting1" />
+                    </th>
                     <td>{item.orderNo}</td>
                     <td>{item.pBrand}</td>
                     <td>{item.startDate.slice(0, 10)}</td>
@@ -418,7 +414,7 @@ export default class index extends Component {
 
                   <th scope="col">總金額</th>
                   <th scope="col">車商</th>
-                  <th scope="col">商品圖</th>
+                  {/* <th scope="col">商品圖</th> */}
                 </tr>
               </thead>
               <tbody>
@@ -440,9 +436,9 @@ export default class index extends Component {
                       <td>{item.endDate.slice(0, 10)}</td>
                       <td>{item.total}</td>
                       <td>{item.shopName}</td>
-                      <td>
+                      {/* <td>
                         <div style={order_picture}>1</div>
-                      </td>
+                      </td> */}
                     </tr>
                   ) : (
                     <tr>
@@ -602,9 +598,9 @@ export default class index extends Component {
                       <td>{item.endDate.slice(0, 10)}</td>
                       <td>{item.total}</td>
                       <td>{item.shopName}</td>
-                      <td>
+                      {/* <td>
                         <div style={order_picture}>1</div>
-                      </td>
+                      </td> */}
                     </tr>
                   )
                 )}

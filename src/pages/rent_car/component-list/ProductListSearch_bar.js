@@ -300,6 +300,7 @@ class ProductListSearch_bar extends React.Component {
                 <option style={center}>BENZ</option>
                 <option style={center}>FORD</option>
                 <option style={center}>三菱</option>
+                <option style={center}>中華汽車</option>
               </select>
             </div>
             <div style={selectSize} className="sel sel--black-panther" id="s3">

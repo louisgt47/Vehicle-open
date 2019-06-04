@@ -1,11 +1,13 @@
 import React from 'react'
 import Nav from '../basic/NavMember'
-import Footer from '../../component/Footer'
+import Footer from '../basic/Footer'
 import ShopListTopBg from '../../component/ShopListTopBg'
 import ShopListCard from '../../component/ShopListCard'
 import ShopListCardItemBar from '../../component/ShopListCardItemBar'
 import ShopListCardItem from '../../component/ShopListCardItem'
 import '../../css/ShopListBg.css'
+import NavMember from '../basic/NavMember'
+
 import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom'
 
 class Shop_list extends React.Component {
@@ -78,7 +80,7 @@ class Shop_list extends React.Component {
 
     return (
       <>
-        <Nav />
+        <NavMember />
         <ShopListTopBg ShopListEditOn={this.state.ShopListEditOn} />
         <div className="ShopListBg">
           <ShopListCard ShopListEdit={this.ShopListEdit} />

@@ -1,5 +1,6 @@
 import React from 'react'
-import Nav from '../basic/NavMember'
+import NavMember from '../basic/NavMember'
+import Footer from '../basic/Footer'
 import BgGreenTop from '../../component/BgGreenTop'
 import BgGreenBot from '../../component/BgGreenBot'
 import { Container, Row, Col } from 'react-bootstrap'
@@ -80,7 +81,7 @@ class Shop_edit extends React.Component {
   render() {
     return (
       <>
-        <Nav />
+        <NavMember />
         <div className="shop_addBg">
           <BgGreenTop />
           <Container>
@@ -109,7 +110,8 @@ class Shop_edit extends React.Component {
             </Row>
           </Container>
           <BgGreenBot />
-        </div>
+        </div>{' '}
+        <Footer />
       </>
     )
   }

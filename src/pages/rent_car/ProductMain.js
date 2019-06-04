@@ -145,6 +145,7 @@ class ProductMain extends React.Component {
     window.location.reload()
   }
   render() {
+    console.log(this.state.productMain)
     const { productMain } = this.state
     const padding0 = {
       padding: '0',
@@ -155,6 +156,9 @@ class ProductMain extends React.Component {
       right: '10px',
       top: '-45px',
       zIndex: '9',
+    }
+    const overflow = {
+      overflow: 'hidden',
     }
     let collects = []
 
@@ -185,7 +189,9 @@ class ProductMain extends React.Component {
               <div className="mainImg position_r col-10" style={padding0}>
                 <img
                   className="importantImg"
-                  src="http://localhost:3000/images/car-1376190.jpg"
+                  src={require(`../../../public/uploads/${
+                    item.pImg.split(',')[0]
+                  }`)}
                   alt=""
                 />
                 <div className="mainContent position_a d-flex column align-items-end">
@@ -255,11 +261,8 @@ class ProductMain extends React.Component {
                   <div className="twoPlace px-4 mt-3">接受甲租乙還</div>
                   <div className="toHome px-4 mb-4">接受代駕到府服務</div>
                   <div className="carIntro px-4 mb-3">車款介紹</div>
-                  <div className="text px-4 px-4">
-                    2019年式QX60採豪華款，新年式改搭VQ35DD
-                    3.5升V6自然進氣汽油引擎，最大輸出為295hp/37.3kgm，較先前提升了40hp/4.4kgm。2019年式QX60採豪華款，新年式改搭VQ35DD
-                    3.5升V6自然進氣汽油引擎，最大輸出為295hp/37.3kgm，較先前提升了40hp/4.4kgm。2019年式QX60採豪華款，新年式改搭VQ35DD
-                    3.5升V6自然進氣汽油引擎，最大輸出為295hp/37.3kgm，較先前提升了40hp/4.4kgm。
+                  <div className="text1 px-4 px-4" style={overflow}>
+                    {item.pIntro}
                   </div>
                 </div>
                 <div className="buttonArea d-flex column justify-content-end align-items-center pr-4">
@@ -304,10 +307,14 @@ class ProductMain extends React.Component {
                     <div className="col-sm-6 col-12 col-lg-3">
                       <div className="service-wrap">
                         <div className="service-img">
-                          <img
-                            src="http://localhost:3000/images/car-1376190.jpg"
-                            alt=""
-                          />
+                          <div className="prodimg">
+                            <img
+                              src={require(`../../../public/uploads/${
+                                item.pImg.split(',')[0]
+                              }`)}
+                              alt=""
+                            />
+                          </div>
                         </div>
                         <div className="service-content position_r">
                           <h4>{item.pBrand}</h4>
@@ -316,8 +323,9 @@ class ProductMain extends React.Component {
                           <a href="#top" className="toTop">
                             <Link
                               key={item.pNo}
-                              to={'/productMain/' + item.pNo + '#top'}
+                              to={'/productMain/' + item.pNo}
                               product={this.props.product}
+                              onClick={() => this.productMainTo(item.pNo)}
                             >
                               詳細
                             </Link>
@@ -335,10 +343,14 @@ class ProductMain extends React.Component {
                     <div className="col-sm-6 col-12 col-lg-3">
                       <div className="service-wrap">
                         <div className="service-img">
-                          <img
-                            src="http://localhost:3000/images/car-1376190.jpg"
-                            alt=""
-                          />
+                          <div className="prodimg">
+                            <img
+                              src={require(`../../../public/uploads/${
+                                item.pImg.split(',')[0]
+                              }`)}
+                              alt=""
+                            />
+                          </div>
                         </div>
                         <div className="service-content position_r">
                           <h4>{item.pBrand}</h4>

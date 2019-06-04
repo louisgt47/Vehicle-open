@@ -211,10 +211,12 @@ export default class index extends Component {
       )
       // console.log(data)
     }
-
+    const top = {
+      paddingTop: '195px',
+    }
     console.log(data)
     return (
-      <div className="orc2-set1">
+      <div className="orc2-set1" style={top}>
         <div className="orcon2-set1">
           <p className="orcon2-text1-1"> 訂單紀錄</p>
           <div className="orcon-input">

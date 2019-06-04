@@ -1,0 +1,271 @@
+.sectionInfo {
+  width: 1920px;
+  margin: 80px auto;
+}
+.containerInfo {
+  width: 1280px;
+  margin: 0 auto;
+}
+.rowInfo {
+  display: flex;
+  flex-direction: column;
+  align-content: stretch;
+}
+.InfoTitle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.InfoTitle > h1 {
+  font-weight: 900;
+}
+.InfoTitle2 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.InfoTitle2 > h1 {
+  font-weight: 900;
+}
+.InfoImg {
+  display: flex;
+  justify-content: space-evenly;
+  margin-top: 40px;
+}
+.agentInfoImg {
+  width: 420px;
+  height: 315px;
+}
+.putText {
+  display: flex;
+  align-items: center;
+}
+.InfoText {
+  width: 480px;
+  font-size: 24px;
+  font-weight: 800;
+}
+/* --------------------------------------- */
+
+.sectionFlow {
+  /* width: 1920px; */
+  margin: 80px auto;
+  background-color: #ddd;
+  padding-top: 80px;
+  padding-bottom: 80px;
+}
+.containerFlow {
+  width: 1280px;
+  margin: 0 auto;
+}
+.rowFlow {
+  display: flex;
+  flex-direction: column;
+  align-content: stretch;
+}
+.FlowTitle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.FlowTitle > h1 {
+  font-weight: 900;
+}
+.FlowImg {
+  display: flex;
+  justify-content: space-evenly;
+  margin-top: 40px;
+}
+.agentFlowImg {
+  width: 240px;
+}
+.agentFlowText {
+  width: 240px;
+  height: 72px;
+  margin: 0 auto;
+}
+.putImg1-outer {
+  /* width: 480px; */
+  display: flex;
+  justify-content: center;
+}
+.putImg1 {
+  width: 240px;
+  height: 360px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 0 40px;
+  /* flex-grow: 1; */
+}
+.warningText {
+  margin: 40px auto;
+  width: 640px;
+  font-size: 24px;
+  font-weight: 800;
+}
+
+.sectionWarning {
+  /* width: 1920px; */
+  margin: 0 auto;
+  background-color: #ddd;
+  padding-top: 80px;
+  padding-bottom: 80px;
+}
+.containerWarning {
+  width: 1280px;
+  margin: 0 auto;
+}
+.putImg {
+  display: flex;
+  justify-content: center;
+}
+.putText {
+  display: flex;
+  justify-content: center;
+}
+@media (max-width: 960px) {
+  .sectionInfo {
+    width: 960px;
+    /* margin: 80px auto; */
+  }
+  .containerInfo {
+    width: 960px;
+    /* margin: 0 auto; */
+  }
+  .sectionFlow {
+    width: 960px;
+    /* margin: 80px auto;
+    background-color: #ddd;
+    padding-top: 80px;
+    padding-bottom: 80px; */
+  }
+  .containerFlow {
+    width: 960px;
+    /* margin: 0 auto; */
+  }
+  .sectionWarning {
+    width: 960px;
+    /* margin: 0 auto;
+    background-color: #ddd; */
+    padding-top: 40px;
+    padding-bottom: 40px;
+    /* display: flex;
+    justify-content: center; */
+  }
+  .containerWarning {
+    width: 960px;
+    margin: 0 auto;
+  }
+  /* --------------------------------------------- */
+  .InfoImg {
+    flex-direction: column;
+  }
+  .FlowImg {
+    display: flex;
+    /* justify-content: center; */
+    /* text-align: center; */
+    flex-direction: column;
+  }
+  .agentInfoImg {
+    /* width: 200px;
+    height: 150px; */
+  }
+  .InfoText {
+    width: 240px;
+    font-size: 18px;
+    font-weight: 800;
+  }
+  .InfoTitle > h1 {
+    font-weight: 900;
+    font-size: 36px;
+  }
+  .InfoTitle2 > h1 {
+    font-weight: 900;
+    font-size: 36px;
+  }
+  .InfoImg {
+    margin-top: 20px;
+  }
+  .warningText {
+    width: 240px;
+    font-size: 16px;
+    font-weight: 800;
+  }
+  /* ------------------------- */
+  .agentFlowImg {
+    width: 240px;
+  }
+  .agentFlowText {
+    width: 220px;
+    height: 72px;
+    margin: 0 auto;
+    font-size: 16px;
+  }
+  .putImg1-outer {
+    /* width: 480px; */
+    display: flex;
+    justify-content: center;
+    /* flex-direction: column; */
+    margin: 0 auto;
+  }
+  .putImg1 {
+    width: 240px;
+    height: 360px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 0 40px;
+    /* flex-grow: 1; */
+  }
+}
+/* @media (max-width: 767px) {
+  .putImg1-outer {
+    /* width: 480px; */
+/* display: flex;
+    justify-content: center;
+    flex-direction: column;
+  }
+} */
+/* .putBtnGoToAgent {
+  position: relative;
+} */
+.fixBtnToAgent {
+  /* position: fixed; */
+  /* left: 80px; */
+  /* top: 540px; */
+  /* top: 2100px; */
+  background-color: #bbe665;
+  border: #bbe665;
+  color: #000;
+  font-weight: 700;
+  font-size: 24px;
+  /* overflow-y: scroll; */
+}
+
+.fixBtnToAgent:hover {
+  background-color: #8cb43a;
+  border: #8cb43a;
+  color: #000;
+  font-weight: 700;
+}
+
+/* #fixBtnToAgent {
+  transform: translateX(1920px);
+  transition: 3s;
+}
+#fixBtnToAgent.active {
+  transform: translateX(900px);
+}
+
+.sectionAll {
+  margin: 0 auto;
+} */
+
+.wantToAgent {
+  display: flex;
+  justify-content: center;
+  width: 160px;
+  margin: 0 auto;
+  cursor: pointer;
+}

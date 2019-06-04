@@ -275,19 +275,21 @@ class App extends React.Component {
               <div class="titletext">開始租車 </div>
             </div>
           </Link>
-          <div class="title5">
-            <div class="titletop">
-              <div class="titletopleftbox">
-                <div class="titletopleft">5</div>
+          <Link to={'/agentAbout'}>
+            <div class="title5">
+              <div class="titletop">
+                <div class="titletopleftbox">
+                  <div class="titletopleft">5</div>
+                </div>
+                <div class="titletopright" />
               </div>
-              <div class="titletopright" />
+              <div class="titlehr" />
+              <div class="ramdomcomde" />
+              <div class="titleenglish">MEMBER LOGIN</div>
+              <div class="ramdomcomde1" />
+              <div class="titletext">代駕服務</div>
             </div>
-            <div class="titlehr" />
-            <div class="ramdomcomde" />
-            <div class="titleenglish">MEMBER LOGIN</div>
-            <div class="ramdomcomde1" />
-            <div class="titletext">代駕服務</div>
-          </div>
+          </Link>
           <div class="title6">
             <div class="titletop">
               <div class="titletopleftbox">

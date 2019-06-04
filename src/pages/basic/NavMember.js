@@ -123,7 +123,7 @@ class NavMember extends React.Component {
                   <Link className="nav-item nav-link" to={'/productList'}>
                     開始租車
                   </Link>
-                  <Link className="nav-item nav-link" href="#">
+                  <Link className="nav-item nav-link" to={'/agentAbout'}>
                     尋找代駕
                   </Link>
                   <Link className="nav-item nav-link" href="#">

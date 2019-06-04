@@ -5,7 +5,7 @@ import IndexPage from './component/Indexpage/IndexPage.js'
 
 import SignUp from './pages/sign_up/SignUp'
 // import RentCar from './pages/rent_car/RentCar'
-import Agent from './pages/agent/Agent'
+// import Agent from './pages/agent/Agent'
 import QA from './pages/qa/QA'
 import AboutMe from './pages/about_me/AboutMe'
 
@@ -38,6 +38,8 @@ import Shop_add from './pages/shop/Shop_add'
 import Shop_edit from './pages/shop/Shop_edit'
 import Shop_list from './pages/shop/Shop_list'
 
+//agent
+import Agent_00_About from './pages/agent/Agent_00_About'
 class App extends React.Component {
   constructor() {
     super()
@@ -77,17 +79,20 @@ class App extends React.Component {
             <Route path="/productList/:page" component={ProductList} />
             <Route path="/productMain/:pNo" component={ProductMain} />
             <Route path="/productSearchList" component={productSearchList} />
-            <Route path="/agent" component={Agent} />
+            {/* <Route path="/agent" component={Agent} /> */}
             <Route path="/qa" component={QA} />
             <Route path="/about_me" component={AboutMe} />
             <Route path="/Order/:pNo" component={Order} />
-            
             <Route path="/Authorization" component={Authorization} />
             <Route path="/Pay" component={Pay} />
             <Route path="/Order_Finish" component={Order_Finish} />
             <Route path="/Shop_add" component={Shop_add} />
-            <Route path="/Shop_edit" component={() => (
-            <Shop_edit data={this.state.data} handleDataChange={this.handleDataChange}
+            <Route
+              path="/Shop_edit"
+              component={() => (
+                <Shop_edit
+                  data={this.state.data}
+                  handleDataChange={this.handleDataChange}
                 />
               )}
             />
@@ -100,6 +105,8 @@ class App extends React.Component {
                 />
               )}
             />
+            {/* agent */}
+            <Route path="/agentAbout" component={Agent_00_About} />
           </Switch>
         </>
       </Router>

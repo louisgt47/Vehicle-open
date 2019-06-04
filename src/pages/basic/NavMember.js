@@ -170,10 +170,10 @@ class NavMember extends React.Component {
                 id="navbarNavAltMarkup"
               >
                 <div className="navbar-nav">
-                  <Link className="nav-item nav-link " to="Indexpage">
+                  <Link className="nav-item nav-link " to="/Indexpage">
                     首頁 <span className="sr-only">(current)</span>
                   </Link>
-                  <Link className="nav-item nav-link" to="uploadss">
+                  <Link className="nav-item nav-link" to="/uploadss">
                     會員專區
                   </Link>
                   <Link className="nav-item nav-link" to={'/productList'}>

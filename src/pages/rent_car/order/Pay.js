@@ -2,6 +2,8 @@ import React from 'react'
 import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom'
 import { Container, Row, Col, Button, Form, Card, Image } from 'react-bootstrap'
 import img2 from './img/img2.svg'
+import NavMember from '../../basic/NavMember'
+import Footer from '../../basic/Footer'
 
 class Pay extends React.Component {
   constructor(props) {
@@ -35,7 +37,7 @@ class Pay extends React.Component {
 
   async componentDidMount() {
     try {
-      const response = await fetch('http://localhost:3001/order', {
+      const response = await fetch('http://localhost:4000/order', {
         method: 'GET',
         headers: new Headers({
           Accept: 'application/json',
@@ -108,9 +110,14 @@ class Pay extends React.Component {
   }
 
   render() {
+    const size = {
+      marginTop: '120px',
+      marginBottom: '50px',
+    }
     return (
       <>
-        <Container>
+        <NavMember />
+        <Container style={size}>
           <Row>
             <Col sm={12}>
               <h1>線上付款</h1>
@@ -285,6 +292,7 @@ class Pay extends React.Component {
             </Col>
           </Row>
         </Container>
+        <Footer />
       </>
     )
   }

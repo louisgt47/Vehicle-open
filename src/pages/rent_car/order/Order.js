@@ -11,6 +11,8 @@ import {
   Image,
   Card,
 } from 'react-bootstrap'
+import NavMember from '../../basic/NavMember'
+import Footer from '../../basic/Footer'
 import img1 from './img/img1.svg'
 import { async } from 'q'
 class Order extends React.Component {
@@ -223,7 +225,7 @@ class Order extends React.Component {
       orderFinish: this.state.orderFinish,
     }
     try {
-      const response = await fetch('http://localhost:3001/orderAdd', {
+      const response = await fetch('http://localhost:4000/orderAdd', {
         body: JSON.stringify(data),
         method: 'POST',
         headers: new Headers({
@@ -274,10 +276,14 @@ class Order extends React.Component {
     let options = this.state.shopAddress.map(val => {
       return <option>{val}</option>
     })
-
+    const size = {
+      marginTop: '120px',
+      marginBottom: '50px',
+    }
     return (
       <>
-        <Container>
+        <NavMember />
+        <Container style={size}>
           <Row className="justify-content-md-center">
             <Col md="auto" sm={12}>
               <h1>租車訂單</h1>
@@ -538,13 +544,7 @@ class Order extends React.Component {
                         name="orderDate"
                         onChange={this.handleInputChange}
                       >
-                        <Col>
-                          {/* <input
-                            // type="hidden"
-                            name="orderDate"
-                            value={this.state.orderDate}
-                          /> */}
-                        </Col>
+                        <Col />
                       </Form.Group>
 
                       <Form.Group
@@ -607,6 +607,7 @@ class Order extends React.Component {
             </Col>
           </Row>
         </Container>
+        <Footer />
       </>
     )
   }

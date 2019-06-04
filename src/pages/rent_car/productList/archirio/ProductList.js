@@ -105,7 +105,7 @@ class ProductList extends React.Component {
   // }
   //會員收藏判定mCollectPNo  ${this.state.mNo}
   mCollect = _ => {
-    fetch(`http://localhost:4000/mCollectPNo?mNo=1`)
+    fetch(`http://localhost:4000/mCollectPNo?mNo=${this.state.mNo}`)
       .then(response => response.json())
       // .then(response => console.log(response.data))
 
@@ -554,11 +554,7 @@ class ProductList extends React.Component {
           {/* slider-area end */}
           {/* ablout-area start */}
           <div className="about-area about-area2 ptb-120 listsearchbar">
-            <div className="container">
-              <div className="row">
-                <ProductListSearch_bar product={this.state.product} />
-              </div>
-            </div>
+            <ProductListSearch_bar product={this.state.product} />
           </div>
           {/* ablout-area end */}
           {/* service-area start */}

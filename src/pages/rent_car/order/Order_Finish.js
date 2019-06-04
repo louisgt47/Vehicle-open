@@ -1,6 +1,8 @@
 import React from 'react'
 import { Container, Row, Col, Button, Form, Image, Card } from 'react-bootstrap'
 import img3 from './img/img3.svg'
+import NavMember from '../../basic/NavMember'
+import Footer from '../../basic/Footer'
 class Order_Finish extends React.Component {
   constructor(props) {
     super(props)
@@ -46,9 +48,14 @@ class Order_Finish extends React.Component {
   }
 
   render() {
+    const size = {
+      marginTop: '120px',
+      marginBottom: '50px',
+    }
     return (
       <>
-        <Container>
+        <NavMember />
+        <Container style={size}>
           <Row>
             <Col sm={12}>
               <h1>交易完成</h1>
@@ -190,6 +197,7 @@ class Order_Finish extends React.Component {
             </Col>
           </Row>
         </Container>
+        <Footer />
       </>
     )
   }

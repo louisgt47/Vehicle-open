@@ -102,7 +102,7 @@ class ProductMain extends React.Component {
   )
   //會員收藏判定mCollectPNo  mNo=${this.state.mNo}
   mCollect = _ => {
-    fetch(`http://localhost:4000/mCollectPNo?mNo=1`)
+    fetch(`http://localhost:4000/mCollectPNo?mNo=${this.state.mNo}`)
       .then(response => response.json())
       // .then(response => console.log(response.data))
 

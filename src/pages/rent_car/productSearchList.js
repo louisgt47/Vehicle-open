@@ -77,7 +77,7 @@ class productSearchList extends React.Component {
   // }
   //會員收藏判定mCollectPNo  ${this.state.mNo}
   mCollect = _ => {
-    fetch(`http://localhost:4000/mCollectPNo?mNo=1`)
+    fetch(`http://localhost:4000/mCollectPNo?mNo=${this.state.mNo}`)
       .then(response => response.json())
       // .then(response => console.log(response.data))
 
@@ -218,9 +218,9 @@ class productSearchList extends React.Component {
       <>
         <NavMember />
         <div className="project-area">
+          <ProductListSearch_bar product={this.state.product} />
           <div className="container">
             <div className="row">
-              <ProductListSearch_bar product={this.state.product} />
               <div className="col-lg-4 col-12">
                 <div className="section-title mt-5">
                   <h2>搜尋結果</h2>

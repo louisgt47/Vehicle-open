@@ -23,28 +23,25 @@ export default class index extends Component {
       ratedList: [],
       rate: '',
       rateText: '',
-      mNo:'',
+      mNo: '',
     }
   }
   componentDidMount = () => {
-    fetch("http://localhost:4000/islogin",{
+    fetch('http://localhost:4000/islogin', {
       credentials: 'include',
-    method: 'GET'})
-   .then(res=>res.json())
-   .then(obj=>{
-      console.log(obj)
+      method: 'GET',
+    })
+      .then(res => res.json())
+      .then(obj => {
+        console.log(obj)
 
-       this.setState({mNo:obj.No})
-       
-          
-   }
-   
-   )
-   setTimeout(() => {
-    this.getCollection1()
-    this.getCollection2()
-    this.rated()
-  }, 200);
+        this.setState({ mNo: obj.No })
+      })
+    setTimeout(() => {
+      this.getCollection1()
+      this.getCollection2()
+      this.rated()
+    }, 200)
 
     // this.searchList()
     $('.sel').each(function() {
@@ -177,7 +174,11 @@ export default class index extends Component {
   searchList = _ => {
     var searchData = this.state.inputkey
     console.log(searchData)
-    fetch(`http://localhost:4000/searchList2?inputkey=${searchData}&mNo=${this.state.mNo}`)
+    fetch(
+      `http://localhost:4000/searchList2?inputkey=${searchData}&mNo=${
+        this.state.mNo
+      }`
+    )
       .then(response => response.json())
       .then(response => this.setState({ searchList: response.data }))
       // .then(console.log(this.state.hotList_car))
@@ -259,88 +260,132 @@ export default class index extends Component {
       rattedNo[i] = Number(rattedNo[i])
     }
     console.log(listData)
+    const top = {
+      paddingTop: '400px',
+      backgroundColor: '#f8f9fa',
+    }
+    const color = {
+      backgroundColor: '#f8f9fa',
+    }
     return (
-      <div className="con-set1">
-        <div style={listContainer}>
-          <div className="set-text1">
-            <h2 className="set-text1-1">訂單查詢</h2>
-            <br />
-            {/* <h4 className="">List</h4> */}
-            <div className="set-input mt-3">
-              <div className="position-r">
-                <img className="con-img" src={require('./images/d.svg')} />
-                <input
-                  className="input1"
-                  placeholder="資料查詢"
-                  type="text"
-                  id="inputkey"
-                  onKeyPress={this.inputKeySetState}
-                />
+      <div className="row">
+        <div className="col-2" style={top}>
+          <div
+            className="nav flex-column nav-pills px-5"
+            id="v-pills-tab"
+            role="tablist"
+            aria-orientation="vertical"
+            style={color}
+          >
+            <h3 className="mb-3">會員專區</h3>
+            <a
+              className="nav-link  my-2"
+              id="v-pills-home-tab"
+              data-toggle="pill"
+              href="#v-pills-home"
+              role="tab"
+              aria-controls="v-pills-home"
+              aria-selected="true"
+            >
+              個人資料編輯
+            </a>
+
+            <Link
+              to={'/orderList'}
+              className="nav-link  my-2 active"
+              id="v-pills-profile-tab"
+              data-toggle="pill"
+              role="tab"
+              aria-controls="v-pills-profile"
+              aria-selected="false"
+            >
+              租車訂單查詢
+            </Link>
+
+            <a
+              className="nav-link my-2"
+              id="v-pills-messages-tab"
+              data-toggle="pill"
+              href="#v-pills-messages"
+              role="tab"
+              aria-controls="v-pills-messages"
+              aria-selected="false"
+            >
+              代駕訂單查詢
+            </a>
+            <a
+              className="nav-link my-2"
+              id="v-pills-settings-tab"
+              data-toggle="pill"
+              href="#v-pills-settings"
+              role="tab"
+              aria-controls="v-pills-settings"
+              aria-selected="false"
+            >
+              信用卡設定
+            </a>
+            <a
+              className="nav-link my-2 "
+              id="v-pills-settings-tab"
+              data-toggle="pill"
+              href="#v-pills-settings"
+              role="tab"
+              aria-controls="v-pills-settings"
+              aria-selected="false"
+            >
+              <Link to={'/memberList'}>租車訂單查詢</Link>
+            </a>
+            <a
+              className="nav-link my-2 "
+              id="v-pills-settings-tab"
+              data-toggle="pill"
+              href="#v-pills-settings"
+              role="tab"
+              aria-controls="v-pills-settings"
+              aria-selected="false"
+            >
+              優惠活動
+            </a>
+          </div>
+        </div>
+        <div className="con-set1 col-10">
+          <div style={listContainer}>
+            <div className="set-text1">
+              <h2 className="set-text1-1">訂單查詢</h2>
+              <br />
+              {/* <h4 className="">List</h4> */}
+              <div className="set-input mt-3">
+                <div className="position-r">
+                  <img className="con-img" src={require('./images/d.svg')} />
+                  <input
+                    className="input1"
+                    placeholder="資料查詢"
+                    type="text"
+                    id="inputkey"
+                    onKeyPress={this.inputKeySetState}
+                  />
+                </div>
               </div>
             </div>
-          </div>
 
-          <table class="table mt-5">
-            <thead>
-              <tr>
-                <th scope="col">進行中訂單</th>
-                <th scope="col">訂單編號</th>
-                <th scope="col">車輛名稱</th>
-                <th scope="col">租車日期</th>
-                <th scope="col">還車日期</th>
-
-                <th scope="col">總金額</th>
-                <th scope="col">車商</th>
-                <th scope="col">商品圖</th>
-              </tr>
-            </thead>
-            <tbody>
-              {listData.map(item => (
+            <table class="table mt-5">
+              <thead>
                 <tr>
-                  <th scope="row" />
-                  <td>{item.orderNo}</td>
-                  <td>{item.pBrand}</td>
-                  <td>{item.startDate.slice(0, 10)}</td>
-                  <td>{item.endDate.slice(0, 10)}</td>
-                  <td>{item.total}</td>
-                  <td>{item.shopName}</td>
-                  <td>
-                    <div style={order_picture}>1</div>
-                  </td>
+                  <th scope="col">進行中訂單</th>
+                  <th scope="col">訂單編號</th>
+                  <th scope="col">車輛名稱</th>
+                  <th scope="col">租車日期</th>
+                  <th scope="col">還車日期</th>
+
+                  <th scope="col">總金額</th>
+                  <th scope="col">車商</th>
+                  <th scope="col">商品圖</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
-
-          <table class="table mt-5">
-            <thead>
-              <tr>
-                <th scope="col" style={thLength}>
-                  歷史訂單
-                </th>
-                <th scope="col">訂單編號</th>
-                <th scope="col">車輛名稱</th>
-                <th scope="col">租車日期</th>
-                <th scope="col">還車日期</th>
-
-                <th scope="col">總金額</th>
-                <th scope="col">車商</th>
-                <th scope="col">商品圖</th>
-              </tr>
-            </thead>
-            <tbody>
-              {listData2.map(item =>
-                rattedNo.includes(item.orderNo) ? (
+              </thead>
+              <tbody>
+                {listData.map(item => (
                   <tr>
-                    <th scope="row" style={thLength}>
-                      <div
-                        className="buttonEndRatting"
-                        // class="btn btn-primary"
-                        // style={cursor}
-                      >
-                        已評價
-                      </div>
-                    </th>
+                    <th scope="row" />
                     <td>{item.orderNo}</td>
                     <td>{item.pBrand}</td>
                     <td>{item.startDate.slice(0, 10)}</td>
@@ -351,172 +396,216 @@ export default class index extends Component {
                       <div style={order_picture}>1</div>
                     </td>
                   </tr>
-                ) : (
-                  <tr>
-                    <th scope="row" style={thLength}>
-                      <div
-                        className="buttonToProduct"
-                        // class="btn btn-primary"
-                        data-toggle="modal"
-                        data-target="#exampleModal"
-                        data-whatever="@mdo"
-                        style={cursor}
-                        onClick={() => this.shopNo(item.shopName)}
-                      >
-                        給予評價
-                      </div>
-                      <div id="main" />
-                      {/* 彈出 */}
+                ))}
+              </tbody>
+            </table>
 
-                      <div
-                        className="modal fade"
-                        id="exampleModal"
-                        tabIndex={-1}
-                        role="dialog"
-                        aria-labelledby="exampleModalLabel"
-                        aria-hidden="true"
-                      >
-                        <div className="modal-dialog" role="document">
-                          <div className="modal-content">
-                            <div className="modal-header">
-                              <h5
-                                className="modal-title"
-                                id="exampleModalLabel"
-                              >
-                                New message
-                              </h5>
-                              <button
-                                type="button"
-                                className="close"
-                                data-dismiss="modal"
-                                aria-label="Close"
-                              >
-                                <span aria-hidden="true">×</span>
-                              </button>
-                            </div>
-                            <div className="modal-body">
-                              <form>
-                                <div className="form-group">
-                                  <label
-                                    htmlFor="recipient-name"
-                                    className="col-form-label"
-                                  >
-                                    評分:
-                                  </label>
-                                  <div
-                                    class="btn-toolbar"
-                                    role="toolbar"
-                                    aria-label="Toolbar with button groups"
-                                  >
-                                    <div
-                                      class="btn-group mr-2"
-                                      role="group"
-                                      aria-label="First group"
+            <table class="table mt-5">
+              <thead>
+                <tr>
+                  <th scope="col" style={thLength}>
+                    歷史訂單
+                  </th>
+                  <th scope="col">訂單編號</th>
+                  <th scope="col">車輛名稱</th>
+                  <th scope="col">租車日期</th>
+                  <th scope="col">還車日期</th>
+
+                  <th scope="col">總金額</th>
+                  <th scope="col">車商</th>
+                  <th scope="col">商品圖</th>
+                </tr>
+              </thead>
+              <tbody>
+                {listData2.map(item =>
+                  rattedNo.includes(item.orderNo) ? (
+                    <tr>
+                      <th scope="row" style={thLength}>
+                        <div
+                          className="buttonEndRatting"
+                          // class="btn btn-primary"
+                          // style={cursor}
+                        >
+                          已評價
+                        </div>
+                      </th>
+                      <td>{item.orderNo}</td>
+                      <td>{item.pBrand}</td>
+                      <td>{item.startDate.slice(0, 10)}</td>
+                      <td>{item.endDate.slice(0, 10)}</td>
+                      <td>{item.total}</td>
+                      <td>{item.shopName}</td>
+                      <td>
+                        <div style={order_picture}>1</div>
+                      </td>
+                    </tr>
+                  ) : (
+                    <tr>
+                      <th scope="row" style={thLength}>
+                        <div
+                          className="buttonToProduct"
+                          // class="btn btn-primary"
+                          data-toggle="modal"
+                          data-target="#exampleModal"
+                          data-whatever="@mdo"
+                          style={cursor}
+                          onClick={() => this.shopNo(item.shopName)}
+                        >
+                          給予評價
+                        </div>
+                        <div id="main" />
+                        {/* 彈出 */}
+
+                        <div
+                          className="modal fade"
+                          id="exampleModal"
+                          tabIndex={-1}
+                          role="dialog"
+                          aria-labelledby="exampleModalLabel"
+                          aria-hidden="true"
+                        >
+                          <div className="modal-dialog" role="document">
+                            <div className="modal-content">
+                              <div className="modal-header">
+                                <h5
+                                  className="modal-title"
+                                  id="exampleModalLabel"
+                                >
+                                  New message
+                                </h5>
+                                <button
+                                  type="button"
+                                  className="close"
+                                  data-dismiss="modal"
+                                  aria-label="Close"
+                                >
+                                  <span aria-hidden="true">×</span>
+                                </button>
+                              </div>
+                              <div className="modal-body">
+                                <form>
+                                  <div className="form-group">
+                                    <label
+                                      htmlFor="recipient-name"
+                                      className="col-form-label"
                                     >
-                                      <button
-                                        type="button"
-                                        class="btn btn-secondary"
-                                        style={green}
-                                        onClick={() =>
-                                          this.rate(1, item.shopName)
-                                        }
+                                      評分:
+                                    </label>
+                                    <div
+                                      class="btn-toolbar"
+                                      role="toolbar"
+                                      aria-label="Toolbar with button groups"
+                                    >
+                                      <div
+                                        class="btn-group mr-2"
+                                        role="group"
+                                        aria-label="First group"
                                       >
-                                        1
-                                      </button>
-                                      <button
-                                        type="button"
-                                        class="btn btn-secondary"
-                                        style={green}
-                                        onClick={() =>
-                                          this.rate(2, item.shopName)
-                                        }
-                                      >
-                                        2
-                                      </button>
-                                      <button
-                                        type="button"
-                                        class="btn btn-secondary"
-                                        style={green}
-                                        onClick={() =>
-                                          this.rate(3, item.shopName)
-                                        }
-                                      >
-                                        3
-                                      </button>
-                                      <button
-                                        type="button"
-                                        class="btn btn-secondary"
-                                        style={green}
-                                        onClick={() =>
-                                          this.rate(4, item.shopName)
-                                        }
-                                      >
-                                        4
-                                      </button>
-                                      <button
-                                        type="button"
-                                        class="btn btn-secondary"
-                                        style={green}
-                                        onClick={() =>
-                                          this.rate(5, item.shopName)
-                                        }
-                                      >
-                                        5
-                                      </button>
+                                        <button
+                                          type="button"
+                                          class="btn btn-secondary"
+                                          style={green}
+                                          onClick={() =>
+                                            this.rate(1, item.shopName)
+                                          }
+                                        >
+                                          1
+                                        </button>
+                                        <button
+                                          type="button"
+                                          class="btn btn-secondary"
+                                          style={green}
+                                          onClick={() =>
+                                            this.rate(2, item.shopName)
+                                          }
+                                        >
+                                          2
+                                        </button>
+                                        <button
+                                          type="button"
+                                          class="btn btn-secondary"
+                                          style={green}
+                                          onClick={() =>
+                                            this.rate(3, item.shopName)
+                                          }
+                                        >
+                                          3
+                                        </button>
+                                        <button
+                                          type="button"
+                                          class="btn btn-secondary"
+                                          style={green}
+                                          onClick={() =>
+                                            this.rate(4, item.shopName)
+                                          }
+                                        >
+                                          4
+                                        </button>
+                                        <button
+                                          type="button"
+                                          class="btn btn-secondary"
+                                          style={green}
+                                          onClick={() =>
+                                            this.rate(5, item.shopName)
+                                          }
+                                        >
+                                          5
+                                        </button>
+                                      </div>
                                     </div>
                                   </div>
-                                </div>
-                                <div className="form-group">
-                                  <label
-                                    htmlFor="message-text"
-                                    className="col-form-label"
-                                  >
-                                    留言:
-                                  </label>
-                                  <textarea
-                                    className="form-control"
-                                    id="message-text"
-                                    onChange={this.rateText}
-                                  />
-                                </div>
-                              </form>
-                            </div>
-                            <div className="modal-footer">
-                              <button
-                                type="button"
-                                className="btn btn-secondary"
-                                data-dismiss="modal"
-                              >
-                                關閉
-                              </button>
-                              <a
-                                className="btn sent"
-                                onClick={() =>
-                                  this.sent(item.shopName, item.orderNo)
-                                }
-                                href=""
-                              >
-                                確認送出
-                              </a>
+                                  <div className="form-group">
+                                    <label
+                                      htmlFor="message-text"
+                                      className="col-form-label"
+                                    >
+                                      留言:
+                                    </label>
+                                    <textarea
+                                      className="form-control"
+                                      id="message-text"
+                                      onChange={this.rateText}
+                                    />
+                                  </div>
+                                </form>
+                              </div>
+                              <div className="modal-footer">
+                                <button
+                                  type="button"
+                                  className="btn btn-secondary"
+                                  data-dismiss="modal"
+                                >
+                                  關閉
+                                </button>
+                                <a
+                                  className="btn sent"
+                                  onClick={() =>
+                                    this.sent(item.shopName, item.orderNo)
+                                  }
+                                  href=""
+                                >
+                                  確認送出
+                                </a>
+                              </div>
                             </div>
                           </div>
                         </div>
-                      </div>
-                    </th>
-                    <td>{item.orderNo}</td>
-                    <td>{item.pBrand}</td>
-                    <td>{item.startDate.slice(0, 10)}</td>
-                    <td>{item.endDate.slice(0, 10)}</td>
-                    <td>{item.total}</td>
-                    <td>{item.shopName}</td>
-                    <td>
-                      <div style={order_picture}>1</div>
-                    </td>
-                  </tr>
-                )
-              )}
-            </tbody>
-          </table>
+                      </th>
+                      <td>{item.orderNo}</td>
+                      <td>{item.pBrand}</td>
+                      <td>{item.startDate.slice(0, 10)}</td>
+                      <td>{item.endDate.slice(0, 10)}</td>
+                      <td>{item.total}</td>
+                      <td>{item.shopName}</td>
+                      <td>
+                        <div style={order_picture}>1</div>
+                      </td>
+                    </tr>
+                  )
+                )}
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
     )

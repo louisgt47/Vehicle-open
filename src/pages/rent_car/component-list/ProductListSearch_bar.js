@@ -229,45 +229,44 @@ class ProductListSearch_bar extends React.Component {
     }
     return (
       <div className="productList-search_bar">
-        <div className="productList-container search_bar">
-          <div className="d-flex justify-content-center">
-            <div class="newsearchnav">
-              <div class="searchnav">
-                <div class="linemiddle1" />
-                <div class="linemiddle2" />
-                <div class="searchbox">
-                  <i class="fas search-icon fa-search" />
-                  <input
-                    type="text"
-                    class="searchboxinput"
-                    placeholder="關鍵字搜尋"
-                    onChange={this.inputKeySetState}
-                    id="inputkey"
-                  />
-                  <div class="linebox">
-                    <div class="top">
-                      <div class="addline" />
-                      <div class="topline1" />
-                      <div class="topline2" />
-                    </div>
-                    <div class="top2">
-                      <div class="top2line1" />
+        <div class="newsearchnav">
+          <div class="searchnav">
+            <div class="linemiddle1" />
+            <div class="linemiddle2" />
+            <div class="searchbox">
+              <i class="fas search-icon fa-search" />
+              <input
+                type="text"
+                class="searchboxinput"
+                placeholder="關鍵字搜尋"
+                onChange={this.inputKeySetState}
+                id="inputkey"
+              />
+              <div class="linebox">
+                <div class="top">
+                  <div class="addline" />
+                  <div class="topline1" />
+                  <div class="topline2" />
+                </div>
+                <div class="top2">
+                  <div class="top2line1" />
 
-                      <div class="top2line2" />
-                    </div>
-                    <div class="bottom">
-                      <div class="addline2" />
-                      <div class="bottomline2" />
-                      <div class="bottomline3" />
-                    </div>
-                    <div class="bottom2">
-                      <div class="bottom2line1" />
-                      <div class="bottom2line2" />
-                    </div>
-                  </div>
+                  <div class="top2line2" />
+                </div>
+                <div class="bottom">
+                  <div class="addline2" />
+                  <div class="bottomline2" />
+                  <div class="bottomline3" />
+                </div>
+                <div class="bottom2">
+                  <div class="bottom2line1" />
+                  <div class="bottom2line2" />
                 </div>
               </div>
             </div>
+          </div>
+          <div className="productList-container search_bar">
+            <div className="d-flex justify-content-center" />
           </div>
           <div className="d-flex justify-content-center">
             <div style={selectSize} className="sel sel--black-panther" id="s1">

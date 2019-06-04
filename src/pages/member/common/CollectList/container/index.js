@@ -15,27 +15,24 @@ export default class index extends Component {
       memberCollectionList: [],
       inputkey: '',
       searchList: [],
-      mNo:'',
+      mNo: '',
     }
   }
   async componentDidMount() {
-    fetch("http://localhost:4000/islogin",{
+    fetch('http://localhost:4000/islogin', {
       credentials: 'include',
-    method: 'GET'})
-   .then(res=>res.json())
-   .then(obj=>{
-      console.log(obj)
+      method: 'GET',
+    })
+      .then(res => res.json())
+      .then(obj => {
+        console.log(obj)
 
-       this.setState({mNo:obj.No})
-       
-          
-   }
-   
-   )
-   setTimeout(() => {
-    this.getCollection()
-  }, 200);
-}
+        this.setState({ mNo: obj.No })
+      })
+    setTimeout(() => {
+      this.getCollection()
+    }, 200)
+  }
   getCollection = async _ => {
     try {
       let mNo = 1
@@ -72,7 +69,11 @@ export default class index extends Component {
   searchList = _ => {
     var searchData = this.state.inputkey
     console.log(searchData)
-    fetch(`http://localhost:4000/searchList2?inputkey=${searchData}&mNo=${this.state.mNo}`)
+    fetch(
+      `http://localhost:4000/searchList2?inputkey=${searchData}&mNo=${
+        this.state.mNo
+      }`
+    )
       .then(response => response.json())
       .then(response => this.setState({ searchList: response.data }))
       // .then(console.log(this.state.hotList_car))
@@ -131,73 +132,161 @@ export default class index extends Component {
       ? this.state.searchList
       : this.state.memberCollectionList
     console.log(this.state.pNo)
+    const top = {
+      paddingTop: '400px',
+      backgroundColor: '#f8f9fa',
+    }
+    const color = {
+      backgroundColor: '#f8f9fa',
+    }
     return (
-      <div className="con-set1">
-        <div style={listContainer}>
-          <div className="set-text1">
-            <h2 className="set-text1-1">收藏清單</h2>
-            <br />
-            {/* <h4 className="">List</h4> */}
-            <div className="set-input mt-3">
-              <div className="position-r">
-                <img className="con-img" src={require('./images/d.svg')} />
-                <input
-                  className="input1"
-                  placeholder="資料查詢"
-                  type="text"
-                  id="inputkey"
-                  onKeyPress={this.inputKeySetState}
-                />
+      <div className="row">
+        <div className="col-2" style={top}>
+          <div
+            className="nav flex-column nav-pills px-5"
+            id="v-pills-tab"
+            role="tablist"
+            aria-orientation="vertical"
+            style={color}
+          >
+            <h3 className="mb-3">會員專區</h3>
+            <a
+              className="nav-link  my-2"
+              id="v-pills-home-tab"
+              data-toggle="pill"
+              href="#v-pills-home"
+              role="tab"
+              aria-controls="v-pills-home"
+              aria-selected="true"
+            >
+              個人資料編輯
+            </a>
+
+            <Link
+              to={'/orderList'}
+              className="nav-link  my-2"
+              id="v-pills-profile-tab"
+              data-toggle="pill"
+              role="tab"
+              aria-controls="v-pills-profile"
+              aria-selected="false"
+            >
+              租車訂單查詢
+            </Link>
+
+            <a
+              className="nav-link my-2"
+              id="v-pills-messages-tab"
+              data-toggle="pill"
+              href="#v-pills-messages"
+              role="tab"
+              aria-controls="v-pills-messages"
+              aria-selected="false"
+            >
+              代駕訂單查詢
+            </a>
+            <a
+              className="nav-link my-2"
+              id="v-pills-settings-tab"
+              data-toggle="pill"
+              href="#v-pills-settings"
+              role="tab"
+              aria-controls="v-pills-settings"
+              aria-selected="false"
+            >
+              信用卡設定
+            </a>
+            <a
+              className="nav-link my-2 active"
+              id="v-pills-settings-tab"
+              data-toggle="pill"
+              href="#v-pills-settings"
+              role="tab"
+              aria-controls="v-pills-settings"
+              aria-selected="false"
+            >
+              我的收藏
+            </a>
+            <a
+              className="nav-link my-2 "
+              id="v-pills-settings-tab"
+              data-toggle="pill"
+              href="#v-pills-settings"
+              role="tab"
+              aria-controls="v-pills-settings"
+              aria-selected="false"
+            >
+              優惠活動
+            </a>
+          </div>
+        </div>
+        <div className="con-set1 col-10">
+          <div style={listContainer}>
+            <div className="set-text1">
+              <h2 className="set-text1-1">收藏清單</h2>
+              <br />
+              {/* <h4 className="">List</h4> */}
+              <div className="set-input mt-3">
+                <div className="position-r">
+                  <img className="con-img" src={require('./images/d.svg')} />
+                  <input
+                    className="input1"
+                    placeholder="資料查詢"
+                    type="text"
+                    id="inputkey"
+                    onKeyPress={this.inputKeySetState}
+                  />
+                </div>
               </div>
             </div>
-          </div>
 
-          <table class="table mt-5">
-            <thead>
-              <tr>
-                <th scope="col" />
-                <th scope="col">車款</th>
-                <th scope="col">租借狀態</th>
-                <th scope="col">車種</th>
-                <th scope="col">租金/日</th>
-
-                <th scope="col">車商</th>
-                <th scope="col">所在地</th>
-                <th scope="col">商品圖</th>
-              </tr>
-            </thead>
-            <tbody>
-              {listData.map(item => (
+            <table class="table mt-5">
+              <thead>
                 <tr>
-                  <th scope="row">
-                    <Link
-                      key={item.pNo}
-                      to={'/productMain/' + item.pNo}
-                      product={this.props.product}
-                    >
-                      <a className="buttonToProduct">車輛頁面</a>
-                    </Link>
-                    <a
-                      className="buttonDelete"
-                      onClick={() => this.itemDelete(item.pNo)}
-                      href=""
-                    >
-                      移除
-                    </a>
-                  </th>
-                  <td>{item.pBrand}</td>
-                  <td>{item.rentState}</td>
-                  <td>{item.pType}</td>
-                  <td>{item.pRent}</td>
-                  <td>{item.shopName}</td>
-                  <td>台北市</td>
-                  <td>
-                    <div style={order_picture}>1</div>
-                  </td>
+                  <th scope="col" />
+                  <th scope="col">車款</th>
+                  <th scope="col">租借狀態</th>
+                  <th scope="col">車種</th>
+                  <th scope="col">租金/日</th>
+
+                  <th scope="col">車商</th>
+                  <th scope="col">所在地</th>
+                  <th scope="col">商品圖</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
+              </thead>
+              <tbody>
+                {listData.map(item => (
+                  <tr>
+                    <th scope="row">
+                      <Link
+                        key={item.pNo}
+                        to={'/productMain/' + item.pNo}
+                        product={this.props.product}
+                      >
+                        <a className="buttonToProduct">車輛頁面</a>
+                      </Link>
+                      <a
+                        className="buttonDelete"
+                        onClick={() => this.itemDelete(item.pNo)}
+                        href=""
+                      >
+                        移除
+                      </a>
+                    </th>
+                    <td>{item.pBrand}</td>
+                    <td>{item.rentState}</td>
+                    <td>{item.pType}</td>
+                    <td>{item.pRent}</td>
+                    <td>{item.shopName}</td>
+                    <td>台北市</td>
+                    <td>
+                      <div style={order_picture}>1</div>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
     )

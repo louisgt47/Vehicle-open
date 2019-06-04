@@ -1,6 +1,8 @@
 import React from 'react'
 import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom'
 import { Container, Row, Col, Button, Form, Card, Image } from 'react-bootstrap'
+import NavMember from '../../basic/NavMember'
+import Footer from '../../basic/Footer'
 
 import img2 from './img/img2.svg'
 
@@ -90,7 +92,7 @@ class Authorization extends React.Component {
       orderNo: this.state.orderNo,
     }
     try {
-      const response = await fetch('http://localhost:3001/orderUpdate', {
+      const response = await fetch('http://localhost:4000/orderUpdate', {
         body: JSON.stringify(data),
         method: 'POST',
         headers: new Headers({
@@ -119,9 +121,14 @@ class Authorization extends React.Component {
     // let day = d.getDate()
 
     // const output = year + '-' + month + '-' + day
+    const size = {
+      marginTop: '120px',
+      marginBottom: '50px',
+    }
     return (
       <>
-        <Container>
+        <NavMember />
+        <Container style={size}>
           <Row>
             <Col sm={12}>
               <h1>線上付款-信用卡授權驗證</h1>
@@ -225,6 +232,7 @@ class Authorization extends React.Component {
             </Col>
           </Row>
         </Container>
+        <Footer />
       </>
     )
   }

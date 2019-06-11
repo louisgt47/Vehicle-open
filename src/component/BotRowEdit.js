@@ -228,6 +228,7 @@ class BotRow extends React.Component {
                       <option value="小客車">小客車</option>
                       <option value="休旅車">休旅車</option>
                       <option value="貨車">貨車</option>
+                      <option value="吉普車">吉普車</option>
                     </Form.Control>
                   </Form.Group>
                 </div>
